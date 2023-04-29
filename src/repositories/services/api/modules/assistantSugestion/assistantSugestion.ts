@@ -15,8 +15,6 @@ const list = ` Claro, aqui estão algumas sugestões de filmes de ação:s
 7. O Exterminador do Futuro 2: O Julgamento Final
 8. Missão Impossível: Protocolo Fantasma`;
 
-let count = 0;
-
 export class AssistantSugestion {
   private gpt = new GPTAssistant();
   private movies = new Movies();
@@ -36,7 +34,7 @@ export class AssistantSugestion {
       console.log('new request ' + data.text);
       console.log('results', data.result);
       const movies = await this.movies.getAllByName(data.result);
-      count += 1;
+
       return {
         text: data.text,
         movies: movies.length > 0 ? movies : [],

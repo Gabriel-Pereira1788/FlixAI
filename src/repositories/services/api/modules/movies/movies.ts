@@ -1,5 +1,5 @@
 import {TMDB_GENRES} from '../../../../../helpers/constants/tmdb';
-import {TMDB_KEY} from '../../../../../helpers/constants/tmdb';
+import {TMDB_KEY} from '@env';
 import {Movie, IDataMovie} from '../../../../../models/Movie';
 import {api} from '../../api';
 import {MoviesImpl} from './model';

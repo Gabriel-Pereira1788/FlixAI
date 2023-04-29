@@ -5,21 +5,25 @@ import {ImageProps, StyleSheet} from 'react-native';
 interface ProgressiveImageProps extends AnimateProps<ImageProps> {
   containerProps?: S.IBoxProps;
   thumbnailSource: string;
+  children?: React.ReactNode;
 }
 
 export default function ProgressiveImage({
   containerProps,
   thumbnailSource,
+  children,
   ...rest
 }: ProgressiveImageProps) {
   return (
-    <S.Box
-      position="relative"
-      overflow="hidden"
-      backgroundColor="background.main"
-      {...containerProps}>
-      <Animated.Image {...rest} source={{uri: thumbnailSource}} />
-      <Animated.Image {...rest} style={[styles.imageOverlay, rest.style]} />
+    <S.Box position="relative">
+      {children && children}
+      <S.Box
+        overflow="hidden"
+        backgroundColor="background.main"
+        {...containerProps}>
+        <Animated.Image {...rest} source={{uri: thumbnailSource}} />
+        <Animated.Image {...rest} style={[styles.imageOverlay, rest.style]} />
+      </S.Box>
     </S.Box>
   );
 }

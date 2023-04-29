@@ -2,15 +2,20 @@ import React from 'react';
 import * as S from 'native-base';
 import Input from '../../../../../components/Input/View';
 import Button from '../../../../../components/Button/View';
-import {useCreatePlaylist} from './useCreatePlaylist';
+import {useCreatePlaylist as _useCreatePlaylist} from './useCreatePlaylist';
 import Movies from '../Movies/View';
 import {TouchableOpacity} from 'react-native';
 import {modalRef} from '../../../../../components/Modal/View';
+import {CreatePlaylistViewModel} from './model';
 interface CreatePlaylistProps {
   redirectScreen: () => void;
+  useCreatePlaylist?: CreatePlaylistViewModel;
 }
 
-export default function CreatePlaylist({redirectScreen}: CreatePlaylistProps) {
+export default function CreatePlaylist({
+  redirectScreen,
+  useCreatePlaylist = _useCreatePlaylist,
+}: CreatePlaylistProps) {
   const {popularMovies} = useCreatePlaylist();
 
   function handleRedirectScreen() {

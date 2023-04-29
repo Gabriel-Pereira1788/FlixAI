@@ -1,5 +1,5 @@
 import axios, {AxiosError} from 'axios';
-import {GPT_KEY, PROMPT_INITIAL} from '../../../helpers/constants/GPT';
+import {GPT_KEY, PROMPT_INITIAL} from '@env';
 
 export class MessageModel {
   createdAt: Date = new Date();

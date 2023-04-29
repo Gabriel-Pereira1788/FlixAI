@@ -4,6 +4,7 @@ import React from 'react';
 import CardMovie from '../CardMovie/View';
 import * as S from 'native-base';
 import Animated, {FadeInDown} from 'react-native-reanimated';
+
 interface AllMoviewsProps {
   dataMovies?: IDataMovie[];
 }
@@ -11,7 +12,7 @@ interface AllMoviewsProps {
 export default function AllMovies({dataMovies}: AllMoviewsProps) {
   const renderItem: ListRenderItem<Movie> = React.useCallback(
     ({item, index}) => {
-      return <CardMovie key={index} {...item} />;
+      return <CardMovie key={index} dataMovie={item} />;
     },
     [],
   );

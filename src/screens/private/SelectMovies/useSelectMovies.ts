@@ -3,12 +3,14 @@ import {useAllMovies} from '../../../store/useAllMovies';
 import {SelectMoviesViewModel} from './model';
 import {useQueryClient} from '@tanstack/react-query';
 import {QUERY_KEYS} from '../../../helpers/constants/queryKeys';
+import {useSelectedMoviesContext} from '../../../providers/modules/SelectedMoviesProvider';
 
 export const _useSelectMovies: SelectMoviesViewModel = ({navigation}) => {
-  const [focus, setFocus] = React.useState(false);
   const queryClient = useQueryClient();
+  const [focus, setFocus] = React.useState(false);
   const {data, isLoading} = useAllMovies();
-  console.log('focus', focus);
+
+  const {addToSelected, selectedMovies} = useSelectedMoviesContext();
 
   React.useEffect(() => {
     navigation.addListener('focus', () => {
@@ -24,5 +26,7 @@ export const _useSelectMovies: SelectMoviesViewModel = ({navigation}) => {
   return {
     dataMovies: focus ? data : [],
     loading: isLoading,
+    addToSelected,
+    selectedMovies,
   };
 };

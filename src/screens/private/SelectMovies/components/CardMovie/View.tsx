@@ -1,7 +1,6 @@
 import React from 'react';
 import * as S from 'native-base';
 
-import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native';
 import Animated, {FadeInDown} from 'react-native-reanimated';
 import {Movie} from '../../../../../models/Movie';
@@ -10,18 +9,24 @@ import {
   TMBD_BACKDROP_PREVIEW,
   TMBD_BACKDROP_URL,
 } from '../../../../../helpers/constants/tmdb';
+import {Check} from 'phosphor-react-native';
+import {useSelectedMoviesContext} from '../../../../../providers/modules/SelectedMoviesProvider';
+import RenderIF from '../../../../../components/RenderIF/View';
 
-type Props = Pick<Movie, 'backdrop_path' | 'title' | 'id'> & {
+type Props = {
+  dataMovie: Movie;
   w?: number;
   h?: number;
 };
 
-export default function CardMovie({backdrop_path, title, id, w, h}: Props) {
-  const navigation = useNavigation();
+export default function CardMovie({dataMovie, w, h}: Props) {
+  const {backdrop_path, title} = dataMovie;
+  const {addToSelected, selectedMovies} = useSelectedMoviesContext();
+
+  const isSelected = selectedMovies.find(movie => movie.id === dataMovie.id);
   return (
     <Animated.View entering={FadeInDown.delay(200).duration(200)}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('SingleMovie', {idMovie: id})}>
+      <TouchableOpacity onPress={() => addToSelected(dataMovie)}>
         <S.VStack m={5} space={2} alignItems="center" justifyContent="center">
           <ProgressiveImage
             source={{
@@ -31,6 +36,7 @@ export default function CardMovie({backdrop_path, title, id, w, h}: Props) {
             progressiveRenderingEnabled={true}
             containerProps={{
               style: {
+                position: 'relative',
                 borderRadius: 20,
                 borderColor: '#dddddd35',
                 borderWidth: 1,
@@ -39,8 +45,19 @@ export default function CardMovie({backdrop_path, title, id, w, h}: Props) {
             style={{
               width: w || 200,
               height: h || 250,
-            }}
-          />
+            }}>
+            <RenderIF condition={!!isSelected}>
+              <S.Circle
+                zIndex={20}
+                p={2}
+                backgroundColor="orange.500"
+                position="absolute"
+                top={-5}
+                right={-5}>
+                <Check size={10} color="#fff" />
+              </S.Circle>
+            </RenderIF>
+          </ProgressiveImage>
 
           <S.Text fontWeight={500} color="#ddd" fontSize="md">
             {title}

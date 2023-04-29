@@ -4,7 +4,7 @@ import {MagnifyingGlass} from 'phosphor-react-native';
 import {TouchableOpacity} from 'react-native';
 
 interface SearchBarProps extends S.IInputProps {
-  onSearch: (value: string) => void;
+  onSearch?: (value: string) => void;
   Icon?: React.FC;
 }
 
@@ -12,7 +12,9 @@ export default function SearchBar({onSearch, Icon, ...rest}: SearchBarProps) {
   const [value, setValue] = React.useState('');
 
   function overrideOnSearch() {
-    onSearch(value);
+    if (onSearch) {
+      onSearch(value);
+    }
   }
   return (
     <S.Input
@@ -36,9 +38,9 @@ export default function SearchBar({onSearch, Icon, ...rest}: SearchBarProps) {
         </TouchableOpacity>
       }
       borderWidth={1}
-      {...rest}
       onChangeText={text => setValue(text)}
       value={value}
+      {...rest}
     />
   );
 }

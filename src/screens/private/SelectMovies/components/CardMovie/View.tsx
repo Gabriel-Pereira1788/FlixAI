@@ -10,8 +10,8 @@ import {
   TMBD_BACKDROP_URL,
 } from '../../../../../helpers/constants/tmdb';
 import {Check} from 'phosphor-react-native';
-import {useSelectedMoviesContext} from '../../../../../providers/modules/SelectedMoviesProvider';
 import RenderIF from '../../../../../components/RenderIF/View';
+import {useSelectedMoviesStore} from '../../../../../store/client/useSelectedMoviesStore';
 
 type Props = {
   dataMovie: Movie;
@@ -21,7 +21,10 @@ type Props = {
 
 export default function CardMovie({dataMovie, w, h}: Props) {
   const {backdrop_path, title} = dataMovie;
-  const {addToSelected, selectedMovies} = useSelectedMoviesContext();
+  const {
+    actions: {addToSelected},
+    state: {selectedMovies},
+  } = useSelectedMoviesStore();
 
   const isSelected = selectedMovies.find(movie => movie.id === dataMovie.id);
   return (

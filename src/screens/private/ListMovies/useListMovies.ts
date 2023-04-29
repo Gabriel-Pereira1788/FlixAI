@@ -7,7 +7,6 @@ import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
 export const useListMovies: ListMoviesViewModel = ({idList}) => {
   const playlistData = useObject(Playlist, idList);
   const {focused} = useFocusedScreen();
-  console.log('playlistData', playlistData?.movies);
 
   const displayMovies = React.useMemo(() => {
     return playlistData && focused ? playlistData.movies : [];

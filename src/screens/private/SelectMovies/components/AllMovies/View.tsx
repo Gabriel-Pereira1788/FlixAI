@@ -9,7 +9,7 @@ interface AllMoviewsProps {
   dataMovies?: IDataMovie[];
 }
 
-export default function AllMovies({dataMovies}: AllMoviewsProps) {
+function AllMovies({dataMovies}: AllMoviewsProps) {
   const renderItem: ListRenderItem<Movie> = React.useCallback(
     ({item, index}) => {
       return <CardMovie key={index} dataMovie={item} />;
@@ -55,3 +55,5 @@ export default function AllMovies({dataMovies}: AllMoviewsProps) {
     />
   );
 }
+
+export default React.memo(AllMovies);

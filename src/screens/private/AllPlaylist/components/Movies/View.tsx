@@ -1,8 +1,8 @@
 import React from 'react';
 import {Movie} from '../../../../../models/Movie';
 import * as S from 'native-base';
-import CardMovie from '../../../../../components/CardMovie/View';
 import {StyleSheet} from 'react-native';
+import SelectMovieCard from '../SelectMovieCard/View';
 interface MoviesProps {
   movies: Movie[];
 }
@@ -13,7 +13,7 @@ export default function Movies({movies}: MoviesProps) {
       data={movies}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.listContainer}
-      renderItem={({item}) => <CardMovie {...item} />}
+      renderItem={({item}) => <SelectMovieCard {...item} />}
     />
   );
 }

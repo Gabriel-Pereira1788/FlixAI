@@ -7,11 +7,12 @@ import Animated, {FadeInDown} from 'react-native-reanimated';
 import {Star} from 'phosphor-react-native';
 import {BlurView} from '@react-native-community/blur';
 
-interface CardMoviesProps extends Movie {
+export interface CardMoviesProps extends Movie {
   index?: number;
   containerStyle?: StyleProp<Animated.AnimateStyle<StyleProp<ViewStyle>>>;
   stackStyle?: S.IStackProps;
   onPress?: () => void;
+  children?: React.ReactNode;
 }
 export default function CardMovie({
   backdrop_path,
@@ -23,6 +24,7 @@ export default function CardMovie({
   vote_count,
   vote_average,
   onPress,
+  children,
 }: CardMoviesProps) {
   const style = typeof containerStyle === 'object' ? {...containerStyle} : {};
   const min_vote = 100;
@@ -93,6 +95,7 @@ export default function CardMovie({
               {overview?.slice(0, 30)}...
             </S.Text>
           </S.VStack>
+          {children && children}
         </S.HStack>
       </TouchableOpacity>
     </Animated.View>

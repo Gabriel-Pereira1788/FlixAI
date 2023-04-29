@@ -16,7 +16,8 @@ export default function CreatePlaylist({
   redirectScreen,
   useCreatePlaylist = _useCreatePlaylist,
 }: CreatePlaylistProps) {
-  const {popularMovies} = useCreatePlaylist();
+  const {popularMovies, titlePlaylist, handleChangeText, handleCreate} =
+    useCreatePlaylist();
 
   function handleRedirectScreen() {
     modalRef.current?.hide();
@@ -37,10 +38,18 @@ export default function CreatePlaylist({
       <S.Text color="#ddd" fontSize="2xl" fontWeight={500}>
         Criar nova playlist
       </S.Text>
-      <Input placeholder="Nome para playlist" />
+      <Input
+        placeholder="Nome para playlist"
+        value={titlePlaylist}
+        onChangeText={handleChangeText}
+      />
 
       <S.Text color="#ddd" fontSize="2xl" fontWeight={500}>
-        Escolha alguns filmes
+        Filmes populares.
+      </S.Text>
+
+      <S.Text color="#8b8b8b" fontSize="md" fontWeight={500}>
+        Selecione algums filmes para continuar
       </S.Text>
       <S.HStack w="100%" alignItems="center" justifyContent="flex-end">
         <TouchableOpacity onPress={handleRedirectScreen}>
@@ -51,7 +60,7 @@ export default function CreatePlaylist({
       </S.HStack>
       {popularMovies && <Movies movies={popularMovies} />}
 
-      <Button>Confirmar</Button>
+      <Button onPress={handleCreate}>Confirmar</Button>
     </S.VStack>
   );
 }

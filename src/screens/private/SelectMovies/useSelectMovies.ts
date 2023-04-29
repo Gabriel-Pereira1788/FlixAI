@@ -1,16 +1,31 @@
 import React from 'react';
-import {useAllMovies} from '../../../store/useAllMovies';
+import {useAllMovies} from '../../../store/server/useAllMovies';
 import {SelectMoviesViewModel} from './model';
 import {useQueryClient} from '@tanstack/react-query';
 import {QUERY_KEYS} from '../../../helpers/constants/queryKeys';
-import {useSelectedMoviesContext} from '../../../providers/modules/SelectedMoviesProvider';
+import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
+import {PlaylistDTO} from '../../../models/Playlist';
+import {useSelectedMoviesStore} from '../../../store/client/useSelectedMoviesStore';
+import {modalRef} from '../../../components/Modal/View';
 
 export const _useSelectMovies: SelectMoviesViewModel = ({navigation}) => {
   const queryClient = useQueryClient();
   const [focus, setFocus] = React.useState(false);
   const {data, isLoading} = useAllMovies();
 
-  const {addToSelected, selectedMovies} = useSelectedMoviesContext();
+  const {
+    state,
+    actions: {addToSelected, cleanUp},
+  } = useSelectedMoviesStore();
+
+  const {create} = usePlaylist();
+
+  async function onCreate(dataPlaylist: PlaylistDTO) {
+    await create(dataPlaylist);
+    modalRef.current?.hide();
+    cleanUp();
+    navigation.goBack();
+  }
 
   React.useEffect(() => {
     navigation.addListener('focus', () => {
@@ -26,7 +41,8 @@ export const _useSelectMovies: SelectMoviesViewModel = ({navigation}) => {
   return {
     dataMovies: focus ? data : [],
     loading: isLoading,
-    addToSelected,
-    selectedMovies,
+    selectedMovies: state.selectedMovies,
+    addToSelected: addToSelected,
+    onCreate,
   };
 };

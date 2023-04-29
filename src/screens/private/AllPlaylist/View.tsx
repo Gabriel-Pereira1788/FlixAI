@@ -2,7 +2,7 @@ import React from 'react';
 import SharedLayout from '../../../components/SharedLayout/View';
 import * as S from 'native-base';
 import BottomTab from '../../../components/BottomTab/View';
-import {useAllPlaylist} from './useAllPlaylist';
+import {useAllPlaylist as _useAllPlaylist} from './useAllPlaylist';
 import StackPlaylist from '../../../components/StackPlaylist/View';
 import {SIZES} from '../../../helpers/constants/sizes';
 
@@ -11,10 +11,15 @@ import {TouchableOpacity} from 'react-native';
 import {Plus} from 'phosphor-react-native';
 import {modalRef} from '../../../components/Modal/View';
 import CreatePlaylist from './components/CreatePlaylist/View';
-type Props = {};
+import {AllPlaylistViewModel} from './model';
 
-export default function AllPlaylist({}: Props) {
-  const {allPlaylists, redirectScreen} = useAllPlaylist();
+interface Props {
+  useAllPlaylist?: AllPlaylistViewModel;
+}
+
+export default function AllPlaylist({useAllPlaylist = _useAllPlaylist}: Props) {
+  const {allPlaylists, searchText, handleChangeText, redirectScreen} =
+    useAllPlaylist();
 
   function openModal() {
     modalRef.current?.show(() => (
@@ -38,6 +43,10 @@ export default function AllPlaylist({}: Props) {
                 <Plus size={25} color="#fff" weight="bold" />
               </TouchableOpacity>
             }
+            inputProps={{
+              value: searchText,
+              onChangeText: handleChangeText,
+            }}
           />
         </S.Box>
       }

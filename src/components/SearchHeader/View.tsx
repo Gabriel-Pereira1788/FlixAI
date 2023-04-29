@@ -14,9 +14,10 @@ import SearchBar from '../SearchBar/View';
 
 interface HeaderProps {
   title: string;
-  onSearch: (value: string) => Promise<void> | void;
+  onSearch?: (value: string) => Promise<void> | void;
   titleProps?: S.ITextProps;
   RightComponent?: JSX.Element;
+  inputProps?: S.IInputProps;
 }
 
 export default function SearchHeader({
@@ -24,11 +25,14 @@ export default function SearchHeader({
   title,
   RightComponent,
   titleProps,
+  inputProps,
 }: HeaderProps) {
   const {visible, toggleVisible} = useVisible();
 
   function handleOnSearch(value: string) {
-    onSearch(value);
+    if (onSearch) {
+      onSearch(value)!;
+    }
     toggleVisible();
   }
 
@@ -47,11 +51,12 @@ export default function SearchHeader({
             exiting={FadeInDown.delay(500).duration(150)}>
             <SearchBar
               autoFocus={true}
-              onSearch={handleOnSearch}
+              onSearch={onSearch ? handleOnSearch : undefined}
               onBlur={() => {
                 toggleVisible();
               }}
               Icon={() => <PaperPlaneRight color="#ddd" />}
+              {...inputProps}
             />
           </Animated.View>
         </S.VStack>

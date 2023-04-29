@@ -11,6 +11,8 @@ import {NavigationProps} from '../../../router/navigation';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {BlurView} from '@react-native-community/blur';
 import {CaretRight} from 'phosphor-react-native';
+import {modalRef} from '../../../components/Modal/View';
+import AddPlaylist from '../../../components/AddPlaylist/View';
 
 interface SelectMoviesProps extends NavigationProps<'SelectMovies'> {
   useSelectMovies?: SelectMoviesViewModel;
@@ -19,7 +21,18 @@ export default function SelectMovies({
   useSelectMovies = _useSelectMovies,
   navigation,
 }: SelectMoviesProps) {
-  const {dataMovies, loading, selectedMovies} = useSelectMovies({navigation});
+  const {dataMovies, loading, selectedMovies, onCreate} = useSelectMovies({
+    navigation,
+  });
+
+  function openModal() {
+    if (selectedMovies.length > 0) {
+      modalRef.current?.show(
+        () => <AddPlaylist listData={selectedMovies} onCreate={onCreate} />,
+        'slide',
+      );
+    }
+  }
   return (
     <SharedLayout
       HeaderComponent={
@@ -42,8 +55,9 @@ export default function SelectMovies({
           AlternativeComponent={<S.Spinner size="lg" color="orange.500" />}>
           <S.VStack flex={1}>
             <AllMovies dataMovies={dataMovies} />
+
             <RenderIF condition={selectedMovies.length > 0}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={openModal}>
                 <S.Circle
                   overflow="hidden"
                   p={4}

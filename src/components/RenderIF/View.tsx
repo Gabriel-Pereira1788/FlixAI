@@ -11,7 +11,7 @@ export default function RenderIF({
   AlternativeComponent,
   children,
 }: Props) {
-  if (!condition && !AlternativeComponent) {
+  if (!condition && AlternativeComponent) {
     return <>{AlternativeComponent}</>;
   }
   return <>{condition && children}</>;

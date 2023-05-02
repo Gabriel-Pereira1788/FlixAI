@@ -10,7 +10,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 
 interface BottomTabProps extends S.IStackProps {
-  currentPath: 'sugestions' | 'allPlaylist';
+  currentPath: 'sugestions' | 'allPlaylist' | 'movies';
 }
 
 export default function BottomTab({currentPath, ...rest}: BottomTabProps) {
@@ -43,8 +43,13 @@ export default function BottomTab({currentPath, ...rest}: BottomTabProps) {
           weight="bold"
         />
       </TouchableOpacity>
-      <TouchableOpacity>
-        <Popcorn size={30} color={'#ffffffc3'} weight="bold" />
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Home', {screen: 'movies'})}>
+        <Popcorn
+          size={30}
+          color={currentPath === 'movies' ? '#f97316' : '#ffffffc3'}
+          weight="bold"
+        />
       </TouchableOpacity>
       <TouchableOpacity>
         <UserCircle size={30} color={'#ffffffc3'} weight="bold" />

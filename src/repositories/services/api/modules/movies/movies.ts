@@ -9,7 +9,10 @@ export class Movies implements MoviesImpl {
     return {};
   }
 
-  async getByGenre(genre: GenreIdentify): Promise<Movie[]> {
+  async getByGenre(genre?: GenreIdentify): Promise<Movie[]> {
+    if (!genre) {
+      return [];
+    }
     if (genre === 'popular') {
       const {data} = await api.get(
         `/movie/popular?api_key=${TMDB_KEY}&language=pt-BR&page=1`,

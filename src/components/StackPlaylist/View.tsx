@@ -3,29 +3,21 @@ import * as S from 'native-base';
 import CardMovie from '../CardMovie/View';
 import {Movie} from '../../models/Movie';
 import {TouchableOpacity} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {Realm} from '@realm/react';
 
 interface StackPlaylistProps extends S.IStackProps {
-  _id: Realm.BSON.ObjectId;
   title: string;
   listData: Movie[];
+  onPress?: () => void;
 }
 
 export default function StackPlaylist({
-  _id,
   title,
   listData,
+  onPress,
   ...rest
 }: StackPlaylistProps) {
-  console.log('listdata', listData[0]);
-  const navigation = useNavigation();
-
-  function redirectToList() {
-    navigation.navigate('ListMovies', {idList: _id});
-  }
   return (
-    <TouchableOpacity onPress={redirectToList}>
+    <TouchableOpacity onPress={onPress}>
       <S.VStack
         w="100%"
         alignItems="center"

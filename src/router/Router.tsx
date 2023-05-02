@@ -8,6 +8,7 @@ import ListMovies from '../screens/private/ListMovies/View';
 import {RootParamListI} from './navigation';
 import SingleMovie from '../screens/private/SingleMovie/View';
 import SelectMovies from '../screens/private/SelectMovies/View';
+import Movies from '../screens/private/Movies/View';
 
 type Props = {};
 
@@ -26,6 +27,7 @@ function Home() {
       }}>
       <NativeStack.Screen name="sugestions" component={PlaylistSugestion} />
       <NativeStack.Screen name="allPlaylist" component={AllPlaylist} />
+      <NativeStack.Screen name="movies" component={Movies} />
     </NativeStack.Navigator>
   );
 }

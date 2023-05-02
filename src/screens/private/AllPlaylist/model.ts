@@ -3,7 +3,8 @@ import {Playlist} from '../../../repositories/database/schemas/PlaylistSchema';
 
 export type AllPlaylistViewModel = () => {
   searchText: string;
-  handleChangeText(value: string): void;
   allPlaylists: Realm.Results<Playlist>;
+  handleChangeText(value: string): void;
   redirectScreen: () => void;
+  handleSelectPlaylist(id: Realm.BSON.ObjectId): void;
 };

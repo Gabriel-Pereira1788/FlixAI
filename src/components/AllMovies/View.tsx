@@ -1,22 +1,15 @@
 import {ListRenderItem} from 'react-native/types';
-import {IDataMovie, Movie} from '../../../../../models/Movie';
 import React from 'react';
-import SelectedCardMovie from '../SelectedCardMovie/View';
 import * as S from 'native-base';
 import Animated, {FadeInDown} from 'react-native-reanimated';
+import {IDataMovie, Movie} from '../../models/Movie';
 
 interface AllMoviewsProps {
   dataMovies?: IDataMovie[];
+  renderItem: ListRenderItem<Movie>;
 }
 
-function AllMovies({dataMovies}: AllMoviewsProps) {
-  const renderItem: ListRenderItem<Movie> = React.useCallback(
-    ({item, index}) => {
-      return <SelectedCardMovie key={index} dataMovie={item} />;
-    },
-    [],
-  );
-
+function AllMovies({dataMovies, renderItem}: AllMoviewsProps) {
   const renderListItem: ListRenderItem<IDataMovie> = React.useCallback(
     ({item, index}) => (
       <S.Box key={index}>

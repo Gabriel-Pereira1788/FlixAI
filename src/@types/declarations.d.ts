@@ -15,3 +15,8 @@ type GenreIdentify =
   | 'horror'
   | 'romance'
   | 'documentaries';
+
+interface Filter {
+  text?: string;
+  category?: GenreIdentify;
+}

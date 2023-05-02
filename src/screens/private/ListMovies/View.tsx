@@ -7,17 +7,19 @@ import {useListMovies as _useListMovies} from './useListMovies';
 import SearchHeader from '../../../components/SearchHeader/View';
 import List from './components/List/View';
 import RenderIF from '../../../components/RenderIF/View';
+import {usePlaylistStore} from '../../../store/client/usePlaylistStore';
 
 interface ListMoviesProps extends NavigationProps<'ListMovies'> {
   useListMovies?: ListMoviesViewModel;
 }
 
 export default function ListMovies({
-  route,
   useListMovies = _useListMovies,
 }: ListMoviesProps) {
-  const {idList} = route.params;
-  const {dataMovies, title} = useListMovies({idList});
+  const {
+    state: {idPlaylist},
+  } = usePlaylistStore();
+  const {dataMovies, title} = useListMovies({idPlaylist});
   return (
     <SharedLayout
       HeaderComponent={

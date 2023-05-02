@@ -1,15 +1,12 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {Realm} from '@realm/react';
 
 export type RootParamListI = {
   Home:
     | undefined
     | {
-        screen: 'sugestions' | 'allPlaylist';
+        screen: 'sugestions' | 'allPlaylist' | 'movies';
       };
-  ListMovies: {
-    idList: Realm.BSON.ObjectId;
-  };
+  ListMovies: undefined;
   SingleMovie: {
     idMovie: number;
   };

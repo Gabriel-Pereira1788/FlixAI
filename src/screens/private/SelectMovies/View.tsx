@@ -1,18 +1,23 @@
 import React from 'react';
+import {ListRenderItem, StyleSheet, TouchableOpacity} from 'react-native';
 import {SelectMoviesViewModel} from './model';
 import * as S from 'native-base';
 import {_useSelectMovies} from './useSelectMovies';
 
 import RenderIF from '../../../components/RenderIF/View';
-import AllMovies from './components/AllMovies/View';
 import SearchHeader from '../../../components/SearchHeader/View';
 import SharedLayout from '../../../components/SharedLayout/View';
 import {NavigationProps} from '../../../router/navigation';
-import {StyleSheet, TouchableOpacity} from 'react-native';
 import {BlurView} from '@react-native-community/blur';
 import {CaretRight} from 'phosphor-react-native';
 import {modalRef} from '../../../components/Modal/View';
 import AddPlaylist from '../../../components/AddPlaylist/View';
+import FilteredMovies from '../../../components/FilteredMovies/View';
+import AllMovies from '../../../components/AllMovies/View';
+import CardMovie from './components/SelectedCardMovie/View';
+import {SIZES} from '../../../helpers/constants/sizes';
+import {Movie} from '../../../models/Movie';
+import SelectedCardMovie from './components/SelectedCardMovie/View';
 
 interface SelectMoviesProps extends NavigationProps<'SelectMovies'> {
   useSelectMovies?: SelectMoviesViewModel;
@@ -21,7 +26,14 @@ export default function SelectMovies({
   useSelectMovies = _useSelectMovies,
   navigation,
 }: SelectMoviesProps) {
-  const {dataMovies, loading, selectedMovies, onCreate} = useSelectMovies({
+  const {
+    dataMovies,
+    loading,
+    selectedMovies,
+    searchText,
+    handleChange,
+    onCreate,
+  } = useSelectMovies({
     navigation,
   });
 
@@ -33,14 +45,37 @@ export default function SelectMovies({
       );
     }
   }
+
+  const renderItem: ListRenderItem<Movie> = React.useCallback(
+    ({item, index}) => {
+      return (
+        <CardMovie
+          w={SIZES.width - 50}
+          h={SIZES.height / 2 - 20}
+          key={index}
+          dataMovie={item}
+        />
+      );
+    },
+    [],
+  );
+
+  const renderMoviesItem: ListRenderItem<Movie> = React.useCallback(
+    ({item, index}) => {
+      return <SelectedCardMovie key={index} dataMovie={item} />;
+    },
+    [],
+  );
   return (
     <SharedLayout
+      isLoadingData={loading}
       HeaderComponent={
         <S.Box px={10} my={6}>
           <SearchHeader
             title="Selecione filmes para continuar."
-            onSearch={(value: string) => {
-              console.log(value);
+            inputProps={{
+              value: searchText,
+              onChangeText: handleChange,
             }}
           />
         </S.Box>
@@ -50,11 +85,25 @@ export default function SelectMovies({
         backgroundColor="background.main"
         alignItems="center"
         justifyContent="center">
-        <RenderIF
-          condition={!loading && !!dataMovies}
-          AlternativeComponent={<S.Spinner size="lg" color="orange.500" />}>
+        <RenderIF condition={!loading && !!dataMovies}>
           <S.VStack flex={1}>
-            <AllMovies dataMovies={dataMovies} />
+            <RenderIF
+              condition={searchText.trim() === ''}
+              AlternativeComponent={
+                <FilteredMovies
+                  movies={dataMovies!}
+                  filter={{
+                    text: searchText,
+                    category: 'all',
+                  }}
+                  renderItem={renderItem}
+                />
+              }>
+              <AllMovies
+                dataMovies={dataMovies}
+                renderItem={renderMoviesItem}
+              />
+            </RenderIF>
 
             <RenderIF condition={selectedMovies.length > 0}>
               <TouchableOpacity onPress={openModal}>

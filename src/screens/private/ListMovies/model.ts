@@ -2,10 +2,10 @@ import {Realm} from '@realm/react';
 import {Movie} from '../../../models/Movie';
 
 interface HookProps {
-  idList: Realm.BSON.ObjectId;
+  idPlaylist: Realm.BSON.ObjectId | null;
 }
 
-export type ListMoviesViewModel = ({idList}: HookProps) => {
+export type ListMoviesViewModel = ({idPlaylist}: HookProps) => {
   dataMovies: Movie[];
   title: string;
 };

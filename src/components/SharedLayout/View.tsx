@@ -1,10 +1,12 @@
 import React from 'react';
 import * as S from 'native-base';
+import RenderIF from '../RenderIF/View';
 type Props = {
   children: React.ReactNode;
   HeaderComponent?: JSX.Element;
   BottomComponent?: JSX.Element;
   containerStyle?: S.IZStackProps;
+  isLoadingData?: boolean;
 };
 
 export default function SharedLayout({
@@ -12,6 +14,7 @@ export default function SharedLayout({
   HeaderComponent,
   BottomComponent,
   containerStyle,
+  isLoadingData,
 }: Props) {
   return (
     <S.VStack
@@ -23,8 +26,16 @@ export default function SharedLayout({
       backgroundColor="background.main"
       space={2}
       {...containerStyle}>
-      {HeaderComponent && HeaderComponent}
-      {children}
+      <RenderIF
+        condition={!isLoadingData}
+        AlternativeComponent={
+          <S.VStack flex={1} alignItems="center" justifyContent="center">
+            <S.Spinner color="orange.500" />
+          </S.VStack>
+        }>
+        {HeaderComponent && HeaderComponent}
+        {children}
+      </RenderIF>
       {BottomComponent && BottomComponent}
     </S.VStack>
   );

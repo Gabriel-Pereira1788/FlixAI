@@ -34,6 +34,7 @@ export default function PlaylistSugestion({
   }
   return (
     <SharedLayout
+      isLoadingData={isLoading}
       HeaderComponent={
         <S.Box px={10} paddingTop={10}>
           <SearchHeader

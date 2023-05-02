@@ -29,6 +29,8 @@ export default function List({dataMovies}: ListProps) {
           key={item.id}
           {...item}
           backdrop_path={item.backdrop_path}
+          vote_count={item.vote_count}
+          vote_average={item.vote_average}
           title={item.title}
           overview={item.overview}
           onPress={redirectPage(item.id)}

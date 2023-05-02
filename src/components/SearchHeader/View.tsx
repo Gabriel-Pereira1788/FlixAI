@@ -20,6 +20,8 @@ interface HeaderProps {
   inputProps?: S.IInputProps;
 }
 
+const Icon: React.FC = () => <PaperPlaneRight color="#ddd" />;
+
 export default function SearchHeader({
   onSearch,
   title,
@@ -55,7 +57,7 @@ export default function SearchHeader({
               onBlur={() => {
                 toggleVisible();
               }}
-              Icon={() => <PaperPlaneRight color="#ddd" />}
+              Icon={Icon}
               {...inputProps}
             />
           </Animated.View>

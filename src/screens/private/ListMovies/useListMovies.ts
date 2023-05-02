@@ -4,8 +4,8 @@ import {Playlist} from '../../../repositories/database/schemas/PlaylistSchema';
 import React from 'react';
 import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
 
-export const useListMovies: ListMoviesViewModel = ({idList}) => {
-  const playlistData = useObject(Playlist, idList);
+export const useListMovies: ListMoviesViewModel = ({idPlaylist}) => {
+  const playlistData = useObject(Playlist, idPlaylist!);
   const {focused} = useFocusedScreen();
 
   const displayMovies = React.useMemo(() => {

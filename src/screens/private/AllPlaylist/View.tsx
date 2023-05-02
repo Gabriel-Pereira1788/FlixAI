@@ -18,8 +18,13 @@ interface Props {
 }
 
 export default function AllPlaylist({useAllPlaylist = _useAllPlaylist}: Props) {
-  const {allPlaylists, searchText, handleChangeText, redirectScreen} =
-    useAllPlaylist();
+  const {
+    allPlaylists,
+    searchText,
+    handleChangeText,
+    redirectScreen,
+    handleSelectPlaylist,
+  } = useAllPlaylist();
 
   function openModal() {
     modalRef.current?.show(() => (
@@ -67,11 +72,12 @@ export default function AllPlaylist({useAllPlaylist = _useAllPlaylist}: Props) {
           }}
           renderItem={({item}) => (
             <StackPlaylist
-              _id={item._id}
+              key={String(item._id)}
               title={item.title}
               listData={item.movies}
               alignItems="flex-start"
               width={SIZES.width - 50}
+              onPress={() => handleSelectPlaylist(item._id)}
             />
           )}
         />

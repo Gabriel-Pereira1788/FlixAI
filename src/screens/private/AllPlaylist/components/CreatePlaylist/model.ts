@@ -1,6 +1,13 @@
 import {Movie} from '../../../../../models/Movie';
+import {PlaylistImpl} from '../../../../../repositories/database/useCases/Playlist/model';
+import {SelectedMoviesStoreImpl} from '../../../../../store/client/SelectMovies/useSelectedMoviesStore';
 
-export type CreatePlaylistViewModel = () => {
+type HookProps = {
+  useSelectedMoviesStore?: SelectedMoviesStoreImpl;
+  usePlaylist?: PlaylistImpl;
+};
+
+export type CreatePlaylistViewModel = (props: HookProps) => {
   popularMovies: Movie[] | undefined;
   loading: boolean;
   titlePlaylist: string;

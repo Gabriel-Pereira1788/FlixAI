@@ -17,7 +17,7 @@ export default function CreatePlaylist({
   useCreatePlaylist = _useCreatePlaylist,
 }: CreatePlaylistProps) {
   const {popularMovies, titlePlaylist, handleChangeText, handleCreate} =
-    useCreatePlaylist();
+    useCreatePlaylist({});
 
   function handleRedirectScreen() {
     modalRef.current?.hide();

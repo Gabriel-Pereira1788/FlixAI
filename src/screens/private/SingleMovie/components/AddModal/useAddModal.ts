@@ -1,44 +1,51 @@
-import {Realm} from '@realm/react';
-import {useQueryRealm, useRealm} from '../../../../../repositories/database/db';
-import {Playlist} from '../../../../../repositories/database/schemas/PlaylistSchema';
 import React from 'react';
 import {AddModalViewModel} from './models';
+import {modalRef} from '../../../../../components/Modal/View';
+import {usePlaylist} from '../../../../../repositories/database/useCases/Playlist/usePlaylist';
+import {useRealm} from '../../../../../repositories/database/db';
 
-export const useAddModal: AddModalViewModel = ({movie}) => {
+export const useAddModal: AddModalViewModel = ({
+  movie,
+  useRealmImpl = useRealm,
+  usePlaylistImpl = usePlaylist,
+}) => {
+  const playlistImpl = usePlaylistImpl();
+  const realm = useRealmImpl();
+
   const [idPlaylist, setIdPlaylist] = React.useState<string>('');
-  const results = useQueryRealm(Playlist);
-  const realm = useRealm();
 
-  const dataPlaylist: Realm.Results<Playlist> = React.useMemo(() => {
-    return results;
-  }, [results]);
+  const dataPlaylist = React.useMemo(() => {
+    return playlistImpl.get();
+  }, [playlistImpl]);
 
   function handleChange(value: string) {
     setIdPlaylist(value);
   }
 
   function onAdd() {
-    const playlist = results.find(value => {
-      return value.title === idPlaylist;
-    });
+    const playlist = dataPlaylist.filtered(`title = "${idPlaylist}"`);
 
-    console.log(playlist);
-
-    const haveInPlaylist = playlist
-      ? playlist?.movies.find(dataMovie => dataMovie.id === movie.id)
-      : null;
+    const haveInPlaylist =
+      playlist.length > 0
+        ? playlist[0]?.movies.find(dataMovie => dataMovie.id === movie.id)
+        : null;
     if (!!haveInPlaylist === false) {
       realm.write(() => {
-        if (playlist && playlist.movies) {
-          playlist.movies = [...playlist.movies, movie];
+        if (playlist.length > 0 && playlist[0].movies) {
+          const newMovies = [...playlist[0].movies, movie];
+          console.log('new movies', newMovies);
+
+          playlist[0].movies = newMovies;
         }
       });
+
+      modalRef.current?.hide();
     } else {
       console.log('have in playlist');
     }
   }
 
-  console.log('id', idPlaylist);
+  console.log('dataPlaylist', dataPlaylist);
 
   return {dataPlaylist, idPlaylist, handleChange, onAdd};
 };

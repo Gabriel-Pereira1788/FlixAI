@@ -1,5 +1,5 @@
 import {create} from 'zustand';
-import {Movie} from '../../models/Movie';
+import {Movie} from '../../../models/Movie';
 
 type Actions = {
   addToSelected: (movie: Movie) => void;
@@ -15,7 +15,7 @@ interface StoreProps {
   actions: Actions;
 }
 
-export const useSelectedMoviesStore = create<StoreProps>(set => ({
+export const useStore = create<StoreProps>(set => ({
   state: {
     selectedMovies: [],
   },

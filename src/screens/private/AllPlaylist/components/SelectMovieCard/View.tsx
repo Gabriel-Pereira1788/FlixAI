@@ -2,7 +2,7 @@ import React from 'react';
 import CardMovie, {
   CardMoviesProps,
 } from '../../../../../components/CardMovie/View';
-import {useSelectedMoviesStore} from '../../../../../store/client/useSelectedMoviesStore';
+import {useSelectedMoviesStore} from '../../../../../store/client/SelectMovies/useSelectedMoviesStore';
 
 import * as S from 'native-base';
 import {Check} from 'phosphor-react-native';
@@ -10,7 +10,8 @@ import {Check} from 'phosphor-react-native';
 export default function SelectMovieCard({...rest}: CardMoviesProps) {
   const {
     state: {selectedMovies},
-    actions: {addToSelected, removeToSelected},
+    addToSelected,
+    removeToSelected,
   } = useSelectedMoviesStore();
 
   const isSelected = selectedMovies.find(movie => movie.id === rest.id);

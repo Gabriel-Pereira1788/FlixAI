@@ -15,7 +15,7 @@ interface StoreProps {
   actions: Actions;
 }
 
-export const usePlaylistStore = create<StoreProps>(set => ({
+export const useStore = create<StoreProps>(set => ({
   state: {
     idPlaylist: null,
   },

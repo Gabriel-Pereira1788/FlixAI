@@ -16,6 +16,8 @@ export default function StackPlaylist({
   onPress,
   ...rest
 }: StackPlaylistProps) {
+  const test = listData.map(movie => movie.backdrop_path);
+  console.log('listData', test);
   return (
     <TouchableOpacity onPress={onPress}>
       <S.VStack

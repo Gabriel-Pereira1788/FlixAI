@@ -5,11 +5,20 @@ import {QUERY_KEYS} from '../../../../../helpers/constants/queryKeys';
 import {CreatePlaylistViewModel} from './model';
 import {PlaylistDTO} from '../../../../../models/Playlist';
 import {modalRef} from '../../../../../components/Modal/View';
-import {useSelectedMoviesStore} from '../../../../../store/client/useSelectedMoviesStore';
-import {usePlaylist} from '../../../../../repositories/database/useCases/Playlist/usePlaylist';
+import {useSelectedMoviesStore as _useSelectedMoviesStore} from '../../../../../store/client/SelectMovies/useSelectedMoviesStore';
+import {usePlaylist as _usePlaylist} from '../../../../../repositories/database/useCases/Playlist/usePlaylist';
 import React from 'react';
 
-export const useCreatePlaylist: CreatePlaylistViewModel = () => {
+export const useCreatePlaylist: CreatePlaylistViewModel = ({
+  useSelectedMoviesStore = _useSelectedMoviesStore,
+  usePlaylist = _usePlaylist,
+}) => {
+  const {
+    state: {selectedMovies},
+    cleanUp,
+  } = useSelectedMoviesStore();
+  const {create} = usePlaylist();
+
   const {data, isLoading} = useQuery(
     [QUERY_KEYS.popularMovies],
     () => MoviesApi.getByGenre('popular'),
@@ -19,13 +28,6 @@ export const useCreatePlaylist: CreatePlaylistViewModel = () => {
   );
 
   const [titlePlaylist, setTitlePlaylist] = React.useState('');
-
-  const {
-    actions: {cleanUp},
-    state: {selectedMovies},
-  } = useSelectedMoviesStore();
-
-  const {create} = usePlaylist();
 
   async function onCreate(dataPlaylist: PlaylistDTO) {
     await create(dataPlaylist);

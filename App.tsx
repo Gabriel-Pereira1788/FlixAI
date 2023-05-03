@@ -8,8 +8,6 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
 
-import PlaylistSugestion from './src/screens/private/PlaylistSugestion/View';
-
 import {MAIN} from './src/styles/theme';
 import Providers from './src/providers';
 import Modal from './src/components/Modal/View';

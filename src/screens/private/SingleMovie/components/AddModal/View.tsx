@@ -2,13 +2,18 @@ import React from 'react';
 import * as S from 'native-base';
 import {Movie} from '../../../../../models/Movie';
 import Button from '../../../../../components/Button/View';
-import {useAddModal} from './useAddModal';
+import {AddModalViewModel} from './models';
+import {useAddModal as _useAddModal} from './useAddModal';
 
 interface AddModalProps {
   movie: Movie;
+  useAddModal?: AddModalViewModel;
 }
 
-export default function AddModal({movie}: AddModalProps) {
+export default function View({
+  movie,
+  useAddModal = _useAddModal,
+}: AddModalProps) {
   const {dataPlaylist, handleChange, onAdd} = useAddModal({movie});
   return (
     <S.VStack
@@ -30,11 +35,15 @@ export default function AddModal({movie}: AddModalProps) {
         color="#ddd"
         borderColor="#3b3838"
         borderRadius={10}>
-        {/*   {dataPlaylist &&
+        {dataPlaylist &&
           dataPlaylist.length > 0 &&
           dataPlaylist.map(data => (
-            <S.Select.Item color="#000" label={data.title} value={data.title} />
-          ))} */}
+            <S.Select.Item
+              color="#000"
+              label={data.title ? data.title : ''}
+              value={data.title ? data.title : ''}
+            />
+          ))}
       </S.Select>
       <Button onPress={onAdd}>Confirmar</Button>
     </S.VStack>

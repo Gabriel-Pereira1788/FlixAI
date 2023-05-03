@@ -4,16 +4,16 @@ import {Playlist} from '../../../repositories/database/schemas/PlaylistSchema';
 import {useNavigation} from '@react-navigation/native';
 import {AllPlaylistViewModel} from './model';
 import {Realm} from '@realm/react';
-import {usePlaylistStore} from '../../../store/client/usePlaylistStore';
+import {usePlaylistStore as _usePlaylistStore} from '../../../store/client/PlaylistStore/usePlaylistStore';
 
-export const useAllPlaylist: AllPlaylistViewModel = () => {
+export const useAllPlaylist: AllPlaylistViewModel = ({
+  usePlaylistStore = _usePlaylistStore,
+}) => {
   const navigation = useNavigation();
   const dataPlaylists = useQueryRealm(Playlist);
+  const {selectPlaylist} = usePlaylistStore();
 
   const [searchText, setSearchText] = React.useState('');
-  const {
-    actions: {selectPlaylist},
-  } = usePlaylistStore();
 
   const allPlaylists: Realm.Results<Playlist> = React.useMemo(() => {
     if (searchText.trim() !== '') {

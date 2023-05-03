@@ -1,26 +1,23 @@
 import React from 'react';
 import {useAllMovies} from '../../../store/server/useAllMovies';
 import {SelectMoviesViewModel} from './model';
-import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
+import {usePlaylist as _usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
 import {PlaylistDTO} from '../../../models/Playlist';
-import {useSelectedMoviesStore} from '../../../store/client/useSelectedMoviesStore';
+import {useSelectedMoviesStore as _useSelectedMoviesStore} from '../../../store/client/SelectMovies/useSelectedMoviesStore';
 import {modalRef} from '../../../components/Modal/View';
 import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
-import {useQueryClient} from '@tanstack/react-query';
-import {QUERY_KEYS} from '../../../helpers/constants/queryKeys';
 
-export const _useSelectMovies: SelectMoviesViewModel = ({navigation}) => {
-  const {focused} = useFocusedScreen();
-  const queryClient = useQueryClient();
-  const [searchText, setSearchText] = React.useState('');
+export const _useSelectMovies: SelectMoviesViewModel = ({
+  navigation,
+  useSelectedMoviesStore = _useSelectedMoviesStore,
+  usePlaylist = _usePlaylist,
+}) => {
+  const {state, addToSelected, cleanUp} = useSelectedMoviesStore();
   const {data, isLoading} = useAllMovies();
-
-  const {
-    state,
-    actions: {addToSelected, cleanUp},
-  } = useSelectedMoviesStore();
-
   const {create} = usePlaylist();
+
+  const [searchText, setSearchText] = React.useState('');
+  const {focused} = useFocusedScreen();
 
   async function onCreate(dataPlaylist: PlaylistDTO) {
     await create(dataPlaylist);

@@ -24,7 +24,7 @@ export default function AllPlaylist({useAllPlaylist = _useAllPlaylist}: Props) {
     handleChangeText,
     redirectScreen,
     handleSelectPlaylist,
-  } = useAllPlaylist();
+  } = useAllPlaylist({});
 
   function openModal() {
     modalRef.current?.show(() => (

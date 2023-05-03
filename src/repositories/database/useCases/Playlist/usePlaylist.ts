@@ -1,11 +1,14 @@
 import {PlaylistDTO} from '../../../../models/Playlist';
-import {useRealm} from '../../db';
+import {useQueryRealm, useRealm} from '../../db';
+import {Playlist} from '../../schemas/PlaylistSchema';
 import {PlaylistImpl} from './model';
 
 export const usePlaylist: PlaylistImpl = () => {
   const realm = useRealm();
-
-  async function get() {}
+  const playlists = useQueryRealm(Playlist);
+  function get(): Realm.Results<Playlist> {
+    return playlists;
+  }
   async function create(data: PlaylistDTO) {
     realm.write(() => {
       realm.create<PlaylistDTO>('Playlist', {
@@ -23,6 +26,7 @@ export const usePlaylist: PlaylistImpl = () => {
   return {
     create,
     get,
+    playlists,
     deleteItem,
   };
 };

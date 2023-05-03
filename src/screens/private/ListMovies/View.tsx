@@ -7,7 +7,7 @@ import {useListMovies as _useListMovies} from './useListMovies';
 import SearchHeader from '../../../components/SearchHeader/View';
 import List from './components/List/View';
 import RenderIF from '../../../components/RenderIF/View';
-import {usePlaylistStore} from '../../../store/client/usePlaylistStore';
+import {usePlaylistStore} from '../../../store/client/PlaylistStore/usePlaylistStore';
 
 interface ListMoviesProps extends NavigationProps<'ListMovies'> {
   useListMovies?: ListMoviesViewModel;

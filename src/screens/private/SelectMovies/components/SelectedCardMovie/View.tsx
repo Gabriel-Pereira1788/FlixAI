@@ -5,7 +5,7 @@ import {Movie} from '../../../../../models/Movie';
 
 import {Check} from 'phosphor-react-native';
 import RenderIF from '../../../../../components/RenderIF/View';
-import {useSelectedMoviesStore} from '../../../../../store/client/useSelectedMoviesStore';
+import {useSelectedMoviesStore} from '../../../../../store/client/SelectMovies/useSelectedMoviesStore';
 import MovieBox from '../../../../../components/MovieBox/View';
 
 type Props = {
@@ -16,8 +16,8 @@ type Props = {
 
 export default function SelectedCardMovie({dataMovie, w, h}: Props) {
   const {
-    actions: {addToSelected},
     state: {selectedMovies},
+    addToSelected,
   } = useSelectedMoviesStore();
 
   const isSelected = selectedMovies.find(movie => movie.id === dataMovie.id);

@@ -1,16 +1,21 @@
 import React from 'react';
 import {useQuery} from '@tanstack/react-query';
-import {AssistantSugestion} from '../../../repositories/services/api/modules/assistantSugestion/assistantSugestion';
 import {DataSugestion} from '../../../models/Sugestion';
 import {PlaylistSugestionViewModel} from './models';
-import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
 import {PlaylistDTO} from '../../../models/Playlist';
 import {useNavigation} from '@react-navigation/native';
+//*repositories
+import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
+import {AssistantSugestion} from '../../../repositories/services/api/modules/assistantSugestion/assistantSugestion';
+import {_useKeywordsGpt} from '../../../repositories/database/useCases/KeywordsGpt/useKeywordsGpt';
 
 const Assistant = new AssistantSugestion();
 
-export const usePlaylistSugestion: PlaylistSugestionViewModel = () => {
+export const usePlaylistSugestion: PlaylistSugestionViewModel = ({
+  useKeywordsGpt = _useKeywordsGpt,
+}) => {
   const navigation = useNavigation();
+  const keywordsGpt = useKeywordsGpt();
   const [messageData, setMessageData] = React.useState<DataSugestion>({
     text: '',
     id: '',
@@ -18,7 +23,7 @@ export const usePlaylistSugestion: PlaylistSugestionViewModel = () => {
 
   const {data, isLoading} = useQuery(
     ['sugestions', messageData.text.trim()],
-    () => Assistant.getSugestions(messageData),
+    () => Assistant.getSugestions(messageData, keywordsGpt),
     {
       refetchOnMount: false,
       refetchOnWindowFocus: false,

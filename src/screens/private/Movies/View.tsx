@@ -15,12 +15,15 @@ import AllMovies from '../../../components/AllMovies/View';
 import {Movie} from '../../../models/Movie';
 import MovieBox from '../../../components/MovieBox/View';
 import {SIZES} from '../../../helpers/constants/sizes';
+import {useNavigation} from '@react-navigation/native';
 interface MoviesProps {
   useMovies?: MoviesViewModel;
 }
 
 export default function Movies({useMovies = _useMovies}: MoviesProps) {
   const {categories, filter, dataMovies, isLoading, handleFilter} = useMovies();
+
+  const navigation = useNavigation();
 
   const renderFilteredItem: ListRenderItem<Movie> = React.useCallback(
     ({item}) => (
@@ -29,13 +32,28 @@ export default function Movies({useMovies = _useMovies}: MoviesProps) {
         h={SIZES.height / 2 - 20}
         key={item.id}
         dataMovie={item}
+        onPress={() =>
+          navigation.navigate('SingleMovie', {
+            idMovie: item.id,
+          })
+        }
       />
     ),
-    [],
+    [navigation],
   );
   const renderMoviesItem: ListRenderItem<Movie> = React.useCallback(
-    ({item}) => <MovieBox key={item.id} dataMovie={item} />,
-    [],
+    ({item}) => (
+      <MovieBox
+        key={item.id}
+        dataMovie={item}
+        onPress={() =>
+          navigation.navigate('SingleMovie', {
+            idMovie: item.id,
+          })
+        }
+      />
+    ),
+    [navigation],
   );
   return (
     <SharedLayout
@@ -68,7 +86,12 @@ export default function Movies({useMovies = _useMovies}: MoviesProps) {
                 category: item.identify,
               })
             }>
-            <Category key={index} text={item.name} identify={item.identify} />
+            <Category
+              key={index}
+              text={item.name}
+              identify={item.identify}
+              currentCategory={filter.category}
+            />
           </TouchableOpacity>
         )}
       />
@@ -89,7 +112,7 @@ export default function Movies({useMovies = _useMovies}: MoviesProps) {
 
 const styles = StyleSheet.create({
   contentStyle: {
-    marginVertical: 2,
+    marginVertical: 10,
     width: 'auto',
     height: 100,
     alignItems: 'flex-start',

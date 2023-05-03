@@ -1,7 +1,12 @@
 import {Movie} from '../../../models/Movie';
 import {PlaylistDTO} from '../../../models/Playlist';
+import {KeywordsGptImpl} from '../../../repositories/database/useCases/KeywordsGpt/model';
 
-export type PlaylistSugestionViewModel = () => {
+type HookProps = {
+  useKeywordsGpt?: KeywordsGptImpl;
+};
+
+export type PlaylistSugestionViewModel = (props: HookProps) => {
   textGpt?: string;
   data: Movie[] | undefined;
   isLoading: boolean;

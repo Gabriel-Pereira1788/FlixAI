@@ -3,6 +3,7 @@ export function extractKeyWords(text: string) {
   const keywords = words
     ? words.filter(word => {
         const excludedWords = [
+          'me',
           'a',
           'o',
           'e',
@@ -24,6 +25,10 @@ export function extractKeyWords(text: string) {
           'por',
           'porque',
           'porquê',
+          'listar',
+          'filmes',
+          'listagem',
+          'liste',
         ];
         return !excludedWords.includes(word);
       })

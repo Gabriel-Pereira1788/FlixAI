@@ -3,12 +3,10 @@ import {TMDB_GENRES} from '../../../helpers/constants/tmdb';
 import {MoviesViewModel} from './model';
 import {useAllMovies} from '../../../store/server/useAllMovies';
 import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
-import {useQueryClient} from '@tanstack/react-query';
-import {QUERY_KEYS} from '../../../helpers/constants/queryKeys';
 
 export const _useMovies: MoviesViewModel = () => {
   const {data, isLoading} = useAllMovies();
-  const queryClient = useQueryClient();
+  //const queryClient = useQueryClient();
   const {focused} = useFocusedScreen();
   const [filter, setFilter] = React.useState<Filter>({
     text: '',
@@ -21,6 +19,8 @@ export const _useMovies: MoviesViewModel = () => {
     setFilter(prev => ({...prev, ...filterData}));
   }
 
+  console.log(filter);
+
   /*   React.useEffect(() => {
     if (!focused) {
       queryClient.removeQueries([QUERY_KEYS.allMovies]);
@@ -30,7 +30,7 @@ export const _useMovies: MoviesViewModel = () => {
   return {
     dataMovies: focused ? data : [],
     isLoading,
-    categories,
+    categories: [{name: 'Todos', identify: 'all', id: 1}, ...categories],
     filter,
     handleFilter,
   };

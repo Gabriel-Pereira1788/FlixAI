@@ -30,11 +30,11 @@ export default function AddModal({movie}: AddModalProps) {
         color="#ddd"
         borderColor="#3b3838"
         borderRadius={10}>
-        {dataPlaylist &&
+        {/*   {dataPlaylist &&
           dataPlaylist.length > 0 &&
           dataPlaylist.map(data => (
             <S.Select.Item color="#000" label={data.title} value={data.title} />
-          ))}
+          ))} */}
       </S.Select>
       <Button onPress={onAdd}>Confirmar</Button>
     </S.VStack>

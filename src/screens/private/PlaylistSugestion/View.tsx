@@ -1,11 +1,10 @@
 import React from 'react';
 import * as S from 'native-base';
 import {usePlaylistSugestion as _usePlaylistSugestion} from './usePlaylistSugestion';
-import {StyleSheet} from 'react-native';
+
 import Animated, {FadeInDown} from 'react-native-reanimated';
 import {PlaylistSugestionViewModel} from './models';
 //*components
-import CardMovie from '../../../components/CardMovie/View';
 import RenderIF from '../../../components/RenderIF/View';
 import {modalRef} from '../../../components/Modal/View';
 import AddPlaylist from '../../../components/AddPlaylist/View';
@@ -13,7 +12,7 @@ import AddToPlaylist from './components/AddToPlaylist/View';
 import BottomTab from '../../../components/BottomTab/View';
 import SharedLayout from '../../../components/SharedLayout/View';
 import SearchHeader from '../../../components/SearchHeader/View';
-
+import List from './components/List/View';
 type Props = {
   usePlaylistSugestion?: PlaylistSugestionViewModel;
 };
@@ -21,8 +20,9 @@ type Props = {
 export default function PlaylistSugestion({
   usePlaylistSugestion = _usePlaylistSugestion,
 }: Props) {
-  const {data, textGpt, isLoading, onSearch, onCreate, redirectScreen} =
-    usePlaylistSugestion();
+  const {data, textGpt, isLoading, onSearch, onCreate} = usePlaylistSugestion(
+    {},
+  );
 
   function openModal() {
     if (data && data.length > 0) {
@@ -45,22 +45,7 @@ export default function PlaylistSugestion({
       }
       BottomComponent={<BottomTab currentPath="sugestions" />}>
       <RenderIF condition={!isLoading && !!data && data.length > 0}>
-        {data && data.length > 0 && (
-          <S.FlatList
-            scrollEventThrottle={16}
-            showsVerticalScrollIndicator={false}
-            data={data!}
-            contentContainerStyle={styles.list}
-            renderItem={({item, index}) => (
-              <CardMovie
-                index={index}
-                {...item}
-                stackStyle={{marginY: '5%'}}
-                onPress={redirectScreen(item.id)}
-              />
-            )}
-          />
-        )}
+        {data && data.length > 0 && <List data={data} />}
         <S.HStack
           position="absolute"
           zIndex={10}
@@ -80,16 +65,3 @@ export default function PlaylistSugestion({
     </SharedLayout>
   );
 }
-
-const styles = StyleSheet.create({
-  list: {
-    width: '100%',
-    flexGrow: 1,
-    marginBottom: '30%',
-    paddingBottom: 50,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingHorizontal: 10,
-    paddingVertical: 2,
-  },
-});

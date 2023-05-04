@@ -1,22 +1,23 @@
 import React from 'react';
 import * as S from 'native-base';
+import {RemoveModalViewModel} from './model';
+import {useRemoveModal} from './useRemoveModal';
 import {Movie} from '../../../../../models/Movie';
+import {Playlist} from '../../../../../repositories/database/schemas/PlaylistSchema';
 import Button from '../../../../../components/Button/View';
-import {AddModalViewModel} from './models';
-import {useAddModal as _useAddModal} from './useAddModal';
-
-interface AddModalProps {
+interface RemoveModalProps {
   movie: Movie;
-  useAddModal?: AddModalViewModel;
+  playlist: Playlist[];
+  useRemoveModalImpl?: RemoveModalViewModel;
 }
 
-export default function AddModal({
+export default function RemoveModal({
   movie,
-  useAddModal = _useAddModal,
-}: AddModalProps) {
-  const {dataPlaylist, handleChange, onAdd} = useAddModal({
-    movie,
-  });
+  playlist,
+  useRemoveModalImpl = useRemoveModal,
+}: RemoveModalProps) {
+  const {onRemove, handleChange} = useRemoveModalImpl({movie, playlist});
+
   return (
     <S.VStack
       alignItems="center"
@@ -26,9 +27,10 @@ export default function AddModal({
       space={5}
       padding={6}
       borderRadius={10}>
-      <S.Text color="green.200" fontWeight={500} fontSize="3xl">
-        {movie && movie.title ? movie.title : ''}
+      <S.Text color="#ddd" fontWeight={500} fontSize="xl">
+        Remover de:
       </S.Text>
+
       <S.Select
         onValueChange={handleChange}
         p={3}
@@ -37,17 +39,17 @@ export default function AddModal({
         color="#ddd"
         borderColor="#3b3838"
         borderRadius={10}>
-        {dataPlaylist &&
-          dataPlaylist.length > 0 &&
-          dataPlaylist.map(data => (
+        {playlist &&
+          playlist.length > 0 &&
+          playlist.map(data => (
             <S.Select.Item
               color="#000"
               label={data && data.title ? data.title : ''}
-              value={data && data.title ? data.title : ''}
+              value={data && data.id ? data.id : ''}
             />
           ))}
       </S.Select>
-      <Button onPress={onAdd}>Confirmar</Button>
+      <Button onPress={onRemove}>Confirmar</Button>
     </S.VStack>
   );
 }

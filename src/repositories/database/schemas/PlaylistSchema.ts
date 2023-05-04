@@ -4,6 +4,7 @@ import {Movie} from '../../../models/Movie';
 export class Playlist extends Realm.Object<Playlist> {
   _id!: Realm.BSON.ObjectId;
   name!: string;
+  id!: string;
   title!: string;
   movies!: Movie[];
 
@@ -11,6 +12,7 @@ export class Playlist extends Realm.Object<Playlist> {
     name: 'Playlist',
     properties: {
       _id: 'objectId',
+      id: 'string',
       title: 'string',
       movies: 'Movies[]',
     },

@@ -1,22 +1,22 @@
 import React from 'react';
-import {AddModalViewModel} from './models';
+import {HookProps} from './models';
 import {modalRef} from '../../../../../components/Modal/View';
 import {usePlaylist} from '../../../../../repositories/database/useCases/Playlist/usePlaylist';
 import {useRealm} from '../../../../../repositories/database/db';
 
-export const useAddModal: AddModalViewModel = ({
+export const useAddModal = ({
   movie,
   useRealmImpl = useRealm,
   usePlaylistImpl = usePlaylist,
-}) => {
-  const playlistImpl = usePlaylistImpl();
+}: HookProps) => {
+  const {get} = usePlaylistImpl();
   const realm = useRealmImpl();
 
-  const [idPlaylist, setIdPlaylist] = React.useState<string>('');
+  const [idPlaylist, setIdPlaylist] = React.useState('');
 
   const dataPlaylist = React.useMemo(() => {
-    return playlistImpl.get();
-  }, [playlistImpl]);
+    return get();
+  }, [get]);
 
   function handleChange(value: string) {
     setIdPlaylist(value);
@@ -29,13 +29,16 @@ export const useAddModal: AddModalViewModel = ({
       playlist.length > 0
         ? playlist[0]?.movies.find(dataMovie => dataMovie.id === movie.id)
         : null;
+
     if (!!haveInPlaylist === false) {
       realm.write(() => {
         if (playlist.length > 0 && playlist[0].movies) {
           const newMovies = [...playlist[0].movies, movie];
-          console.log('new movies', newMovies);
-
-          playlist[0].movies = newMovies;
+          realm.create(
+            'Playlist',
+            {_id: playlist[0]._id, title: playlist[0].title, movies: newMovies},
+            Realm.UpdateMode.Modified,
+          );
         }
       });
 
@@ -44,8 +47,6 @@ export const useAddModal: AddModalViewModel = ({
       console.log('have in playlist');
     }
   }
-
-  console.log('dataPlaylist', dataPlaylist);
 
   return {dataPlaylist, idPlaylist, handleChange, onAdd};
 };

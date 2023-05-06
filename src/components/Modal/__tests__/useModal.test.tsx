@@ -14,7 +14,7 @@ describe('useModal', () => {
       useModal({modalRef, setShowComponent: setShowComponentMock}),
     );
 
-    expect(result.current.visible).toBeFalsy();
+    expect(result.current.configModal.isOpen).toBeFalsy();
   });
 
   it('set component to visible', () => {
@@ -26,7 +26,7 @@ describe('useModal', () => {
       modalRef.current?.show(mockComponent);
     });
 
-    expect(result.current.visible).toBeTruthy();
+    expect(result.current.configModal.isOpen).toBeTruthy();
     expect(setShowComponentMock).toHaveBeenCalled();
   });
 
@@ -39,6 +39,6 @@ describe('useModal', () => {
       result.current.hide();
     });
 
-    expect(result.current.visible).toBeFalsy();
+    expect(result.current.configModal.isOpen).toBeFalsy();
   });
 });

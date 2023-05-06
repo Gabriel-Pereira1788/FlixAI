@@ -52,6 +52,7 @@ export default function SearchHeader({
             entering={FadeInUp.delay(500).duration(150)}
             exiting={FadeInDown.delay(500).duration(150)}>
             <SearchBar
+              testID="searchBarcomponent"
               autoFocus={true}
               onSearch={onSearch ? handleOnSearch : undefined}
               onBlur={() => {
@@ -73,7 +74,7 @@ export default function SearchHeader({
           </S.Text>
         </Animated.View>
         <S.HStack space={3} alignItems="center" justifyContent="center">
-          <TouchableOpacity onPress={toggleVisible}>
+          <TouchableOpacity testID="buttonVisible" onPress={toggleVisible}>
             <S.Box>
               <MagnifyingGlass size={25} color="#ddd" weight="bold" />
             </S.Box>

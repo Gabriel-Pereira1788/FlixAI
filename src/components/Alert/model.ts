@@ -1,4 +1,5 @@
 import React from 'react';
+import {useAlert} from './useAlert';
 
 export interface AlertConfig {
   text: string;
@@ -12,11 +13,9 @@ export interface AlertRef {
   open: (config: AlertConfig) => void;
 }
 
-interface HookAlertProps {
+export interface HookAlertProps {
   ref: React.ForwardedRef<AlertRef>;
 }
-export type AlertViewModel = (props: HookAlertProps) => {
-  alertConfig: AlertConfig;
-  open: (config: AlertConfig) => void;
-  hide: () => void;
-};
+export type AlertViewModel = (
+  props: HookAlertProps,
+) => ReturnType<typeof useAlert>;

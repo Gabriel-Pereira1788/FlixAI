@@ -28,6 +28,7 @@ export default function BottomTab({currentPath, ...rest}: BottomTabProps) {
       space={7}
       {...rest}>
       <TouchableOpacity
+        testID="sugestions"
         onPress={() => navigation.navigate('Home', {screen: 'sugestions'})}>
         <MagnifyingGlass
           size={30}
@@ -36,6 +37,7 @@ export default function BottomTab({currentPath, ...rest}: BottomTabProps) {
         />
       </TouchableOpacity>
       <TouchableOpacity
+        testID="allPlaylistId"
         onPress={() => navigation.navigate('Home', {screen: 'allPlaylist'})}>
         <Queue
           size={30}
@@ -44,6 +46,7 @@ export default function BottomTab({currentPath, ...rest}: BottomTabProps) {
         />
       </TouchableOpacity>
       <TouchableOpacity
+        testID="moviesId"
         onPress={() => navigation.navigate('Home', {screen: 'movies'})}>
         <Popcorn
           size={30}

@@ -7,8 +7,9 @@ import {Movie} from '../../models/Movie';
 export const useFilteredMovies: FilteredMoviesViewModel = ({
   movies,
   filter,
+  useMoviesByGenreImpl = useMoviesByGenre,
 }) => {
-  const {data: dataMoviesGenre} = useMoviesByGenre(filter.category);
+  const {data: dataMoviesGenre} = useMoviesByGenreImpl(filter.category);
 
   const filteredAllMovies = React.useMemo(() => {
     if (movies) {

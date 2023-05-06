@@ -63,9 +63,9 @@ export class AssistantSugestion {
   private async getResponseAssistant(
     text: string,
   ): Promise<{text?: string; movies: Movie[]} | null> {
-    //const responseAssistant = await this.gpt.listenResponse(text);
-    if (true) {
-      const data = formatListMovies(list!);
+    const responseAssistant = await this.gpt.listenResponse(text);
+    if (responseAssistant) {
+      const data = formatListMovies(responseAssistant!);
 
       const movies = await this.movies.getAllByName(data.result);
       console.log('finded with gpt');

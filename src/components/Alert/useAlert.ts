@@ -1,7 +1,7 @@
 import React from 'react';
-import {AlertConfig, AlertViewModel} from './model';
+import {AlertConfig, HookAlertProps} from './model';
 
-export const useAlert: AlertViewModel = ({ref}) => {
+export const useAlert = ({ref}: HookAlertProps) => {
   const [alertConfig, setAlertConfig] = React.useState<AlertConfig>({
     text: '',
     status: 'success',

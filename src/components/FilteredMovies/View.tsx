@@ -2,16 +2,23 @@ import React from 'react';
 import * as S from 'native-base';
 import {ListRenderItem} from 'react-native';
 import {IDataMovie, Movie} from '../../models/Movie';
-import {useFilteredMovies} from './useFilteredMovies';
+import {useFilteredMovies as _useFilteredMovies} from './useFilteredMovies';
 import {SIZES} from '../../helpers/constants/sizes';
+import {FilteredMoviesViewModel} from './model';
 
 export interface FilteredMoviesProps {
   movies?: IDataMovie[];
   filter: Filter;
   renderItem: ListRenderItem<Movie>;
+  useFilteredMovies?: FilteredMoviesViewModel;
 }
 
-function FilteredMovies({movies, filter, renderItem}: FilteredMoviesProps) {
+function FilteredMovies({
+  movies,
+  filter,
+  renderItem,
+  useFilteredMovies = _useFilteredMovies,
+}: FilteredMoviesProps) {
   const {displayMovies} = useFilteredMovies({movies, filter});
   return (
     <S.FlatList

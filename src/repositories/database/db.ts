@@ -3,7 +3,7 @@ import {Playlist} from './schemas/PlaylistSchema';
 import {Movies} from './schemas/MoviesSchema';
 import {KeywordsGpt} from './schemas/KeywordsGpt';
 
-const realmConfig: Realm.Configuration = {
+export const realmConfig: Realm.Configuration = {
   schema: [Playlist, Movies, KeywordsGpt],
   deleteRealmIfMigrationNeeded: true,
 };

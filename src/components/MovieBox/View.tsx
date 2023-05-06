@@ -32,6 +32,7 @@ export default function MovieBox({
       <TouchableOpacity {...rest}>
         <S.VStack m={5} space={2} alignItems="center" justifyContent="center">
           <ProgressiveImage
+            testID="image"
             source={{
               uri: `${TMBD_BACKDROP_URL}${backdrop_path}`,
             }}

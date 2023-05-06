@@ -16,6 +16,7 @@ export default function Category({
 }: CategorieProps) {
   return (
     <S.Box
+      testID="box"
       mx={3}
       shadow={5}
       px={3}

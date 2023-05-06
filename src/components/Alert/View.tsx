@@ -3,14 +3,15 @@ import * as S from 'native-base';
 import Animated, {FadeInUp} from 'react-native-reanimated';
 import RenderIF from '../RenderIF/View';
 import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
-import {AlertRef} from './model';
-import {useAlert} from './useAlert';
+import {AlertRef, AlertViewModel} from './model';
+import {useAlert as _useAlert} from './useAlert';
 type Props = {
   containerStyle?: StyleProp<ViewStyle>;
+  useAlert?: AlertViewModel;
 };
 
 export const Alert = React.forwardRef<AlertRef, Props>(
-  ({containerStyle}, ref) => {
+  ({containerStyle, useAlert = _useAlert}, ref) => {
     const {alertConfig} = useAlert({ref});
 
     return (
@@ -19,7 +20,7 @@ export const Alert = React.forwardRef<AlertRef, Props>(
           testID="alert"
           entering={FadeInUp.delay(150).duration(200)}
           style={[styles.animatedStyle, containerStyle]}>
-          <S.Alert status={alertConfig.status}>
+          <S.Alert testID="alertContainer" status={alertConfig.status}>
             <S.HStack
               flexShrink={1}
               space={2}

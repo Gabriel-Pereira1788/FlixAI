@@ -1,28 +1,34 @@
 import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
-import WrapperProvider from '../../WrapperProvider';
+
 import Modal from '../View';
-import {ModalViewModel} from '../model';
+import {ModalConfig, ModalViewModel} from '../model';
 
 import * as S from 'native-base';
+import JestProviders from '../../../providers/JestProviders';
 
 const hideMock = jest.fn();
 
+const configModal: ModalConfig = {
+  animationPreset: 'slide',
+  isOpen: true,
+};
+
 const _useModalMock: ModalViewModel = () => ({
   hide: hideMock,
-  visible: true,
+  configModal,
 });
 
 describe('Modal', () => {
   it('render component correctly', () => {
     const {getByText} = render(
-      <WrapperProvider>
+      <JestProviders>
         <Modal useModal={_useModalMock}>
           <S.Modal.Content>
             <S.Text>Teste</S.Text>
           </S.Modal.Content>
         </Modal>
-      </WrapperProvider>,
+      </JestProviders>,
     );
 
     expect(getByText('Teste')).toBeTruthy();
@@ -30,14 +36,14 @@ describe('Modal', () => {
 
   it('call hide function to close modal', () => {
     const {getByText} = render(
-      <WrapperProvider>
+      <JestProviders>
         <Modal useModal={_useModalMock}>
           <S.Modal.Content>
             <S.Text>Teste</S.Text>
             <S.Button onPress={hideMock}>Closed</S.Button>
           </S.Modal.Content>
         </Modal>
-      </WrapperProvider>,
+      </JestProviders>,
     );
 
     fireEvent.press(getByText('Closed'));
@@ -49,19 +55,22 @@ describe('Modal', () => {
     it('render component without visible', () => {
       const _useModalInternal: ModalViewModel = () => ({
         hide: hideMock,
-        visible: false,
+        configModal: {
+          animationPreset: 'slide',
+          isOpen: false,
+        },
       });
-      const {queryByTestId} = render(
-        <WrapperProvider>
+      const {queryByText} = render(
+        <JestProviders>
           <Modal useModal={_useModalInternal}>
             <S.Modal.Content>
               <S.Text>Teste</S.Text>
             </S.Modal.Content>
           </Modal>
-        </WrapperProvider>,
+        </JestProviders>,
       );
 
-      expect(queryByTestId('modal')).toBeNull();
+      expect(queryByText('modal')).toBeNull();
     });
   });
 });

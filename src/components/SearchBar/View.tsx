@@ -27,12 +27,14 @@ export default function SearchBar({onSearch, Icon, ...rest}: SearchBarProps) {
       borderColor="#dddddd3d"
       focusOutlineColor=""
       rightElement={
-        <TouchableOpacity onPress={overrideOnSearch}>
+        <TouchableOpacity testID="buttonSearch" onPress={overrideOnSearch}>
           <S.Box mr={5}>
             {Icon ? (
               <Icon />
             ) : (
-              <MagnifyingGlass size={25} color="#ddd" weight="bold" />
+              <S.Box testID="iconglass">
+                <MagnifyingGlass size={25} color="#ddd" weight="bold" />
+              </S.Box>
             )}
           </S.Box>
         </TouchableOpacity>

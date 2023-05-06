@@ -12,3 +12,5 @@ export function useMoviesByGenre(genre?: GenreIdentify) {
     error,
   };
 }
+
+export type MoviesByGenreImpl = () => ReturnType<typeof useMoviesByGenre>;

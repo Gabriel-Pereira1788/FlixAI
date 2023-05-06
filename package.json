@@ -57,7 +57,7 @@
   "jest": {
     "preset": "react-native",
     "transformIgnorePatterns": [
-      "node_modules/(?!(@react-native|@react-native-firebase|@react-native/polyfills|react-native|react-native-vector-icons|react-native-chart-kit|react-native-gesture-handler|react-native-reanimated|moti/.*)/)"
+      "node_modules/(?!(@react-native|@react-native-firebase|@realm|@react-native/polyfills|react-native|react-native-vector-icons|react-native-chart-kit|react-native-gesture-handler|react-native-reanimated|moti/.*)/)"
     ],
     "setupFiles": [
       "./jestSetup.js"

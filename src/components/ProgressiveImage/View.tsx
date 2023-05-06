@@ -21,8 +21,16 @@ export default function ProgressiveImage({
         overflow="hidden"
         backgroundColor="background.main"
         {...containerProps}>
-        <Animated.Image {...rest} source={{uri: thumbnailSource}} />
-        <Animated.Image {...rest} style={[styles.imageOverlay, rest.style]} />
+        <Animated.Image
+          testID="thumbnailId"
+          {...rest}
+          source={{uri: thumbnailSource}}
+        />
+        <Animated.Image
+          testID="imageOverlay"
+          {...rest}
+          style={[styles.imageOverlay, rest.style]}
+        />
       </S.Box>
     </S.Box>
   );

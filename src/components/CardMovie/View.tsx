@@ -6,6 +6,7 @@ import {TMBD_BACKDROP_URL} from '../../helpers/constants/tmdb';
 import Animated, {FadeInDown} from 'react-native-reanimated';
 import {Star} from 'phosphor-react-native';
 import {BlurView} from '@react-native-community/blur';
+import {makeVoteAverage} from '../../helpers/utils/makeVoteAverage';
 
 export interface CardMoviesProps extends Movie {
   index?: number;
@@ -27,18 +28,17 @@ export default function CardMovie({
   children,
 }: CardMoviesProps) {
   const style = typeof containerStyle === 'object' ? {...containerStyle} : {};
-  const min_vote = 100;
-  const max_average = 10;
-  const vote =
-    (vote_count! / (vote_count! + min_vote)) *
-    (vote_average! / max_average) *
-    5;
+
+  const vote = makeVoteAverage(vote_count!, vote_average!);
+
   return (
     <Animated.View
+      testID="container"
       style={{width: '97%', ...style}}
       entering={FadeInDown.delay(index || 1 + 1 * 100).duration(200)}>
       <TouchableOpacity style={{width: '100%'}} onPress={onPress}>
         <S.HStack
+          testID="container-stack"
           w="100%"
           shadow={2}
           my={2}
@@ -75,6 +75,7 @@ export default function CardMovie({
             </S.Box>
 
             <S.Image
+              testID="image-card"
               source={{uri: `${TMBD_BACKDROP_URL}${backdrop_path}`}}
               alt="image-favorite"
               width={105}

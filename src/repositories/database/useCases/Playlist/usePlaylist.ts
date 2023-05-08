@@ -49,11 +49,16 @@ export const usePlaylist: PlaylistImpl = () => {
     [playlists],
   );
 
+  function filtered(query: string): Realm.Results<Playlist> {
+    return playlists.filtered(query);
+  }
+
   return {
     playlists,
     create,
     get,
     findMovieInPlaylist,
     deleteItem,
+    filtered,
   };
 };

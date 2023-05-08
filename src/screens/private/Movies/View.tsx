@@ -28,6 +28,7 @@ export default function Movies({useMovies = _useMovies}: MoviesProps) {
   const renderFilteredItem: ListRenderItem<Movie> = React.useCallback(
     ({item}) => (
       <MovieBox
+        testID="filtered-movie-item"
         w={SIZES.width - 50}
         h={SIZES.height / 2 - 20}
         key={item.id}
@@ -44,6 +45,7 @@ export default function Movies({useMovies = _useMovies}: MoviesProps) {
   const renderMoviesItem: ListRenderItem<Movie> = React.useCallback(
     ({item}) => (
       <MovieBox
+        testID="movie-item"
         key={item.id}
         dataMovie={item}
         onPress={() =>
@@ -61,7 +63,7 @@ export default function Movies({useMovies = _useMovies}: MoviesProps) {
       BottomComponent={<BottomTab currentPath="movies" />}
       HeaderComponent={
         <S.Box px={10} my={2}>
-          <Header />
+          <Header username="gabriel" />
           <SearchBar
             placeholder="Pesquise aqui"
             placeholderTextColor="#ddd"

@@ -10,4 +10,5 @@ export type PlaylistImpl = () => {
     dataMovie: Movie | null;
     dataPlaylist: Playlist[];
   };
+  filtered(query: string): Realm.Results<Playlist>;
 };

@@ -2,12 +2,22 @@ import React from 'react';
 import CardMovie, {
   CardMoviesProps,
 } from '../../../../../components/CardMovie/View';
-import {useSelectedMoviesStore} from '../../../../../store/client/SelectMovies/useSelectedMoviesStore';
+import {
+  SelectedMoviesStoreImpl,
+  useSelectedMoviesStore as _useSelectedMoviesStore,
+} from '../../../../../store/client/SelectMovies/useSelectedMoviesStore';
 
 import * as S from 'native-base';
 import {Check} from 'phosphor-react-native';
 
-export default function SelectMovieCard({...rest}: CardMoviesProps) {
+interface SelectMovieProps extends CardMoviesProps {
+  useSelectedMoviesStore?: SelectedMoviesStoreImpl;
+}
+
+export default function SelectMovieCard({
+  useSelectedMoviesStore = _useSelectedMoviesStore,
+  ...rest
+}: SelectMovieProps) {
   const {
     state: {selectedMovies},
     addToSelected,
@@ -21,6 +31,7 @@ export default function SelectMovieCard({...rest}: CardMoviesProps) {
   }
   return (
     <CardMovie
+      testID="select-card"
       {...rest}
       onPress={toggleSelected}
       stackStyle={{
@@ -28,6 +39,7 @@ export default function SelectMovieCard({...rest}: CardMoviesProps) {
       }}>
       {isSelected && (
         <S.Circle
+          testID="icon-selected"
           zIndex={20}
           p={2}
           backgroundColor="orange.500"

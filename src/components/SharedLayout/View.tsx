@@ -18,6 +18,7 @@ export default function SharedLayout({
 }: Props) {
   return (
     <S.VStack
+      testID="containerStack"
       w="100%"
       flex={1}
       alignItems="center"
@@ -29,7 +30,11 @@ export default function SharedLayout({
       <RenderIF
         condition={!isLoadingData}
         AlternativeComponent={
-          <S.VStack flex={1} alignItems="center" justifyContent="center">
+          <S.VStack
+            testID="loading"
+            flex={1}
+            alignItems="center"
+            justifyContent="center">
             <S.Spinner color="orange.500" />
           </S.VStack>
         }>

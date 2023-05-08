@@ -6,9 +6,11 @@ import RenderIF from '../../../../../components/RenderIF/View';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {UserCircle} from 'phosphor-react-native';
 
-type Props = {};
+type Props = {
+  username: string;
+};
 
-export default function Header({}: Props) {
+export default function Header({username}: Props) {
   return (
     <S.HStack
       w="100%"
@@ -19,7 +21,7 @@ export default function Header({}: Props) {
       justifyContent="space-between">
       <S.VStack space={2}>
         <S.Text color="#8e8888c3" fontSize="md">
-          Olá gabriel
+          Olá {username}
         </S.Text>
         <S.Text color="#ffffffc3" fontWeight={500} fontSize="xl">
           Relaxe e escolha um filme...

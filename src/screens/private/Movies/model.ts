@@ -1,9 +1,3 @@
-import {Genre, IDataMovie} from '../../../models/Movie';
+import {_useMovies} from './useMovies';
 
-export type MoviesViewModel = () => {
-  dataMovies?: IDataMovie[];
-  isLoading: boolean;
-  categories: Genre[];
-  filter: Filter;
-  handleFilter(filter: Filter): void;
-};
+export type MoviesViewModel = () => ReturnType<typeof _useMovies>;

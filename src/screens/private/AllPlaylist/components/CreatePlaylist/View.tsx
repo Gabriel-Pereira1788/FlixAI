@@ -52,7 +52,9 @@ export default function CreatePlaylist({
         Selecione algums filmes para continuar
       </S.Text>
       <S.HStack w="100%" alignItems="center" justifyContent="flex-end">
-        <TouchableOpacity onPress={handleRedirectScreen}>
+        <TouchableOpacity
+          testID="button-redirect"
+          onPress={handleRedirectScreen}>
           <S.Text color="orange.500" fontWeight={500}>
             ver todos
           </S.Text>

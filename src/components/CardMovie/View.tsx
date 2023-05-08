@@ -14,6 +14,7 @@ export interface CardMoviesProps extends Movie {
   stackStyle?: S.IStackProps;
   onPress?: () => void;
   children?: React.ReactNode;
+  testID?: string;
 }
 export default function CardMovie({
   backdrop_path,
@@ -25,6 +26,7 @@ export default function CardMovie({
   vote_count,
   vote_average,
   onPress,
+  testID,
   children,
 }: CardMoviesProps) {
   const style = typeof containerStyle === 'object' ? {...containerStyle} : {};
@@ -33,7 +35,7 @@ export default function CardMovie({
 
   return (
     <Animated.View
-      testID="container"
+      testID={testID ? testID : 'container'}
       style={{width: '97%', ...style}}
       entering={FadeInDown.delay(index || 1 + 1 * 100).duration(200)}>
       <TouchableOpacity style={{width: '100%'}} onPress={onPress}>

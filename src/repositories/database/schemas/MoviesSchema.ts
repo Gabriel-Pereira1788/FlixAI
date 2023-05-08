@@ -1,4 +1,4 @@
-import Realm from 'realm';
+import {Realm} from '@realm/react';
 
 export class Movies extends Realm.Object<Movies> {
   name!: string;

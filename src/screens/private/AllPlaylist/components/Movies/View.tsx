@@ -10,6 +10,7 @@ interface MoviesProps {
 export default function Movies({movies}: MoviesProps) {
   return (
     <S.FlatList
+      testID="list-movies"
       data={movies}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.listContainer}

@@ -26,6 +26,7 @@ export default function List({dataMovies}: ListProps) {
       contentContainerStyle={styles.list}
       renderItem={({item}) => (
         <CardMovie
+          testID="cardMovie"
           key={item.id}
           {...item}
           backdrop_path={item.backdrop_path}

@@ -1,28 +1,29 @@
 import React from 'react';
-import {useQueryRealm} from '../../../repositories/database/db';
 import {Playlist} from '../../../repositories/database/schemas/PlaylistSchema';
 import {useNavigation} from '@react-navigation/native';
-import {AllPlaylistViewModel} from './model';
+import {HookProps} from './model';
 import {Realm} from '@realm/react';
 import {usePlaylistStore as _usePlaylistStore} from '../../../store/client/PlaylistStore/usePlaylistStore';
+import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
 
-export const useAllPlaylist: AllPlaylistViewModel = ({
+export const useAllPlaylist = ({
   usePlaylistStore = _usePlaylistStore,
-}) => {
+  useCasePlaylist = usePlaylist,
+}: HookProps) => {
   const navigation = useNavigation();
-  const dataPlaylists = useQueryRealm(Playlist);
+  const dataPlaylists = useCasePlaylist();
   const {selectPlaylist} = usePlaylistStore();
 
   const [searchText, setSearchText] = React.useState('');
 
   const allPlaylists: Realm.Results<Playlist> = React.useMemo(() => {
     if (searchText.trim() !== '') {
-      const newData: Realm.Results<Playlist> = dataPlaylists.filtered(
+      const newData = dataPlaylists.filtered(
         `title BEGINSWITH[c] "${searchText}"`,
       );
       return newData;
     }
-    return dataPlaylists;
+    return dataPlaylists.get();
   }, [dataPlaylists, searchText]);
 
   console.log('searchText', searchText);
@@ -36,7 +37,6 @@ export const useAllPlaylist: AllPlaylistViewModel = ({
   }
 
   function handleSelectPlaylist(id: Realm.BSON.ObjectId) {
-    console.log('clicekd');
     selectPlaylist(id);
     navigation.navigate('ListMovies');
   }

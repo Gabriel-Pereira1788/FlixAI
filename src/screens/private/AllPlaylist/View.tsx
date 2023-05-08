@@ -44,11 +44,12 @@ export default function AllPlaylist({useAllPlaylist = _useAllPlaylist}: Props) {
               fontSize: '3xl',
             }}
             RightComponent={
-              <TouchableOpacity onPress={openModal}>
+              <TouchableOpacity testID="button-open" onPress={openModal}>
                 <Plus size={25} color="#fff" weight="bold" />
               </TouchableOpacity>
             }
             inputProps={{
+              testID: 'input',
               value: searchText,
               onChangeText: handleChangeText,
             }}
@@ -63,7 +64,7 @@ export default function AllPlaylist({useAllPlaylist = _useAllPlaylist}: Props) {
       {allPlaylists && allPlaylists.length > 0 && (
         <S.FlatList
           data={allPlaylists}
-          keyExtractor={item => `${item._id.id}`}
+          keyExtractor={item => `${item.id}`}
           contentContainerStyle={{
             flexGrow: 1,
             alignItems: 'center',
@@ -72,7 +73,6 @@ export default function AllPlaylist({useAllPlaylist = _useAllPlaylist}: Props) {
           }}
           renderItem={({item}) => (
             <StackPlaylist
-              key={String(item._id)}
               title={item.title}
               listData={item.movies}
               alignItems="flex-start"

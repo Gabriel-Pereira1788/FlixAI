@@ -1,12 +1,12 @@
 import React from 'react';
 import {TMDB_GENRES} from '../../../helpers/constants/tmdb';
-import {MoviesViewModel} from './model';
+
 import {useAllMovies} from '../../../store/server/useAllMovies';
 import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
+import {Genre} from '../../../models/Movie';
 
-export const _useMovies: MoviesViewModel = () => {
+export const _useMovies = () => {
   const {data, isLoading} = useAllMovies();
-  //const queryClient = useQueryClient();
   const {focused} = useFocusedScreen();
   const [filter, setFilter] = React.useState<Filter>({
     text: '',
@@ -21,16 +21,13 @@ export const _useMovies: MoviesViewModel = () => {
 
   console.log(filter);
 
-  /*   React.useEffect(() => {
-    if (!focused) {
-      queryClient.removeQueries([QUERY_KEYS.allMovies]);
-    }
-  }, [focused, queryClient]); */
-
   return {
     dataMovies: focused ? data : [],
     isLoading,
-    categories: [{name: 'Todos', identify: 'all', id: 1}, ...categories],
+    categories: [
+      {name: 'Todos', identify: 'all', id: 1} as Genre,
+      ...categories,
+    ],
     filter,
     handleFilter,
   };

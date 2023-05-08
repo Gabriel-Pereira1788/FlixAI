@@ -16,10 +16,8 @@ export default function StackPlaylist({
   onPress,
   ...rest
 }: StackPlaylistProps) {
-  const test = listData.map(movie => movie.backdrop_path);
-  console.log('listData', test);
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity testID="stackElement" onPress={onPress}>
       <S.VStack
         w="100%"
         alignItems="center"
@@ -33,6 +31,7 @@ export default function StackPlaylist({
           {title}
         </S.Text>
         <S.VStack
+          testID="stack-movies"
           w="100%"
           space={4}
           position="relative"

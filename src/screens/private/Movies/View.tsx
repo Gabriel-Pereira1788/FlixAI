@@ -1,13 +1,13 @@
 import React from 'react';
-import SharedLayout from '../../../components/SharedLayout/View';
+import {ListRenderItem, StyleSheet, TouchableOpacity} from 'react-native';
 import * as S from 'native-base';
 import {MoviesViewModel} from './model';
 import {_useMovies} from './useMovies';
-import BottomTab from '../../../components/BottomTab/View';
 
+import BottomTab from '../../../components/BottomTab/View';
+import SharedLayout from '../../../components/SharedLayout/View';
 import SearchBar from '../../../components/SearchBar/View';
 import Header from './components/Header/View';
-import {ListRenderItem, StyleSheet, TouchableOpacity} from 'react-native';
 import Category from '../../../components/Category/View';
 import RenderIF from '../../../components/RenderIF/View';
 import FilteredMovies from '../../../components/FilteredMovies/View';
@@ -65,6 +65,7 @@ export default function Movies({useMovies = _useMovies}: MoviesProps) {
         <S.Box px={10} my={2}>
           <Header username="gabriel" />
           <SearchBar
+            testID="input-search"
             placeholder="Pesquise aqui"
             placeholderTextColor="#ddd"
             value={filter.text}
@@ -83,6 +84,7 @@ export default function Movies({useMovies = _useMovies}: MoviesProps) {
         contentContainerStyle={styles.contentStyle}
         renderItem={({item, index}) => (
           <TouchableOpacity
+            testID="category-element"
             onPress={() =>
               handleFilter({
                 category: item.identify,

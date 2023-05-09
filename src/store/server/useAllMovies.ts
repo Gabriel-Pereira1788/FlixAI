@@ -13,3 +13,5 @@ export const useAllMovies = () => {
 
   return {data, isLoading, error};
 };
+
+export type AllMoviesImpl = () => ReturnType<typeof useAllMovies>;

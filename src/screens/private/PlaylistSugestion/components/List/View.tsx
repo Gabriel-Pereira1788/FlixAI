@@ -21,6 +21,7 @@ function List({data}: Props) {
       contentContainerStyle={styles.list}
       renderItem={({item, index}) => (
         <CardMovie
+          testID="card-movie"
           index={index}
           {...item}
           stackStyle={{marginY: '5%'}}

@@ -1,36 +1,28 @@
 import React from 'react';
-import {useQuery} from '@tanstack/react-query';
 import {DataSugestion} from '../../../models/Sugestion';
-import {PlaylistSugestionViewModel} from './models';
+import {HookProps} from './models';
 import {PlaylistDTO} from '../../../models/Playlist';
 import {useNavigation} from '@react-navigation/native';
 //*repositories
 import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
-import {AssistantSugestion} from '../../../repositories/services/api/modules/assistantSugestion/assistantSugestion';
-import {_useKeywordsGpt} from '../../../repositories/database/useCases/KeywordsGpt/useKeywordsGpt';
 
-const Assistant = new AssistantSugestion();
+import {_useSugestions} from '../../../store/server/useSugestions';
 
-export const usePlaylistSugestion: PlaylistSugestionViewModel = ({
-  useKeywordsGpt = _useKeywordsGpt,
-}) => {
+export const usePlaylistSugestion = ({
+  useSugestions = _useSugestions,
+  usePlaylistImpl = usePlaylist,
+}: HookProps) => {
   const navigation = useNavigation();
-  const keywordsGpt = useKeywordsGpt();
+  const {create} = usePlaylistImpl();
+
   const [messageData, setMessageData] = React.useState<DataSugestion>({
     text: '',
     id: '',
   });
 
-  const {data, isLoading} = useQuery(
-    ['sugestions', messageData.text.trim()],
-    () => Assistant.getSugestions(messageData, keywordsGpt),
-    {
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    },
-  );
-
-  const {create} = usePlaylist();
+  const {data, isLoading} = useSugestions({
+    messageData,
+  });
 
   async function onCreate(dataPlaylist: PlaylistDTO) {
     await create(dataPlaylist);
@@ -52,6 +44,7 @@ export const usePlaylistSugestion: PlaylistSugestionViewModel = ({
   }
 
   return {
+    messageData,
     data: data?.movies,
     textGpt: data?.text,
     isLoading,

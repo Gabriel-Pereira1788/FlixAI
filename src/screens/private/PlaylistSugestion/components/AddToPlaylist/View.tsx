@@ -11,8 +11,8 @@ interface AddToPlaylistProps {
 
 export default function AddToPlaylist({onPress}: AddToPlaylistProps) {
   return (
-    <TouchableOpacity onPress={onPress}>
-      <S.Circle p={5} overflow="hidden">
+    <TouchableOpacity testID="button" onPress={onPress}>
+      <S.Circle testID="plus-icon" p={5} overflow="hidden">
         <BlurView style={style.blurContainer} blurType="dark" blurAmount={20} />
         <Plus size={25} color="#f97316" weight="bold" />
       </S.Circle>

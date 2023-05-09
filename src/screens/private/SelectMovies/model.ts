@@ -4,6 +4,7 @@ import {RootParamListI} from '../../../router/navigation';
 import {PlaylistDTO} from '../../../models/Playlist';
 import {SelectedMoviesStoreImpl} from '../../../store/client/SelectMovies/useSelectedMoviesStore';
 import {PlaylistImpl} from '../../../repositories/database/useCases/Playlist/model';
+import {AllMoviesImpl} from '../../../store/server/useAllMovies';
 
 type HookProps = {
   navigation: NativeStackNavigationProp<
@@ -13,6 +14,7 @@ type HookProps = {
   >;
   useSelectedMoviesStore?: SelectedMoviesStoreImpl;
   usePlaylist?: PlaylistImpl;
+  useAllMovies?: AllMoviesImpl;
 };
 
 export type SelectMoviesViewModel = (props: HookProps) => {

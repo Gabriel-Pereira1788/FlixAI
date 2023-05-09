@@ -30,6 +30,7 @@ export default function AddModal({
         {movie && movie.title ? movie.title : ''}
       </S.Text>
       <S.Select
+        testID="select"
         onValueChange={handleChange}
         p={3}
         placeholder="Adicionar a playlist..."
@@ -41,6 +42,7 @@ export default function AddModal({
           dataPlaylist.length > 0 &&
           dataPlaylist.map(data => (
             <S.Select.Item
+              key={data.id}
               color="#000"
               label={data && data.title ? data.title : ''}
               value={data && data.title ? data.title : ''}

@@ -1,16 +1,13 @@
-import {Movie} from '../../../models/Movie';
-import {PlaylistDTO} from '../../../models/Playlist';
-import {KeywordsGptImpl} from '../../../repositories/database/useCases/KeywordsGpt/model';
+import {PlaylistImpl} from '../../../repositories/database/useCases/Playlist/model';
 
-type HookProps = {
-  useKeywordsGpt?: KeywordsGptImpl;
+import {SugestionsImpl} from '../../../store/server/useSugestions';
+import {usePlaylistSugestion} from './usePlaylistSugestion';
+
+export type HookProps = {
+  useSugestions?: SugestionsImpl;
+  usePlaylistImpl?: PlaylistImpl;
 };
 
-export type PlaylistSugestionViewModel = (props: HookProps) => {
-  textGpt?: string;
-  data: Movie[] | undefined;
-  isLoading: boolean;
-  onSearch: (value: string) => Promise<void>;
-  onCreate(data: PlaylistDTO): Promise<void>;
-  redirectScreen(id: number): () => void;
-};
+export type PlaylistSugestionViewModel = (
+  props: HookProps,
+) => ReturnType<typeof usePlaylistSugestion>;

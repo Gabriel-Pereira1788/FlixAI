@@ -1,5 +1,5 @@
 import React from 'react';
-import {useAllMovies} from '../../../store/server/useAllMovies';
+import {useAllMovies as _useAllMovies} from '../../../store/server/useAllMovies';
 import {SelectMoviesViewModel} from './model';
 import {usePlaylist as _usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
 import {PlaylistDTO} from '../../../models/Playlist';
@@ -11,6 +11,7 @@ export const _useSelectMovies: SelectMoviesViewModel = ({
   navigation,
   useSelectedMoviesStore = _useSelectedMoviesStore,
   usePlaylist = _usePlaylist,
+  useAllMovies = _useAllMovies,
 }) => {
   const {state, addToSelected, cleanUp} = useSelectedMoviesStore();
   const {data, isLoading} = useAllMovies();
@@ -29,13 +30,7 @@ export const _useSelectMovies: SelectMoviesViewModel = ({
   function handleChange(value: string) {
     setSearchText(value);
   }
-  /*
-  React.useEffect(() => {
-    if (!focused) {
-      queryClient.removeQueries([QUERY_KEYS.allMovies]);
-    }
-  }, [focused, queryClient]);
- */
+
   return {
     dataMovies: focused ? data : [],
     searchText,

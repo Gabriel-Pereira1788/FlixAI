@@ -5,16 +5,27 @@ import {Movie} from '../../../../../models/Movie';
 
 import {Check} from 'phosphor-react-native';
 import RenderIF from '../../../../../components/RenderIF/View';
-import {useSelectedMoviesStore} from '../../../../../store/client/SelectMovies/useSelectedMoviesStore';
+import {
+  SelectedMoviesStoreImpl,
+  useSelectedMoviesStore as _useSelectedMoviesStore,
+} from '../../../../../store/client/SelectMovies/useSelectedMoviesStore';
 import MovieBox from '../../../../../components/MovieBox/View';
 
 type Props = {
   dataMovie: Movie;
   w?: number;
   h?: number;
+  useSelectedMoviesStore?: SelectedMoviesStoreImpl;
+  testID?: string;
 };
 
-export default function SelectedCardMovie({dataMovie, w, h}: Props) {
+export default function SelectedCardMovie({
+  dataMovie,
+  w,
+  h,
+  testID,
+  useSelectedMoviesStore = _useSelectedMoviesStore,
+}: Props) {
   const {
     state: {selectedMovies},
     addToSelected,
@@ -23,12 +34,14 @@ export default function SelectedCardMovie({dataMovie, w, h}: Props) {
   const isSelected = selectedMovies.find(movie => movie.id === dataMovie.id);
   return (
     <MovieBox
+      testID={testID || 'selected-card'}
       dataMovie={dataMovie}
       w={w}
       h={h}
       onPress={() => addToSelected(dataMovie)}>
       <RenderIF condition={!!isSelected}>
         <S.Circle
+          testID="selected"
           zIndex={20}
           p={2}
           backgroundColor="orange.500"

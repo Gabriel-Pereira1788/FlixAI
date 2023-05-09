@@ -14,7 +14,7 @@ import {modalRef} from '../../../components/Modal/View';
 import AddPlaylist from '../../../components/AddPlaylist/View';
 import FilteredMovies from '../../../components/FilteredMovies/View';
 import AllMovies from '../../../components/AllMovies/View';
-import CardMovie from './components/SelectedCardMovie/View';
+
 import {SIZES} from '../../../helpers/constants/sizes';
 import {Movie} from '../../../models/Movie';
 import SelectedCardMovie from './components/SelectedCardMovie/View';
@@ -49,7 +49,8 @@ export default function SelectMovies({
   const renderItem: ListRenderItem<Movie> = React.useCallback(
     ({item, index}) => {
       return (
-        <CardMovie
+        <SelectedCardMovie
+          testID="filter-selected-movie"
           w={SIZES.width - 50}
           h={SIZES.height / 2 - 20}
           key={index}
@@ -74,6 +75,7 @@ export default function SelectMovies({
           <SearchHeader
             title="Selecione filmes para continuar."
             inputProps={{
+              testID: 'search-input',
               value: searchText,
               onChangeText: handleChange,
             }}
@@ -106,7 +108,7 @@ export default function SelectMovies({
             </RenderIF>
 
             <RenderIF condition={selectedMovies.length > 0}>
-              <TouchableOpacity onPress={openModal}>
+              <TouchableOpacity testID="open-modal" onPress={openModal}>
                 <S.Circle
                   overflow="hidden"
                   p={4}

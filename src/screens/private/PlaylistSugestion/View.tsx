@@ -47,6 +47,7 @@ export default function PlaylistSugestion({
       <RenderIF condition={!isLoading && !!data && data.length > 0}>
         {data && data.length > 0 && <List data={data} />}
         <S.HStack
+          testID="container-add"
           position="absolute"
           zIndex={10}
           style={{bottom: '7%'}}

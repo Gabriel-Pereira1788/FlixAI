@@ -9,21 +9,21 @@ export const useAddModal = ({
   useRealmImpl = useRealm,
   usePlaylistImpl = usePlaylist,
 }: HookProps) => {
-  const {get} = usePlaylistImpl();
+  const playlistImpl = usePlaylistImpl();
   const realm = useRealmImpl();
 
   const [idPlaylist, setIdPlaylist] = React.useState('');
 
   const dataPlaylist = React.useMemo(() => {
-    return get();
-  }, [get]);
+    return playlistImpl.get();
+  }, [playlistImpl]);
 
   function handleChange(value: string) {
     setIdPlaylist(value);
   }
 
   function onAdd() {
-    const playlist = dataPlaylist.filtered(`title = "${idPlaylist}"`);
+    const playlist = playlistImpl.filtered(`title = "${idPlaylist}"`);
 
     const haveInPlaylist =
       playlist.length > 0

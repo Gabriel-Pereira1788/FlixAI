@@ -1,19 +1,13 @@
 import React from 'react';
-import {Movie} from '../../../../../models/Movie';
-import {Playlist} from '../../../../../repositories/database/schemas/PlaylistSchema';
-import {PlaylistImpl} from '../../../../../repositories/database/useCases/Playlist/model';
-import {usePlaylist} from '../../../../../repositories/database/useCases/Playlist/usePlaylist';
 
-interface HookProps {
-  movie?: Movie;
-  usePlaylistImpl?: PlaylistImpl;
-}
+import {Playlist} from '../../../../../repositories/database/schemas/PlaylistSchema';
+
+import {HookProps} from './model';
 
 export const useHeader = ({
   movie,
-  usePlaylistImpl = usePlaylist,
+  playlistImpl: {findMovieInPlaylist},
 }: HookProps) => {
-  const {findMovieInPlaylist} = usePlaylistImpl();
   const [haveInPlaylist, setHaveInPlaylist] = React.useState(false);
   const [playlist, setPlaylist] = React.useState<Playlist[]>([]);
 
@@ -31,7 +25,3 @@ export const useHeader = ({
     playlist,
   };
 };
-
-export type HeaderViewModel = (
-  props: HookProps,
-) => ReturnType<typeof useHeader>;

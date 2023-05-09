@@ -14,6 +14,10 @@ export const movies: Movie[] = [
     vote_count: 100,
     imdb_id: '...',
     genre_ids: [1, 2, 3],
+    cast: [
+      {name: 'John doe', profile_path: 'www.example.com'},
+      {name: 'John doe2', profile_path: 'www.example.com'},
+    ],
   },
   {
     backdrop_path: 'www.example.com',
@@ -28,6 +32,10 @@ export const movies: Movie[] = [
     vote_count: 100,
     imdb_id: '...',
     genre_ids: [1, 2, 3],
+    cast: [
+      {name: 'John doe', profile_path: 'www.example.com'},
+      {name: 'John doe2', profile_path: 'www.example.com'},
+    ],
   },
   {
     backdrop_path: 'www.example.com',

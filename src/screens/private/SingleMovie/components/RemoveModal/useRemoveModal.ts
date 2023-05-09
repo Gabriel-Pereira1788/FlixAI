@@ -14,7 +14,6 @@ export const useRemoveModal = ({
   const [selectedPlaylist, setSelectedPlaylist] =
     React.useState<Playlist | null>(null);
 
-  console.log('playlists', playlist);
   function handleChange(id: string) {
     const findedPlaylist = playlist.find(data => data.id === id);
     console.log('findedPlaylist', findedPlaylist);
@@ -23,8 +22,8 @@ export const useRemoveModal = ({
     }
   }
   function onRemove() {
-    realm.write(() => {
-      if (selectedPlaylist) {
+    if (selectedPlaylist) {
+      realm.write(() => {
         const filteredMovies = selectedPlaylist.movies.filter(
           dataMovie => dataMovie.id !== movie.id,
         );
@@ -38,9 +37,9 @@ export const useRemoveModal = ({
           Realm.UpdateMode.Modified,
         );
         modalRef.current?.hide();
-      }
-    });
+      });
+    }
   }
 
-  return {onRemove, handleChange};
+  return {onRemove, handleChange, selectedPlaylist};
 };

@@ -11,35 +11,42 @@ import ListCast from './components/ListCast/View';
 import {NavigationProps} from '../../../router/navigation';
 import {SingleMovieViewModel} from './models';
 import Header from './components/Header/View';
+import {PlaylistImpl} from '../../../repositories/database/useCases/Playlist/model';
+import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
 
 interface SingleMovieProps extends NavigationProps<'SingleMovie'> {
   useSingleMovie?: SingleMovieViewModel;
+  usePlaylistImpl?: PlaylistImpl;
 }
 export default function SingleMovie({
   route,
   useSingleMovie = _useSingleMovie,
+  usePlaylistImpl = usePlaylist,
 }: SingleMovieProps) {
   const {idMovie} = route.params;
 
   const {styleRotate, stylesAnimation, dataMovie, toggleMostView} =
     useSingleMovie({id: idMovie});
+
+  const {findMovieInPlaylist} = usePlaylistImpl();
   return (
     <S.VStack
       flex={1}
       justifyContent="center"
       backgroundColor="background.main">
-      <Header movie={dataMovie} />
+      <Header movie={dataMovie} playlistImpl={{findMovieInPlaylist}} />
       {dataMovie && dataMovie.poster_path && (
         <Poster imagePath={`${dataMovie.poster_path}`} />
       )}
       <PanGestureHandler
-        onGestureEvent={toggleMostView}
+        testID="gesture-element"
+        onGestureEvent={e => toggleMostView(e.nativeEvent.translationY)}
         activeOffsetY={[-20, 20]}
         activeOffsetX={[-20, 20]}
         failOffsetX={[-20, 1000]}>
-        <Animated.View style={[stylesAnimation]}>
+        <Animated.View testID="container-view" style={[stylesAnimation]}>
           <S.HStack my={3} w="100%" alignItems="center" justifyContent="center">
-            <Animated.View style={styleRotate}>
+            <Animated.View testID="arrow-rotate" style={styleRotate}>
               <CaretUp size={30} color="#fff" />
             </Animated.View>
           </S.HStack>

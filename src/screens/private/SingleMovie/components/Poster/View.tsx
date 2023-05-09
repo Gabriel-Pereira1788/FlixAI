@@ -14,6 +14,7 @@ export default function Poster({imagePath}: PosterProps) {
   return (
     <S.Box width="100%" flex={2} position="relative">
       <ProgressiveImage
+        testID="poster-image"
         source={{uri: `${TMBD_BACKDROP_URL}${imagePath}`}}
         thumbnailSource={`${TMBD_BACKDROP_PREVIEW}${imagePath}`}
         progressiveRenderingEnabled={true}
@@ -33,6 +34,7 @@ export default function Poster({imagePath}: PosterProps) {
         alignItems="center"
         justifyContent="center">
         <S.Box
+          testID="space-element"
           borderRadius="full"
           overflow="hidden"
           shadow={5}

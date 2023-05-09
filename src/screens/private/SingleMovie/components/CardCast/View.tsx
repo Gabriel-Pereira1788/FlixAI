@@ -12,9 +12,15 @@ import {Cast} from '../../../../../models/Cast';
 
 export default function CardCast({profile_path, name}: Cast) {
   return (
-    <S.VStack mx={3} space={2} alignItems="center" justifyContent="center">
+    <S.VStack
+      testID="card-cast"
+      mx={3}
+      space={2}
+      alignItems="center"
+      justifyContent="center">
       <RenderIF condition={!!profile_path}>
         <ProgressiveImage
+          testID="image-card"
           source={{
             uri: `${TMBD_BACKDROP_URL}${profile_path}`,
           }}

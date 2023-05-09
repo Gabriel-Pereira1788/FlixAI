@@ -7,7 +7,7 @@ export const allPlaylistMock: any = [
     name: 'Playlist 1',
     id: '1',
     title: 'Playlist Title 1',
-    movies: movies,
+    movies: movies.slice(0, 2),
   },
   {
     _id: new Realm.BSON.ObjectId(),
@@ -20,14 +20,21 @@ export const allPlaylistMock: any = [
 
 export const create = jest.fn();
 export const deleteItem = jest.fn();
-export const findMovieInPlaylist = jest.fn();
+export const findMovieInPlaylist = jest.fn().mockImplementation(() => ({
+  dataMovie: movies[0],
+  dataPlaylist: allPlaylistMock,
+}));
 export const get = () => allPlaylistMock;
-export const filtered = jest.fn();
+export const filtered = jest
+  .fn()
+  .mockImplementation(() => [allPlaylistMock[0]]);
 
-export const mockUseCasePlaylist: PlaylistImpl = () => ({
+export const mockImpl = {
   create,
   deleteItem,
   findMovieInPlaylist,
   get,
   filtered,
-});
+};
+
+export const mockUseCasePlaylist: PlaylistImpl = () => mockImpl;

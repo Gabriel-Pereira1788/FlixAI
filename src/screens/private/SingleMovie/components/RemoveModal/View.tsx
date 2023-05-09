@@ -32,6 +32,7 @@ export default function RemoveModal({
       </S.Text>
 
       <S.Select
+        testID="select"
         onValueChange={handleChange}
         p={3}
         placeholder="Adicionar a playlist..."
@@ -43,6 +44,8 @@ export default function RemoveModal({
           playlist.length > 0 &&
           playlist.map(data => (
             <S.Select.Item
+              testID="select-item"
+              key={data.id}
               color="#000"
               label={data && data.title ? data.title : ''}
               value={data && data.id ? data.id : ''}

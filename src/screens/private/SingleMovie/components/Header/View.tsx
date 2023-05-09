@@ -5,19 +5,22 @@ import {Heart} from 'phosphor-react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {modalRef} from '../../../../../components/Modal/View';
 import AddModal from '../AddModal/View';
-import {HeaderViewModel, useHeader} from './useHeader';
+import {useHeader} from './useHeader';
 import RemoveModal from '../RemoveModal/View';
+import {FindMovie, HeaderViewModel} from './model';
 
 interface HeaderProps {
   movie?: Movie;
   useHeaderImpl?: HeaderViewModel;
+  playlistImpl: FindMovie;
 }
 
 export default function Header({
   movie,
   useHeaderImpl = useHeader,
+  playlistImpl,
 }: HeaderProps) {
-  const {haveInPlaylist, playlist} = useHeaderImpl({movie});
+  const {haveInPlaylist, playlist} = useHeaderImpl({movie, playlistImpl});
 
   function openModal() {
     if (movie && !haveInPlaylist) {
@@ -41,7 +44,11 @@ export default function Header({
       paddingRight={2}
       w="100%">
       <TouchableOpacity onPress={openModal}>
-        <S.Circle width={10} height={10} backgroundColor="rgba(0,0,0,0.8)">
+        <S.Circle
+          testID="container-icon"
+          width={10}
+          height={10}
+          backgroundColor="rgba(0,0,0,0.8)">
           <Heart
             size={25}
             color="#fff"

@@ -2,27 +2,19 @@ import {
   GestureEvent,
   PanGestureHandlerEventPayload,
 } from 'react-native-gesture-handler';
-import {Movie} from '../../../models/Movie';
+
+import {useSingleMovie} from './useSingleMovie';
+import {SingleMovieImpl} from '../../../store/server/useSingleMovie';
 
 export type MostView = (
   event: GestureEvent<PanGestureHandlerEventPayload>,
 ) => void;
 
-interface HookProps {
+export interface HookProps {
   id: string | number;
+  useSingleMovieImpl?: SingleMovieImpl;
 }
 
-export type SingleMovieViewModel = (props: HookProps) => {
-  dataMovie?: Movie;
-  loading: boolean;
-  error: boolean;
-  stylesAnimation: {
-    flex: 1 | 3.5;
-  };
-  styleRotate: {
-    transform: {
-      rotate: string;
-    }[];
-  };
-  toggleMostView: MostView;
-};
+export type SingleMovieViewModel = (
+  props: HookProps,
+) => ReturnType<typeof useSingleMovie>;

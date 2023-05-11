@@ -4,6 +4,7 @@ import JestProviders from '../../../../providers/JestProviders';
 import SelectMovies from '../View';
 import {SelectMoviesViewModel} from '../model';
 import {dataMoviesMock, movies} from '../../../../../mocks/movies';
+import {ERROR_DEFAULT} from '../../../../helpers/constants/errorsMessage';
 
 const navigation: any = {};
 const route: any = {};
@@ -20,6 +21,7 @@ const data = {
   onCreate,
   searchText: '',
   selectedMovies: [],
+  error: false,
 };
 const mockUseSelectMovies: SelectMoviesViewModel = () => data;
 describe('SelectMovies', () => {
@@ -118,5 +120,22 @@ describe('SelectMovies', () => {
       </JestProviders>,
     );
     expect(getByTestId('open-modal')).toBeTruthy();
+  });
+
+  it('render error screen', () => {
+    const mockUseSelectMovies: SelectMoviesViewModel = () => ({
+      ...data,
+      error: true,
+    });
+    const {getByText} = render(
+      <JestProviders>
+        <SelectMovies
+          navigation={navigation}
+          route={route}
+          useSelectMovies={mockUseSelectMovies}
+        />
+      </JestProviders>,
+    );
+    expect(getByText(ERROR_DEFAULT)).toBeTruthy();
   });
 });

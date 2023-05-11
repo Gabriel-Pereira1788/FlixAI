@@ -65,7 +65,7 @@ export class GPTAssistant {
       return data.choices[0].message.content as string;
     } catch (error) {
       const Error = error as AxiosError;
-      console.log('error-get', Error);
+      console.log('error-get', Error.message);
       return null;
     }
   }

@@ -13,6 +13,7 @@ import {SingleMovieViewModel} from './models';
 import Header from './components/Header/View';
 import {PlaylistImpl} from '../../../repositories/database/useCases/Playlist/model';
 import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
+import RenderIF from '../../../components/RenderIF/View';
 
 interface SingleMovieProps extends NavigationProps<'SingleMovie'> {
   useSingleMovie?: SingleMovieViewModel;
@@ -25,8 +26,14 @@ export default function SingleMovie({
 }: SingleMovieProps) {
   const {idMovie} = route.params;
 
-  const {styleRotate, stylesAnimation, dataMovie, toggleMostView} =
-    useSingleMovie({id: idMovie});
+  const {
+    styleRotate,
+    stylesAnimation,
+    dataMovie,
+    focused,
+    loading,
+    toggleMostView,
+  } = useSingleMovie({id: idMovie});
 
   const {findMovieInPlaylist} = usePlaylistImpl();
   return (
@@ -34,35 +41,51 @@ export default function SingleMovie({
       flex={1}
       justifyContent="center"
       backgroundColor="background.main">
-      <Header movie={dataMovie} playlistImpl={{findMovieInPlaylist}} />
-      {dataMovie && dataMovie.poster_path && (
-        <Poster imagePath={`${dataMovie.poster_path}`} />
-      )}
-      <PanGestureHandler
-        testID="gesture-element"
-        onGestureEvent={e => toggleMostView(e.nativeEvent.translationY)}
-        activeOffsetY={[-20, 20]}
-        activeOffsetX={[-20, 20]}
-        failOffsetX={[-20, 1000]}>
-        <Animated.View testID="container-view" style={[stylesAnimation]}>
-          <S.HStack my={3} w="100%" alignItems="center" justifyContent="center">
-            <Animated.View testID="arrow-rotate" style={styleRotate}>
-              <CaretUp size={30} color="#fff" />
-            </Animated.View>
-          </S.HStack>
-          <ScrollView
-            contentContainerStyle={{
-              flexGrow: 1,
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-              backgroundColor: '#0f0f16',
-            }}>
-            <Info {...dataMovie!} />
+      <RenderIF
+        condition={!loading && focused}
+        AlternativeComponent={
+          <S.VStack
+            testID="loading"
+            flex={1}
+            alignItems="center"
+            justifyContent="center">
+            <S.Spinner color="orange.500" />
+          </S.VStack>
+        }>
+        <Header movie={dataMovie} playlistImpl={{findMovieInPlaylist}} />
+        {dataMovie && dataMovie.poster_path && (
+          <Poster imagePath={`${dataMovie.poster_path}`} />
+        )}
+        <PanGestureHandler
+          testID="gesture-element"
+          onGestureEvent={e => toggleMostView(e.nativeEvent.translationY)}
+          activeOffsetY={[-20, 20]}
+          activeOffsetX={[-20, 20]}
+          failOffsetX={[-20, 1000]}>
+          <Animated.View testID="container-view" style={[stylesAnimation]}>
+            <S.HStack
+              my={3}
+              w="100%"
+              alignItems="center"
+              justifyContent="center">
+              <Animated.View testID="arrow-rotate" style={styleRotate}>
+                <CaretUp size={30} color="#fff" />
+              </Animated.View>
+            </S.HStack>
+            <ScrollView
+              contentContainerStyle={{
+                flexGrow: 1,
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                backgroundColor: '#0f0f16',
+              }}>
+              <Info {...dataMovie!} />
 
-            <ListCast cast={dataMovie?.cast} />
-          </ScrollView>
-        </Animated.View>
-      </PanGestureHandler>
+              <ListCast cast={dataMovie?.cast} />
+            </ScrollView>
+          </Animated.View>
+        </PanGestureHandler>
+      </RenderIF>
     </S.VStack>
   );
 }

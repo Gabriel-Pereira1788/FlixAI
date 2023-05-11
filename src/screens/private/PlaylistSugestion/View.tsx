@@ -20,9 +20,8 @@ type Props = {
 export default function PlaylistSugestion({
   usePlaylistSugestion = _usePlaylistSugestion,
 }: Props) {
-  const {data, textGpt, isLoading, onSearch, onCreate} = usePlaylistSugestion(
-    {},
-  );
+  const {data, username, textGpt, isLoading, error, onSearch, onCreate} =
+    usePlaylistSugestion({});
 
   function openModal() {
     if (data && data.length > 0) {
@@ -34,12 +33,13 @@ export default function PlaylistSugestion({
   }
   return (
     <SharedLayout
+      error={error}
       isLoadingData={isLoading}
       HeaderComponent={
         <S.Box px={10} paddingTop={10}>
           <SearchHeader
             onSearch={onSearch}
-            title={textGpt || 'Olá gabriel oque precisa para hoje?'}
+            title={textGpt || `Olá ${username} oque precisa para hoje?`}
           />
         </S.Box>
       }

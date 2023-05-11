@@ -18,7 +18,7 @@ export function _useSugestions({
   useKeywordsGpt = _useKeywordsGpt,
 }: Props) {
   const keywordsGpt = useKeywordsGpt();
-  const {data, isLoading} = useQuery(
+  const {data, isLoading, error} = useQuery(
     ['sugestions', messageData.text.trim()],
     () => Assistant.getSugestions(messageData, keywordsGpt),
     {
@@ -30,6 +30,7 @@ export function _useSugestions({
   return {
     data,
     isLoading,
+    error,
   };
 }
 

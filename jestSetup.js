@@ -1,15 +1,11 @@
 import 'react-native-gesture-handler/jestSetup';
 export const mockedNavigate = jest.fn();
-/*
+
 jest.mock('@react-native-async-storage/async-storage', () =>
   require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
-); */
+);
 
 require('react-native-reanimated/lib/commonjs/reanimated2/jestUtils').setUpTests();
-
-// jest.mock('react-native-vector-icons/Ionicons', () =>
-//   require('react-native-vector-icons'),
-// );
 
 jest.mock('react-native-reanimated', () => {
   const Reanimated = require('react-native-reanimated/mock');

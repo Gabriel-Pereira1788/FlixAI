@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "857639575165",
+    "project_id": "flixie-cb66b",
+    "storage_bucket": "flixie-cb66b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857639575165:android:b4586407d786e4b15bdb14",
+        "android_client_info": {
+          "package_name": "com.flixie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857639575165-ruana6p48ethse05r26l7tffd5gb1009.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVK3nx-vVtnz1wfutCd5aEwkrY6kTk9dA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "857639575165-ruana6p48ethse05r26l7tffd5gb1009.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

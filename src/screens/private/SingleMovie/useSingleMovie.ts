@@ -6,13 +6,16 @@ import {
 } from 'react-native-reanimated';
 import {HookProps} from './models';
 import {useSingleMovieServer} from '../../../store/server/useSingleMovie';
+import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
 
 export const useSingleMovie = ({
   id,
   useSingleMovieImpl = useSingleMovieServer,
 }: HookProps) => {
-  const valueAnimated = useSharedValue('middle');
+  const {focused} = useFocusedScreen();
   const {data, isLoading, error} = useSingleMovieImpl(id);
+
+  const valueAnimated = useSharedValue('middle');
   const stylesAnimation = useAnimatedStyle(() => {
     return {
       flex: withTiming(valueAnimated.value === 'full' ? 3.5 : 1, {
@@ -50,7 +53,8 @@ export const useSingleMovie = ({
     valueAnimated,
     stylesAnimation,
     styleRotate,
-    dataMovie: data,
+    focused,
+    dataMovie: focused ? data : undefined,
     error: !!error,
     loading: isLoading,
     toggleMostView,

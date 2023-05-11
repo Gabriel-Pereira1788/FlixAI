@@ -28,6 +28,7 @@ export default function SelectMovies({
 }: SelectMoviesProps) {
   const {
     dataMovies,
+    error,
     loading,
     selectedMovies,
     searchText,
@@ -70,6 +71,7 @@ export default function SelectMovies({
   return (
     <SharedLayout
       isLoadingData={loading}
+      error={error}
       HeaderComponent={
         <S.Box px={10} my={6}>
           <SearchHeader

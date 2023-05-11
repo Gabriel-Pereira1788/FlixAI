@@ -7,28 +7,52 @@ import Button from '../../../components/Button/View';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import InputPassword from '../../../components/Input/components/InputPassword';
+import {NavigationProps} from '../../../router/navigation';
+import {
+  FormAuthImpl,
+  useFormAuth as _useFormAuth,
+} from '../../../helpers/hooks/useFormAuth';
+import {AlertRef} from '../../../components/Alert/model';
 
-export default function SignIn() {
+interface SignInProps extends NavigationProps<'SignIn'> {
+  useFormAuth?: FormAuthImpl<'SignIn'>;
+}
+
+export default function SignIn({
+  navigation,
+  useFormAuth = _useFormAuth,
+}: SignInProps) {
+  const alertRef = React.useRef<AlertRef>(null);
+  const {formData, loading, errors, onSubmit, handleFormData} = useFormAuth({
+    fields: {
+      email: '',
+      password: '',
+    },
+    navigation,
+    typeSubmit: 'signIn',
+    alertRef,
+  });
+
   function redirect() {
-    //navigation.navigate("SignUp");
+    navigation.navigate('SignUp');
   }
   return (
-    <WrapperAuthScreen title="Entrar">
+    <WrapperAuthScreen title="Entrar" alertRef={alertRef}>
       <Input
         placeholder="Email"
-        backgroundColor="#131212"
-        /*  value={formData.email}
+        value={formData.email}
         error={errors?.email}
-        onChangeText={value => handleFormData('email', value)} */
+        onChangeText={value => handleFormData('email', value)}
       />
       <InputPassword
         placeholder="Senha"
-        backgroundColor="#131212"
-        /*  value={formData.password}
+        value={formData.password}
         error={errors?.password}
-        onChangeText={value => handleFormData('password', value)} */
+        onChangeText={value => handleFormData('password', value)}
       />
-      <Button>Confirmar</Button>
+      <Button isLoading={loading} onPress={onSubmit}>
+        Confirmar
+      </Button>
       <S.HStack
         w="100%"
         alignItems="center"
@@ -38,7 +62,7 @@ export default function SignIn() {
         <S.Text color="#636262" fontSize="md" fontWeight={500}>
           Não possui conta ?
         </S.Text>
-        <TouchableOpacity onPress={redirect}>
+        <TouchableOpacity testID="register" onPress={redirect}>
           <S.Text color="orange.500" fontSize="lg" fontWeight={500}>
             Cadastar-se
           </S.Text>

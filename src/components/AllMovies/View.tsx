@@ -22,6 +22,8 @@ function AllMovies({dataMovies, renderItem}: AllMoviewsProps) {
           initialNumToRender={3}
           maxToRenderPerBatch={3}
           pagingEnabled
+          snapToAlignment="center"
+          decelerationRate="fast"
           horizontal
           data={item.list}
           showsHorizontalScrollIndicator={false}

@@ -8,8 +8,12 @@ import {
 } from '../../../../../mocks/useCasePlaylist';
 import {act} from '@testing-library/react-native';
 import {mockedNavigate} from '../../../../../jestSetup';
+import {UserImpl} from '../../../../store/server/useUser';
+import {userMock} from '../../../../../mocks/user';
 
 const mockUseSugestion: SugestionsImpl = () => ({
+  error: null,
+
   data: {
     text: 'Hello John Doe',
     movies: movies,
@@ -17,17 +21,24 @@ const mockUseSugestion: SugestionsImpl = () => ({
   isLoading: false,
 });
 
+const mockUseUser: UserImpl = () => ({
+  error: null,
+  isLoading: false,
+  user: userMock,
+});
 describe('usePlaylistSugestion', () => {
   it('call hook correctly', () => {
     const {result} = renderHook(() =>
       usePlaylistSugestion({
         useSugestions: mockUseSugestion,
         usePlaylistImpl: mockUseCasePlaylist,
+        useUserImpl: mockUseUser,
       }),
     );
 
     expect(result.current.data).toEqual(movies);
     expect(result.current.isLoading).toBeFalsy();
+    expect(result.current.username).toEqual(userMock.name);
   });
 
   it('call create function', () => {
@@ -35,6 +46,7 @@ describe('usePlaylistSugestion', () => {
       usePlaylistSugestion({
         useSugestions: mockUseSugestion,
         usePlaylistImpl: mockUseCasePlaylist,
+        useUserImpl: mockUseUser,
       }),
     );
 
@@ -54,6 +66,7 @@ describe('usePlaylistSugestion', () => {
       usePlaylistSugestion({
         useSugestions: mockUseSugestion,
         usePlaylistImpl: mockUseCasePlaylist,
+        useUserImpl: mockUseUser,
       }),
     );
 
@@ -69,6 +82,7 @@ describe('usePlaylistSugestion', () => {
       usePlaylistSugestion({
         useSugestions: mockUseSugestion,
         usePlaylistImpl: mockUseCasePlaylist,
+        useUserImpl: mockUseUser,
       }),
     );
 

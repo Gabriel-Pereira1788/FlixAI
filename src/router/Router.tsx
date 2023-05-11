@@ -9,6 +9,8 @@ import {RootParamListI} from './navigation';
 import SingleMovie from '../screens/private/SingleMovie/View';
 import SelectMovies from '../screens/private/SelectMovies/View';
 import Movies from '../screens/private/Movies/View';
+import SignIn from '../screens/public/SignIn/View';
+import SignUp from '../screens/public/SignUp/View';
 
 type Props = {};
 
@@ -38,6 +40,24 @@ export default function Router({}: Props) {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={TransitionScreenOptions}>
+        <Stack.Screen
+          name="SignIn"
+          component={SignIn}
+          options={{
+            headerTintColor: '#fff',
+            headerTransparent: true,
+            headerTitle: '',
+          }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{
+            headerTintColor: '#fff',
+            headerTransparent: true,
+            headerTitle: '',
+          }}
+        />
         <Stack.Screen
           name="Home"
           component={Home}

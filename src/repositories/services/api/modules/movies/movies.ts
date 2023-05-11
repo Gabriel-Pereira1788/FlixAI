@@ -112,6 +112,26 @@ export class Movies implements MoviesImpl {
         title: 'Documentarios',
         list: await this.getByGenre('documentaries'),
       },
+      {
+        identify: 'adventure',
+        title: 'Aventura',
+        list: await this.getByGenre('adventure'),
+      },
+      {
+        identify: 'animation',
+        title: 'Animação',
+        list: await this.getByGenre('animation'),
+      },
+      {
+        identify: 'criminal',
+        title: 'Crime',
+        list: await this.getByGenre('criminal'),
+      },
+      {
+        identify: 'fantasy',
+        title: 'Fantasia',
+        list: await this.getByGenre('fantasy'),
+      },
     ];
   }
 }

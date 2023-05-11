@@ -1,8 +1,11 @@
 import React from 'react';
 import * as S from 'native-base';
 import RenderIF from '../RenderIF/View';
+import ErrorMessage from '../ErrorMessage/View';
+import {ERROR_DEFAULT} from '../../helpers/constants/errorsMessage';
 type Props = {
   children: React.ReactNode;
+  error?: unknown;
   HeaderComponent?: JSX.Element;
   BottomComponent?: JSX.Element;
   containerStyle?: S.IZStackProps;
@@ -11,6 +14,7 @@ type Props = {
 
 export default function SharedLayout({
   children,
+  error,
   HeaderComponent,
   BottomComponent,
   containerStyle,
@@ -28,15 +32,19 @@ export default function SharedLayout({
       space={2}
       {...containerStyle}>
       <RenderIF
-        condition={!isLoadingData}
+        condition={!isLoadingData && !error}
         AlternativeComponent={
-          <S.VStack
-            testID="loading"
-            flex={1}
-            alignItems="center"
-            justifyContent="center">
-            <S.Spinner color="orange.500" />
-          </S.VStack>
+          error ? (
+            <ErrorMessage message={ERROR_DEFAULT} />
+          ) : (
+            <S.VStack
+              testID="loading"
+              flex={1}
+              alignItems="center"
+              justifyContent="center">
+              <S.Spinner color="orange.500" />
+            </S.VStack>
+          )
         }>
         {HeaderComponent && HeaderComponent}
         {children}

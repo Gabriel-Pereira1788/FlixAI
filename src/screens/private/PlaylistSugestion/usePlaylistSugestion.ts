@@ -7,20 +7,22 @@ import {useNavigation} from '@react-navigation/native';
 import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
 
 import {_useSugestions} from '../../../store/server/useSugestions';
+import {useUser} from '../../../store/server/useUser';
 
 export const usePlaylistSugestion = ({
   useSugestions = _useSugestions,
   usePlaylistImpl = usePlaylist,
+  useUserImpl = useUser,
 }: HookProps) => {
   const navigation = useNavigation();
   const {create} = usePlaylistImpl();
-
+  const {user} = useUserImpl();
   const [messageData, setMessageData] = React.useState<DataSugestion>({
     text: '',
     id: '',
   });
 
-  const {data, isLoading} = useSugestions({
+  const {data, isLoading, error} = useSugestions({
     messageData,
   });
 
@@ -44,7 +46,9 @@ export const usePlaylistSugestion = ({
   }
 
   return {
+    username: user?.name ?? '',
     messageData,
+    error,
     data: data?.movies,
     textGpt: data?.text,
     isLoading,

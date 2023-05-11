@@ -37,9 +37,6 @@ export default function AllPlaylist({useAllPlaylist = _useAllPlaylist}: Props) {
         <S.Box px={10} my={4}>
           <SearchHeader
             title="Playlist"
-            onSearch={(value: string) => {
-              console.log(value);
-            }}
             titleProps={{
               fontSize: '3xl',
             }}

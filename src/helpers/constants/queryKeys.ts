@@ -4,3 +4,7 @@ export const QUERY_KEYS = {
   singleMovies: '@singleMovie',
   popularMovies: '@popularMovies',
 };
+
+export const STORAGE_KEYS = {
+  user: '@user',
+};

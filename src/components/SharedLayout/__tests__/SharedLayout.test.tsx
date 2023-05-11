@@ -76,4 +76,15 @@ describe('SharedLayout', () => {
 
     expect(stackContainer.props.style.backgroundColor).toEqual('#fee2e2');
   });
+
+  it('render component with error', () => {
+    const {getByTestId} = render(
+      <JestProviders>
+        <SharedLayout isLoadingData={false} error={{message: 'have a error'}}>
+          <Text>teste</Text>
+        </SharedLayout>
+      </JestProviders>,
+    );
+    expect(getByTestId('container-error')).toBeDefined();
+  });
 });

@@ -21,6 +21,7 @@ const toggleMostView = jest.fn();
 const mockUseSingleMovie: SingleMovieViewModel = () => ({
   error: false,
   loading: false,
+  focused: true,
   styleRotate: {
     transform: [
       {
@@ -33,6 +34,9 @@ const mockUseSingleMovie: SingleMovieViewModel = () => ({
     flex: 3.5,
   },
   toggleMostView,
+  valueAnimated: {
+    value: 'middle',
+  },
 });
 describe('SingleMovie', () => {
   it('render component correctly', () => {
@@ -54,6 +58,41 @@ describe('SingleMovie', () => {
     expect(getByText(movies[0].overview)).toBeTruthy();
     expect(`${vote.toFixed(2)} ${movies[0].vote_count}`).toBeTruthy();
     expect(getAllByTestId('card-cast').length).toEqual(movies[0].cast?.length);
+  });
+
+  it('render component with loading status', () => {
+    const mockUseSingleMovie: SingleMovieViewModel = () => ({
+      error: false,
+      loading: true,
+      focused: true,
+      styleRotate: {
+        transform: [
+          {
+            rotate: '0deg',
+          },
+        ],
+      },
+      dataMovie: movies[0],
+      stylesAnimation: {
+        flex: 3.5,
+      },
+      toggleMostView,
+      valueAnimated: {
+        value: 'middle',
+      },
+    });
+    const {getByTestId} = render(
+      <JestProviders>
+        <SingleMovie
+          navigation={navigation}
+          route={route}
+          useSingleMovie={mockUseSingleMovie}
+          usePlaylistImpl={mockUseCasePlaylist}
+        />
+      </JestProviders>,
+    );
+
+    expect(getByTestId('loading')).toBeTruthy();
   });
 
   it('handle toggleMostView for expanded information to movie and resume informations', () => {

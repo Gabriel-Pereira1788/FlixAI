@@ -6,10 +6,12 @@ import {MoviesViewModel} from '../model';
 import {TMDB_GENRES} from '../../../../helpers/constants/tmdb';
 import {dataMoviesMock, movies} from '../../../../../mocks/movies';
 import {mockedNavigate} from '../../../../../jestSetup';
+import {ERROR_DEFAULT} from '../../../../helpers/constants/errorsMessage';
 
 const handleFilterMock = jest.fn();
 const categories = TMDB_GENRES.filter(genre => !!genre.identify);
-const useMoviesMock: MoviesViewModel = () => ({
+
+const data: ReturnType<MoviesViewModel> = {
   categories,
   dataMovies: dataMoviesMock,
   filter: {
@@ -18,7 +20,9 @@ const useMoviesMock: MoviesViewModel = () => ({
   },
   handleFilter: handleFilterMock,
   isLoading: false,
-});
+  error: null,
+};
+const useMoviesMock: MoviesViewModel = () => data;
 
 describe('Movies', () => {
   it('render component correctly', () => {
@@ -44,14 +48,11 @@ describe('Movies', () => {
   });
   it('render list with filter', () => {
     const useMoviesMock: MoviesViewModel = () => ({
-      categories,
-      dataMovies: dataMoviesMock,
+      ...data,
       filter: {
         category: 'all',
         text: 'Teste',
       },
-      handleFilter: handleFilterMock,
-      isLoading: false,
     });
     const {getAllByTestId} = render(
       <JestProviders>
@@ -104,5 +105,19 @@ describe('Movies', () => {
     expect(mockedNavigate).toHaveBeenCalledWith('SingleMovie', {
       idMovie: movies[0].id,
     });
+  });
+
+  it('render error screen', () => {
+    const useMoviesMock: MoviesViewModel = () => ({
+      ...data,
+      error: true,
+    });
+    const {getByText} = render(
+      <JestProviders>
+        <Movies useMovies={useMoviesMock} />
+      </JestProviders>,
+    );
+
+    expect(getByText(ERROR_DEFAULT)).toBeTruthy();
   });
 });

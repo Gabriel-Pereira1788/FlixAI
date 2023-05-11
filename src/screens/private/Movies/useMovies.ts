@@ -6,7 +6,7 @@ import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
 import {Genre} from '../../../models/Movie';
 
 export const _useMovies = () => {
-  const {data, isLoading} = useAllMovies();
+  const {data, isLoading, error} = useAllMovies();
   const {focused} = useFocusedScreen();
   const [filter, setFilter] = React.useState<Filter>({
     text: '',
@@ -29,6 +29,7 @@ export const _useMovies = () => {
       ...categories,
     ],
     filter,
+    error,
     handleFilter,
   };
 };

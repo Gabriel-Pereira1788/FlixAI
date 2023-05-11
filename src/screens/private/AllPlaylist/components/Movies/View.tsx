@@ -11,6 +11,8 @@ export default function Movies({movies}: MoviesProps) {
   return (
     <S.FlatList
       testID="list-movies"
+      initialNumToRender={4}
+      maxToRenderPerBatch={4}
       data={movies}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.listContainer}

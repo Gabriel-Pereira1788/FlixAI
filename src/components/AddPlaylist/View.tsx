@@ -7,6 +7,7 @@ import CardMovie from '../CardMovie/View';
 import {PlaylistDTO} from '../../models/Playlist';
 import {Alert} from '../Alert/View';
 import {AlertRef} from '../Alert/model';
+import {modalRef} from '../Modal/View';
 
 interface AddPlaylistProps {
   listData: Movie[];
@@ -30,6 +31,8 @@ export default function AddPlaylist({listData, onCreate}: AddPlaylistProps) {
       title: titlePlaylist,
       movies: listData,
     });
+
+    modalRef.current?.hide();
   }
   return (
     <>

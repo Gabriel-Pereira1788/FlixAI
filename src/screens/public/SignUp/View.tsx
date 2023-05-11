@@ -5,32 +5,56 @@ import Input from '../../../components/Input/View';
 import Button from '../../../components/Button/View';
 
 import InputPassword from '../../../components/Input/components/InputPassword';
+import {AlertRef} from '../../../components/Alert/model';
+import {NavigationProps} from '../../../router/navigation';
+import {
+  FormAuthImpl,
+  useFormAuth as _useFormAuth,
+} from '../../../helpers/hooks/useFormAuth';
 
-export default function SignUp() {
+interface SignUpProps extends NavigationProps<'SignUp'> {
+  useFormAuth?: FormAuthImpl<'SignUp'>;
+}
+
+export default function SignUp({
+  navigation,
+  useFormAuth = _useFormAuth,
+}: SignUpProps) {
+  const alertRef = React.useRef<AlertRef>(null);
+  const {formData, loading, errors, onSubmit, handleFormData} = useFormAuth({
+    fields: {
+      email: '',
+      password: '',
+    },
+    navigation,
+    typeSubmit: 'signUp',
+    alertRef,
+  });
+
   return (
-    <WrapperAuthScreen title="Cadastar-se">
+    <WrapperAuthScreen title="Cadastrar-se" alertRef={alertRef}>
       <Input
         placeholder="Nome"
-        backgroundColor="#131212"
-        /*     value={formData.name}
+        value={formData.name}
         error={errors?.name}
-        onChangeText={value => handleFormData('name', value)} */
+        onChangeText={value => handleFormData('name', value)}
       />
       <Input
         placeholder="Email"
-        backgroundColor="#131212"
-        /*     value={formData.email}
+        value={formData.email}
         error={errors?.email}
-        onChangeText={value => handleFormData('email', value)} */
+        onChangeText={value => handleFormData('email', value)}
       />
       <InputPassword
         placeholder="Senha"
         backgroundColor="#131212"
-        /*         value={formData.password}
+        value={formData.password}
         error={errors?.password}
-        onChangeText={value => handleFormData('password', value)} */
+        onChangeText={value => handleFormData('password', value)}
       />
-      <Button>Confirmar</Button>
+      <Button isLoading={loading} onPress={onSubmit}>
+        Confirmar
+      </Button>
     </WrapperAuthScreen>
   );
 }

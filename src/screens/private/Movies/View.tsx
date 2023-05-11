@@ -21,7 +21,8 @@ interface MoviesProps {
 }
 
 export default function Movies({useMovies = _useMovies}: MoviesProps) {
-  const {categories, filter, dataMovies, isLoading, handleFilter} = useMovies();
+  const {categories, filter, dataMovies, isLoading, error, handleFilter} =
+    useMovies();
 
   const navigation = useNavigation();
 
@@ -60,6 +61,7 @@ export default function Movies({useMovies = _useMovies}: MoviesProps) {
   return (
     <SharedLayout
       isLoadingData={isLoading}
+      error={error}
       BottomComponent={<BottomTab currentPath="movies" />}
       HeaderComponent={
         <S.Box px={10} my={2}>

@@ -14,7 +14,11 @@ type GenreIdentify =
   | 'comedy'
   | 'horror'
   | 'romance'
-  | 'documentaries';
+  | 'documentaries'
+  | 'adventure'
+  | 'animation'
+  | 'criminal'
+  | 'fantasy';
 
 interface Filter {
   text?: string;

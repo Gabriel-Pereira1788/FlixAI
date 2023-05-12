@@ -11,6 +11,8 @@ import SelectMovies from '../screens/private/SelectMovies/View';
 import Movies from '../screens/private/Movies/View';
 import SignIn from '../screens/public/SignIn/View';
 import SignUp from '../screens/public/SignUp/View';
+import MyAccount from '../screens/private/MyAccount/View';
+import Welcome from '../screens/public/Welcome/View';
 
 type Props = {};
 
@@ -30,6 +32,7 @@ function Home() {
       <NativeStack.Screen name="sugestions" component={PlaylistSugestion} />
       <NativeStack.Screen name="allPlaylist" component={AllPlaylist} />
       <NativeStack.Screen name="movies" component={Movies} />
+      <NativeStack.Screen name="myAccount" component={MyAccount} />
     </NativeStack.Navigator>
   );
 }
@@ -40,6 +43,15 @@ export default function Router({}: Props) {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={TransitionScreenOptions}>
+        <Stack.Screen
+          name="Welcome"
+          component={Welcome}
+          options={{
+            headerTintColor: '#fff',
+            headerTransparent: true,
+            headerTitle: '',
+          }}
+        />
         <Stack.Screen
           name="SignIn"
           component={SignIn}

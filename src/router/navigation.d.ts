@@ -1,12 +1,13 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 export type RootParamListI = {
+  Welcome: undefined;
   SignIn: undefined;
   SignUp: undefined;
   Home:
     | undefined
     | {
-        screen: 'sugestions' | 'allPlaylist' | 'movies';
+        screen: 'sugestions' | 'allPlaylist' | 'movies' | 'myAccount';
       };
   ListMovies: undefined;
   SingleMovie: {

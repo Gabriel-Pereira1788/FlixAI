@@ -54,7 +54,8 @@ export default function BottomTab({currentPath, ...rest}: BottomTabProps) {
           weight="bold"
         />
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Home', {screen: 'myAccount'})}>
         <UserCircle size={30} color={'#ffffffc3'} weight="bold" />
       </TouchableOpacity>
     </S.HStack>

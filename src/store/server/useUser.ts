@@ -6,7 +6,13 @@ export function useUser() {
   const {data, isLoading, error} = useQuery(
     [QUERY_KEYS.user],
     auth.persistUser,
+    {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    },
   );
+
+  console.log('data-user', data);
 
   return {
     user: data,

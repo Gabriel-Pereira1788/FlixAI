@@ -5,7 +5,7 @@ import Input from '../Input/View';
 import {Movie} from '../../models/Movie';
 import CardMovie from '../CardMovie/View';
 import {PlaylistDTO} from '../../models/Playlist';
-import {Alert} from '../Alert/View';
+import Alert from '../Alert/View';
 import {AlertRef} from '../Alert/model';
 import {modalRef} from '../Modal/View';
 

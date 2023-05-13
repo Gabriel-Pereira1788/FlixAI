@@ -65,7 +65,7 @@ export default function Movies({useMovies = _useMovies}: MoviesProps) {
       BottomComponent={<BottomTab currentPath="movies" />}
       HeaderComponent={
         <S.Box px={10} my={2}>
-          <Header username="gabriel" />
+          <Header />
           <SearchBar
             testID="input-search"
             placeholder="Pesquise aqui"

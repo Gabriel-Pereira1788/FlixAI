@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from '@testing-library/react-native';
 
-import {Alert} from '../View';
+import Alert from '../View';
 import {AlertConfig, AlertRef, AlertViewModel} from '../model';
 import JestProviders from '../../../providers/JestProviders';
 

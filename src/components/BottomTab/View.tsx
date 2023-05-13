@@ -8,6 +8,8 @@ import {
 } from 'phosphor-react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
+import RenderIF from '../RenderIF/View';
+import {useUser} from '../../store/server/useUser';
 
 interface BottomTabProps extends S.IStackProps {
   currentPath: 'sugestions' | 'allPlaylist' | 'movies';
@@ -15,6 +17,7 @@ interface BottomTabProps extends S.IStackProps {
 
 export default function BottomTab({currentPath, ...rest}: BottomTabProps) {
   const navigation = useNavigation();
+  const {user} = useUser();
   return (
     <S.HStack
       position="absolute"
@@ -56,7 +59,21 @@ export default function BottomTab({currentPath, ...rest}: BottomTabProps) {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate('Home', {screen: 'myAccount'})}>
-        <UserCircle size={30} color={'#ffffffc3'} weight="bold" />
+        <RenderIF
+          condition={!!user && !!user?.photoURL}
+          AlternativeComponent={
+            <UserCircle size={30} color={'#ffffffc3'} weight="bold" />
+          }>
+          <S.Image
+            source={{
+              uri: user?.photoURL ?? '',
+            }}
+            alt="image-user"
+            width={30}
+            height={30}
+            borderRadius="full"
+          />
+        </RenderIF>
       </TouchableOpacity>
     </S.HStack>
   );

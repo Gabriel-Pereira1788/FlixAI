@@ -10,7 +10,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import RenderIF from '../../../components/RenderIF/View';
 import {MyAccountViewModel} from './models';
 import {SignOut, UserCircle} from 'phosphor-react-native';
-import {Alert} from '../../../components/Alert/View';
+import Alert from '../../../components/Alert/View';
 import {AlertRef} from '../../../components/Alert/model';
 
 interface MyAccountProps {

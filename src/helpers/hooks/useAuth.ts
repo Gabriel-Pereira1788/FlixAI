@@ -25,8 +25,11 @@ export function useAuth() {
       data.email,
       data.password!,
     );
-    const dataUser = formatUser(result.user, data.name!);
-    await auth.setUser(dataUser);
+    if (result.user) {
+      const dataUser = formatUser(result.user, result.user.displayName!);
+
+      await auth.setUser(dataUser);
+    }
   }
 
   async function edit(data: AuthDTO) {

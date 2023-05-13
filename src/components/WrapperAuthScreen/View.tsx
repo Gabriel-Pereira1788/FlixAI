@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from 'native-base';
 
 import Animated, {FadeInLeft} from 'react-native-reanimated';
-import {Alert} from '../Alert/View';
+import Alert from '../Alert/View';
 import {AlertRef} from '../Alert/model';
 
 type Props = {

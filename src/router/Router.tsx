@@ -12,7 +12,7 @@ import Movies from '../screens/private/Movies/View';
 import SignIn from '../screens/public/SignIn/View';
 import SignUp from '../screens/public/SignUp/View';
 import MyAccount from '../screens/private/MyAccount/View';
-import Welcome from '../screens/public/Welcome/View';
+import {useUser} from '../store/server/useUser';
 
 type Props = {};
 
@@ -40,72 +40,71 @@ function Home() {
 const Stack = createStackNavigator<RootParamListI>();
 
 export default function Router({}: Props) {
+  const {user} = useUser();
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={TransitionScreenOptions}>
-        <Stack.Screen
-          name="Welcome"
-          component={Welcome}
-          options={{
-            headerTintColor: '#fff',
-            headerTransparent: true,
-            headerTitle: '',
-          }}
-        />
-        <Stack.Screen
-          name="SignIn"
-          component={SignIn}
-          options={{
-            headerTintColor: '#fff',
-            headerTransparent: true,
-            headerTitle: '',
-          }}
-        />
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
-          options={{
-            headerTintColor: '#fff',
-            headerTransparent: true,
-            headerTitle: '',
-          }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{
-            headerTintColor: '#fff',
-            headerTransparent: true,
-            headerTitle: '',
-          }}
-        />
-        <Stack.Screen
-          name="ListMovies"
-          component={ListMovies}
-          options={{
-            headerTintColor: '#fff',
-            headerTransparent: true,
-            headerTitle: '',
-          }}
-        />
-        <Stack.Screen
-          name="SingleMovie"
-          component={SingleMovie}
-          options={{
-            headerTintColor: '#fff',
-            headerTransparent: true,
-            headerTitle: '',
-          }}
-        />
-        <Stack.Screen
-          name="SelectMovies"
-          component={SelectMovies}
-          options={{
-            headerTintColor: '#fff',
-            headerTransparent: true,
-            headerTitle: '',
-          }}
-        />
+        {user ? (
+          <>
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{
+                headerTintColor: '#fff',
+                headerTransparent: true,
+                headerTitle: '',
+              }}
+            />
+            <Stack.Screen
+              name="ListMovies"
+              component={ListMovies}
+              options={{
+                headerTintColor: '#fff',
+                headerTransparent: true,
+                headerTitle: '',
+              }}
+            />
+            <Stack.Screen
+              name="SingleMovie"
+              component={SingleMovie}
+              options={{
+                headerTintColor: '#fff',
+                headerTransparent: true,
+                headerTitle: '',
+              }}
+            />
+            <Stack.Screen
+              name="SelectMovies"
+              component={SelectMovies}
+              options={{
+                headerTintColor: '#fff',
+                headerTransparent: true,
+                headerTitle: '',
+              }}
+            />
+          </>
+        ) : (
+          <>
+            <Stack.Screen
+              name="SignIn"
+              component={SignIn}
+              options={{
+                headerTintColor: '#fff',
+                headerTransparent: true,
+                headerTitle: '',
+              }}
+            />
+            <Stack.Screen
+              name="SignUp"
+              component={SignUp}
+              options={{
+                headerTintColor: '#fff',
+                headerTransparent: true,
+                headerTitle: '',
+              }}
+            />
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -10,7 +10,7 @@ type Props = {
   useAlert?: AlertViewModel;
 };
 
-export const Alert = React.forwardRef<AlertRef, Props>(
+const Alert = React.forwardRef<AlertRef, Props>(
   ({containerStyle, useAlert = _useAlert}, ref) => {
     const {alertConfig} = useAlert({ref});
 
@@ -51,3 +51,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default React.memo(Alert);

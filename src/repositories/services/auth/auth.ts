@@ -21,6 +21,8 @@ export class Auth {
 
   async signOut() {
     await Storage.remove(STORAGE_KEYS.user);
+    queryClient.invalidateQueries();
+    queryClient.refetchQueries();
   }
 }
 

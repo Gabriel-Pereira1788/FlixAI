@@ -5,12 +5,17 @@ import RenderIF from '../../../../../components/RenderIF/View';
 
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {UserCircle} from 'phosphor-react-native';
+import {
+  UserImpl,
+  useUser as _useUser,
+} from '../../../../../store/server/useUser';
 
 type Props = {
-  username: string;
+  useUser?: UserImpl;
 };
 
-export default function Header({username}: Props) {
+export default function Header({useUser = _useUser}: Props) {
+  const {user} = useUser();
   return (
     <S.HStack
       w="100%"
@@ -21,7 +26,7 @@ export default function Header({username}: Props) {
       justifyContent="space-between">
       <S.VStack space={2}>
         <S.Text color="#8e8888c3" fontSize="md">
-          Olá {username}
+          Olá {user && user.name}
         </S.Text>
         <S.Text color="#ffffffc3" fontWeight={500} fontSize="xl">
           Relaxe e escolha um filme...
@@ -29,17 +34,20 @@ export default function Header({username}: Props) {
       </S.VStack>
       <TouchableOpacity>
         <RenderIF
-          condition={false}
+          condition={!!user && !!user.photoURL}
           AlternativeComponent={
             <UserCircle size={25} color="#fff" weight="bold" />
           }>
-          {/*     <S.Image
+          <S.Image
+            testID="image-user"
             source={{uri: !!user && user.photoURL ? user!.photoURL! : ''}}
-            width={50}
-            height={50}
+            style={{
+              width: 40,
+              height: 40,
+            }}
             rounded="full"
             alt="image-user"
-          /> */}
+          />
         </RenderIF>
       </TouchableOpacity>
     </S.HStack>

@@ -15,7 +15,7 @@ import Router from './src/router/Router';
 
 function App(): JSX.Element {
   React.useEffect(() => {
-    AppState.addEventListener('change', event => {
+    AppState.addEventListener('blur', event => {
       console.log('event', event);
     });
   }, []);

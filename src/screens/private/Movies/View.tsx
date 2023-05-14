@@ -61,6 +61,7 @@ export default function Movies({useMovies = _useMovies}: MoviesProps) {
   return (
     <SharedLayout
       isLoadingData={isLoading}
+      typeLoading="simple"
       error={error}
       BottomComponent={<BottomTab currentPath="movies" />}
       HeaderComponent={

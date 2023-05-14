@@ -8,6 +8,7 @@ import {usePlaylist} from '../../../repositories/database/useCases/Playlist/useP
 
 import {_useSugestions} from '../../../store/server/useSugestions';
 import {useUser} from '../../../store/server/useUser';
+import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
 
 export const usePlaylistSugestion = ({
   useSugestions = _useSugestions,
@@ -17,6 +18,8 @@ export const usePlaylistSugestion = ({
   const navigation = useNavigation();
   const {create} = usePlaylistImpl();
   const {user} = useUserImpl();
+
+  const {focused} = useFocusedScreen();
   const [messageData, setMessageData] = React.useState<DataSugestion>({
     text: '',
     id: '',
@@ -49,8 +52,8 @@ export const usePlaylistSugestion = ({
     username: user?.name ?? '',
     messageData,
     error,
-    data: data?.movies,
-    textGpt: data?.text,
+    data: focused ? data?.movies : undefined,
+    textGpt: focused ? data?.text : undefined,
     isLoading,
     onSearch,
     onCreate,

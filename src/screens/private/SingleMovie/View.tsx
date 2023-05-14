@@ -14,6 +14,7 @@ import Header from './components/Header/View';
 import {PlaylistImpl} from '../../../repositories/database/useCases/Playlist/model';
 import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
 import RenderIF from '../../../components/RenderIF/View';
+import Loading from '../../../components/Loading/View';
 
 interface SingleMovieProps extends NavigationProps<'SingleMovie'> {
   useSingleMovie?: SingleMovieViewModel;
@@ -49,7 +50,7 @@ export default function SingleMovie({
             flex={1}
             alignItems="center"
             justifyContent="center">
-            <S.Spinner color="orange.500" />
+            <Loading typeLoading="simple" />
           </S.VStack>
         }>
         <Header movie={dataMovie} playlistImpl={{findMovieInPlaylist}} />

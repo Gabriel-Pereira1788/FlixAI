@@ -3,6 +3,8 @@ import * as S from 'native-base';
 import RenderIF from '../RenderIF/View';
 import ErrorMessage from '../ErrorMessage/View';
 import {ERROR_DEFAULT} from '../../helpers/constants/errorsMessage';
+import Loading from '../Loading/View';
+import {SIZES} from '../../helpers/constants/sizes';
 type Props = {
   children: React.ReactNode;
   error?: unknown;
@@ -10,6 +12,7 @@ type Props = {
   BottomComponent?: JSX.Element;
   containerStyle?: S.IZStackProps;
   isLoadingData?: boolean;
+  typeLoading?: 'IA' | 'simple';
 };
 
 export default function SharedLayout({
@@ -19,6 +22,7 @@ export default function SharedLayout({
   BottomComponent,
   containerStyle,
   isLoadingData,
+  typeLoading = 'IA',
 }: Props) {
   return (
     <S.VStack
@@ -42,7 +46,13 @@ export default function SharedLayout({
               flex={1}
               alignItems="center"
               justifyContent="center">
-              <S.Spinner color="orange.500" />
+              <Loading
+                typeLoading={typeLoading}
+                imageProps={{
+                  width: SIZES.width - 125,
+                  height: SIZES.width - 125,
+                }}
+              />
             </S.VStack>
           )
         }>

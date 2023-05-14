@@ -13,6 +13,7 @@ import SignIn from '../screens/public/SignIn/View';
 import SignUp from '../screens/public/SignUp/View';
 import MyAccount from '../screens/private/MyAccount/View';
 import {useUser} from '../store/server/useUser';
+import SplashScreen from '../screens/public/SplashScreen/View';
 
 type Props = {};
 
@@ -27,11 +28,29 @@ function Home() {
       screenOptions={{
         headerTransparent: true,
         headerTitle: '',
-        headerLeft: () => <></>,
+        headerTintColor: '#fff',
       }}>
-      <NativeStack.Screen name="sugestions" component={PlaylistSugestion} />
-      <NativeStack.Screen name="allPlaylist" component={AllPlaylist} />
-      <NativeStack.Screen name="movies" component={Movies} />
+      <NativeStack.Screen
+        name="sugestions"
+        component={PlaylistSugestion}
+        options={{
+          headerLeft: () => <></>,
+        }}
+      />
+      <NativeStack.Screen
+        name="allPlaylist"
+        component={AllPlaylist}
+        options={{
+          headerLeft: () => <></>,
+        }}
+      />
+      <NativeStack.Screen
+        name="movies"
+        component={Movies}
+        options={{
+          headerLeft: () => <></>,
+        }}
+      />
       <NativeStack.Screen name="myAccount" component={MyAccount} />
     </NativeStack.Navigator>
   );
@@ -85,6 +104,15 @@ export default function Router({}: Props) {
           </>
         ) : (
           <>
+            <Stack.Screen
+              name="SplashScreen"
+              component={SplashScreen}
+              options={{
+                headerTintColor: '#fff',
+                headerTransparent: true,
+                headerTitle: '',
+              }}
+            />
             <Stack.Screen
               name="SignIn"
               component={SignIn}

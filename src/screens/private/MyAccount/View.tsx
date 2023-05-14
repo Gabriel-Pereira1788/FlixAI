@@ -39,6 +39,9 @@ export default function MyAccount({
         alignItems="center"
         justifyContent="center">
         <S.HStack
+          position="absolute"
+          top={0}
+          zIndex={100}
           my={5}
           w="100%"
           alignItems="center"

@@ -2,7 +2,7 @@ import {PlaylistImpl} from '../../../repositories/database/useCases/Playlist/mod
 
 import {SugestionsImpl} from '../../../store/server/useSugestions';
 import {UserImpl} from '../../../store/server/useUser';
-import {usePlaylistSugestion} from './usePlaylistSugestion';
+import {useMoviesSugestion} from './useMoviesSugestion';
 
 export type HookProps = {
   useSugestions?: SugestionsImpl;
@@ -10,6 +10,6 @@ export type HookProps = {
   useUserImpl?: UserImpl;
 };
 
-export type PlaylistSugestionViewModel = (
+export type MoviesSugestionViewModel = (
   props: HookProps,
-) => ReturnType<typeof usePlaylistSugestion>;
+) => ReturnType<typeof useMoviesSugestion>;

@@ -1,7 +1,7 @@
 import {renderHook} from '@testing-library/react-hooks';
 import {movies} from '../../../../../mocks/movies';
 import {SugestionsImpl} from '../../../../store/server/useSugestions';
-import {usePlaylistSugestion} from '../usePlaylistSugestion';
+import {useMoviesSugestion} from '../useMoviesSugestion';
 import {
   mockUseCasePlaylist,
   create,
@@ -10,6 +10,13 @@ import {act} from '@testing-library/react-native';
 import {mockedNavigate} from '../../../../../jestSetup';
 import {UserImpl} from '../../../../store/server/useUser';
 import {userMock} from '../../../../../mocks/user';
+import {useFocusedScreen} from '../../../../helpers/hooks/useFocusedScreen';
+
+const mockFocusedScreen = useFocusedScreen as jest.Mock<
+  ReturnType<typeof useFocusedScreen>
+>;
+
+jest.mock('../../../../helpers/hooks/useFocusedScreen');
 
 const mockUseSugestion: SugestionsImpl = () => ({
   error: null,
@@ -26,24 +33,30 @@ const mockUseUser: UserImpl = () => ({
   isLoading: false,
   user: userMock,
 });
-describe('usePlaylistSugestion', () => {
+
+beforeAll(() => {
+  mockFocusedScreen.mockImplementation(() => ({
+    focused: true,
+  }));
+});
+describe('useMoviesSugestion', () => {
   it('call hook correctly', () => {
     const {result} = renderHook(() =>
-      usePlaylistSugestion({
+      useMoviesSugestion({
         useSugestions: mockUseSugestion,
         usePlaylistImpl: mockUseCasePlaylist,
         useUserImpl: mockUseUser,
       }),
     );
 
-    expect(result.current.data).toEqual(movies);
+    expect(result.current.moviesList).toEqual(movies);
     expect(result.current.isLoading).toBeFalsy();
     expect(result.current.username).toEqual(userMock.name);
   });
 
   it('call create function', () => {
     const {result} = renderHook(() =>
-      usePlaylistSugestion({
+      useMoviesSugestion({
         useSugestions: mockUseSugestion,
         usePlaylistImpl: mockUseCasePlaylist,
         useUserImpl: mockUseUser,
@@ -63,7 +76,7 @@ describe('usePlaylistSugestion', () => {
 
   it('call on search function', () => {
     const {result} = renderHook(() =>
-      usePlaylistSugestion({
+      useMoviesSugestion({
         useSugestions: mockUseSugestion,
         usePlaylistImpl: mockUseCasePlaylist,
         useUserImpl: mockUseUser,
@@ -79,7 +92,7 @@ describe('usePlaylistSugestion', () => {
 
   it('redirect to Single Movie screen', () => {
     const {result} = renderHook(() =>
-      usePlaylistSugestion({
+      useMoviesSugestion({
         useSugestions: mockUseSugestion,
         usePlaylistImpl: mockUseCasePlaylist,
         useUserImpl: mockUseUser,

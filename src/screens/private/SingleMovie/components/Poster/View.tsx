@@ -25,25 +25,6 @@ export default function Poster({imagePath}: PosterProps) {
         }}
         alt="image-movie"
       />
-
-      <S.Box
-        width="100%"
-        height="100%"
-        flex={1}
-        position="absolute"
-        alignItems="center"
-        justifyContent="center">
-        <S.Box
-          testID="space-element"
-          borderRadius="full"
-          overflow="hidden"
-          shadow={5}
-          style={{
-            width: 80,
-            height: 80,
-          }}
-        />
-      </S.Box>
     </S.Box>
   );
 }

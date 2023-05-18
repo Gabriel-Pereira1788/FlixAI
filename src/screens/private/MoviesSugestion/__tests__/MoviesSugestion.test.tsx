@@ -2,7 +2,7 @@ import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
 import JestProviders from '../../../../providers/JestProviders';
 import PlaylistSugestion from '../View';
-import {PlaylistSugestionViewModel} from '../models';
+import {MoviesSugestionViewModel} from '../models';
 import {movies} from '../../../../../mocks/movies';
 import {ERROR_DEFAULT} from '../../../../helpers/constants/errorsMessage';
 
@@ -10,8 +10,8 @@ const mockOnCreate = jest.fn();
 const mockOnSearch = jest.fn();
 const mockRedirectScreen = jest.fn();
 
-const data = {
-  data: movies,
+const mockReturnImpl = {
+  moviesList: movies,
   isLoading: false,
   onCreate: mockOnCreate,
   onSearch: mockOnSearch,
@@ -24,12 +24,12 @@ const data = {
     id: '',
   },
 };
-const mockUsePlaylistSugestion: PlaylistSugestionViewModel = () => data;
+const mockUseMoviesSugestion: MoviesSugestionViewModel = () => mockReturnImpl;
 describe('PlaylistSugestion', () => {
   it('render component correctly', () => {
     const {getByText, getByTestId} = render(
       <JestProviders>
-        <PlaylistSugestion usePlaylistSugestion={mockUsePlaylistSugestion} />
+        <PlaylistSugestion useMoviesSugestion={mockUseMoviesSugestion} />
       </JestProviders>,
     );
 
@@ -40,7 +40,7 @@ describe('PlaylistSugestion', () => {
   it('render movies correctly', () => {
     const {getAllByTestId} = render(
       <JestProviders>
-        <PlaylistSugestion usePlaylistSugestion={mockUsePlaylistSugestion} />
+        <PlaylistSugestion useMoviesSugestion={mockUseMoviesSugestion} />
       </JestProviders>,
     );
 
@@ -50,13 +50,13 @@ describe('PlaylistSugestion', () => {
   });
 
   it('render loading screen', () => {
-    const mockUsePlaylistSugestion: PlaylistSugestionViewModel = () => ({
-      ...data,
+    const mockuseMoviesSugestion: MoviesSugestionViewModel = () => ({
+      ...mockReturnImpl,
       isLoading: true,
     });
     const {getByTestId, queryByTestId} = render(
       <JestProviders>
-        <PlaylistSugestion usePlaylistSugestion={mockUsePlaylistSugestion} />
+        <PlaylistSugestion useMoviesSugestion={mockuseMoviesSugestion} />
       </JestProviders>,
     );
 
@@ -65,13 +65,13 @@ describe('PlaylistSugestion', () => {
   });
 
   it('render error screen', () => {
-    const mockUsePlaylistSugestion: PlaylistSugestionViewModel = () => ({
-      ...data,
+    const mockUsePlaylistSugestion: MoviesSugestionViewModel = () => ({
+      ...mockReturnImpl,
       error: true,
     });
     const {getByText} = render(
       <JestProviders>
-        <PlaylistSugestion usePlaylistSugestion={mockUsePlaylistSugestion} />
+        <PlaylistSugestion useMoviesSugestion={mockUsePlaylistSugestion} />
       </JestProviders>,
     );
 
@@ -80,7 +80,7 @@ describe('PlaylistSugestion', () => {
   it('testing onSearch call function', () => {
     const {getByTestId} = render(
       <JestProviders>
-        <PlaylistSugestion usePlaylistSugestion={mockUsePlaylistSugestion} />
+        <PlaylistSugestion useMoviesSugestion={mockUseMoviesSugestion} />
       </JestProviders>,
     );
     const buttonVisible = getByTestId('buttonVisible');

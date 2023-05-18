@@ -31,7 +31,7 @@ function AllMovies({dataMovies, renderItem}: AllMoviewsProps) {
             marginHorizontal: 10,
             width: 'auto',
             height: 'auto',
-            alignItems: 'center',
+            alignItems: 'flex-start',
             justifyContent: 'center',
           }}
           renderItem={renderItem}

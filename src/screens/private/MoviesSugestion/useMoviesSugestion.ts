@@ -10,7 +10,7 @@ import {_useSugestions} from '../../../store/server/useSugestions';
 import {useUser} from '../../../store/server/useUser';
 import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
 
-export const usePlaylistSugestion = ({
+export const useMoviesSugestion = ({
   useSugestions = _useSugestions,
   usePlaylistImpl = usePlaylist,
   useUserImpl = useUser,
@@ -52,7 +52,7 @@ export const usePlaylistSugestion = ({
     username: user?.name ?? '',
     messageData,
     error,
-    data: focused ? data?.movies : undefined,
+    moviesList: focused ? data?.movies : undefined,
     textGpt: focused ? data?.text : undefined,
     isLoading,
     onSearch,

@@ -36,7 +36,7 @@ export default function CreatePlaylist({
       p={9}
       space={4}>
       <S.Text color="#ddd" fontSize="2xl" fontWeight={500}>
-        Criar nova playlist
+        Criar nova biblioteca
       </S.Text>
       <Input
         placeholder="Nome para playlist"

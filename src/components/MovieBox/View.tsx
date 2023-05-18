@@ -10,6 +10,7 @@ import {
   TMBD_BACKDROP_PREVIEW,
   TMBD_BACKDROP_URL,
 } from '../../helpers/constants/tmdb';
+import {SIZES} from '../../helpers/constants/sizes';
 
 interface MovieBoxProps extends TouchableOpacityProps {
   dataMovie: Movie;
@@ -30,7 +31,12 @@ export default function MovieBox({
   return (
     <Animated.View entering={FadeInDown.delay(200).duration(200)}>
       <TouchableOpacity {...rest}>
-        <S.VStack m={5} space={2} alignItems="center" justifyContent="center">
+        <S.VStack
+          m={5}
+          space={2}
+          alignItems="center"
+          justifyContent="center"
+          maxWidth={(SIZES.width / 100) * 70}>
           <ProgressiveImage
             testID="image"
             source={{
@@ -53,7 +59,7 @@ export default function MovieBox({
             {children && children}
           </ProgressiveImage>
 
-          <S.Text fontWeight={500} color="#ddd" fontSize="md">
+          <S.Text fontWeight={500} color="#ddd" fontSize="md" w="80%">
             {title}
           </S.Text>
         </S.VStack>

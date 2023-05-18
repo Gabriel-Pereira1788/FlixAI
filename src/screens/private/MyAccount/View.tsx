@@ -3,7 +3,6 @@ import * as S from 'native-base';
 
 import Input from '../../../components/Input/View';
 import Button from '../../../components/Button/View';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import {useMyAccount as _useMyAccount} from './useMyAccount';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -12,6 +11,7 @@ import {MyAccountViewModel} from './models';
 import {SignOut, UserCircle} from 'phosphor-react-native';
 import Alert from '../../../components/Alert/View';
 import {AlertRef} from '../../../components/Alert/model';
+import {TouchableOpacity} from 'react-native';
 
 interface MyAccountProps {
   useMyAccount?: MyAccountViewModel;
@@ -38,28 +38,6 @@ export default function MyAccount({
         backgroundColor="background.main"
         alignItems="center"
         justifyContent="center">
-        <S.HStack
-          position="absolute"
-          top={0}
-          zIndex={100}
-          my={5}
-          w="100%"
-          alignItems="center"
-          justifyContent="flex-end"
-          px={3}>
-          <TouchableOpacity
-            onPress={handleSignOut}
-            style={{
-              alignItems: 'center',
-              flexDirection: 'row',
-            }}>
-            <S.Text mr={2} color="#fff" fontWeight={500} fontSize="md">
-              Sair
-            </S.Text>
-            <SignOut size={24} color="#fff" />
-          </TouchableOpacity>
-        </S.HStack>
-
         <S.VStack
           w="100%"
           p={3}
@@ -95,6 +73,18 @@ export default function MyAccount({
           <Button isLoading={loading} onPress={onSubmit}>
             Editar
           </Button>
+          <TouchableOpacity
+            onPress={handleSignOut}
+            style={{
+              alignItems: 'center',
+              flexDirection: 'row',
+              marginTop: 20,
+            }}>
+            <S.Text mr={2} color="#fff" fontWeight={500} fontSize="xl">
+              Sair
+            </S.Text>
+            <SignOut size={30} color="#fff" />
+          </TouchableOpacity>
         </S.VStack>
       </S.VStack>
     </SafeAreaView>

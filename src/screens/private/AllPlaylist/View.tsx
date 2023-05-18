@@ -36,7 +36,7 @@ export default function AllPlaylist({useAllPlaylist = _useAllPlaylist}: Props) {
       HeaderComponent={
         <S.Box px={10} my={4}>
           <SearchHeader
-            title="Playlist"
+            title="Biblioteca de filmes"
             titleProps={{
               fontSize: '3xl',
             }}

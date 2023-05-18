@@ -1,9 +1,9 @@
 import React from 'react';
 import * as S from 'native-base';
-import {usePlaylistSugestion as _usePlaylistSugestion} from './usePlaylistSugestion';
+import {useMoviesSugestion as _useMoviesSugestion} from './useMoviesSugestion';
 
 import Animated, {FadeInDown} from 'react-native-reanimated';
-import {PlaylistSugestionViewModel} from './models';
+import {MoviesSugestionViewModel} from './models';
 //*components
 import RenderIF from '../../../components/RenderIF/View';
 import {modalRef} from '../../../components/Modal/View';
@@ -14,19 +14,19 @@ import SharedLayout from '../../../components/SharedLayout/View';
 import SearchHeader from '../../../components/SearchHeader/View';
 import List from './components/List/View';
 type Props = {
-  usePlaylistSugestion?: PlaylistSugestionViewModel;
+  useMoviesSugestion?: MoviesSugestionViewModel;
 };
 
-export default function PlaylistSugestion({
-  usePlaylistSugestion = _usePlaylistSugestion,
+export default function MoviesSugestion({
+  useMoviesSugestion = _useMoviesSugestion,
 }: Props) {
-  const {data, username, textGpt, isLoading, error, onSearch, onCreate} =
-    usePlaylistSugestion({});
+  const {moviesList, username, textGpt, isLoading, error, onSearch, onCreate} =
+    useMoviesSugestion({});
 
   function openModal() {
-    if (data && data.length > 0) {
+    if (moviesList && moviesList.length > 0) {
       modalRef.current?.show(
-        () => <AddPlaylist listData={data} onCreate={onCreate} />,
+        () => <AddPlaylist listData={moviesList} onCreate={onCreate} />,
         'slide',
       );
     }
@@ -44,8 +44,8 @@ export default function PlaylistSugestion({
         </S.Box>
       }
       BottomComponent={<BottomTab currentPath="sugestions" />}>
-      <RenderIF condition={!isLoading && !!data && data.length > 0}>
-        {data && data.length > 0 && <List data={data} />}
+      <RenderIF condition={!isLoading && !!moviesList && moviesList.length > 0}>
+        {moviesList && moviesList.length > 0 && <List data={moviesList} />}
         <S.HStack
           testID="container-add"
           position="absolute"

@@ -2,7 +2,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {TransitionPresets, createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import PlaylistSugestion from '../screens/private/PlaylistSugestion/View';
+import MoviesSugestion from '../screens/private/MoviesSugestion/View';
 import AllPlaylist from '../screens/private/AllPlaylist/View';
 import ListMovies from '../screens/private/ListMovies/View';
 import {RootParamListI} from './navigation';
@@ -32,7 +32,7 @@ function Home() {
       }}>
       <NativeStack.Screen
         name="sugestions"
-        component={PlaylistSugestion}
+        component={MoviesSugestion}
         options={{
           headerLeft: () => <></>,
         }}

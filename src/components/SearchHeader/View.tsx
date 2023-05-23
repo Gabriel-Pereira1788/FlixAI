@@ -14,7 +14,7 @@ import SearchBar from '../SearchBar/View';
 
 interface HeaderProps {
   title: string;
-  onSearch?: (value: string) => Promise<void> | void;
+  listenEventSearch?: (value: string) => Promise<void> | void;
   titleProps?: S.ITextProps;
   RightComponent?: JSX.Element;
   inputProps?: S.IInputProps;
@@ -23,7 +23,7 @@ interface HeaderProps {
 const Icon: React.FC = () => <PaperPlaneRight color="#ddd" />;
 
 export default function SearchHeader({
-  onSearch,
+  listenEventSearch,
   title,
   RightComponent,
   titleProps,
@@ -32,8 +32,8 @@ export default function SearchHeader({
   const {visible, toggleVisible} = useVisible();
 
   function handleOnSearch(value: string) {
-    if (onSearch) {
-      onSearch(value)!;
+    if (listenEventSearch) {
+      listenEventSearch(value)!;
     }
     toggleVisible();
   }
@@ -54,7 +54,7 @@ export default function SearchHeader({
             <SearchBar
               testID="searchBarcomponent"
               autoFocus={true}
-              onSearch={onSearch ? handleOnSearch : undefined}
+              onSearch={listenEventSearch ? handleOnSearch : undefined}
               onBlur={() => {
                 toggleVisible();
               }}

@@ -7,12 +7,13 @@ import {MoviesSugestionViewModel} from './models';
 //*components
 import RenderIF from '../../../components/RenderIF/View';
 import {modalRef} from '../../../components/Modal/View';
-import AddPlaylist from '../../../components/AddPlaylist/View';
-import AddToPlaylist from './components/AddToPlaylist/View';
+import CreateLibrary from '../../../components/CreateLibrary/View';
 import BottomTab from '../../../components/BottomTab/View';
 import SharedLayout from '../../../components/SharedLayout/View';
 import SearchHeader from '../../../components/SearchHeader/View';
 import List from './components/List/View';
+import AddToLibrary from './components/AddToLibrary/View';
+
 type Props = {
   useMoviesSugestion?: MoviesSugestionViewModel;
 };
@@ -20,13 +21,25 @@ type Props = {
 export default function MoviesSugestion({
   useMoviesSugestion = _useMoviesSugestion,
 }: Props) {
-  const {moviesList, username, textGpt, isLoading, error, onSearch, onCreate} =
-    useMoviesSugestion({});
+  const {
+    moviesList,
+    username,
+    textGpt,
+    isLoading,
+    error,
+    listenEventSearch,
+    createLibrary,
+  } = useMoviesSugestion({});
 
   function openModal() {
     if (moviesList && moviesList.length > 0) {
       modalRef.current?.show(
-        () => <AddPlaylist listData={moviesList} onCreate={onCreate} />,
+        () => (
+          <CreateLibrary
+            moviesListToAdd={moviesList}
+            onCreate={createLibrary}
+          />
+        ),
         'slide',
       );
     }
@@ -38,7 +51,7 @@ export default function MoviesSugestion({
       HeaderComponent={
         <S.Box px={10} paddingTop={10}>
           <SearchHeader
-            onSearch={onSearch}
+            listenEventSearch={listenEventSearch}
             title={textGpt || `Olá ${username} oque precisa para hoje?`}
           />
         </S.Box>
@@ -59,7 +72,7 @@ export default function MoviesSugestion({
           <Animated.View
             style={{marginLeft: 10}}
             entering={FadeInDown.delay(500).duration(150)}>
-            <AddToPlaylist onPress={openModal} />
+            <AddToLibrary onPress={openModal} />
           </Animated.View>
         </S.HStack>
       </RenderIF>

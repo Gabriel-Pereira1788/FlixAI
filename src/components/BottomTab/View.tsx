@@ -12,7 +12,7 @@ import RenderIF from '../RenderIF/View';
 import {useUser} from '../../store/server/useUser';
 
 interface BottomTabProps extends S.IStackProps {
-  currentPath: 'sugestions' | 'allPlaylist' | 'movies';
+  currentPath: 'sugestions' | 'userLibrary' | 'movies';
 }
 
 export default function BottomTab({currentPath, ...rest}: BottomTabProps) {
@@ -40,11 +40,11 @@ export default function BottomTab({currentPath, ...rest}: BottomTabProps) {
         />
       </TouchableOpacity>
       <TouchableOpacity
-        testID="allPlaylistId"
-        onPress={() => navigation.navigate('Home', {screen: 'allPlaylist'})}>
+        testID="userLibraryId"
+        onPress={() => navigation.navigate('Home', {screen: 'userLibrary'})}>
         <Queue
           size={30}
-          color={currentPath === 'allPlaylist' ? '#f97316' : '#ffffffc3'}
+          color={currentPath === 'userLibrary' ? '#f97316' : '#ffffffc3'}
           weight="bold"
         />
       </TouchableOpacity>

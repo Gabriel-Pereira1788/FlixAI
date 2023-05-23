@@ -68,7 +68,7 @@ describe('useMoviesSugestion', () => {
       title: 'Test',
     };
     act(() => {
-      result.current.onCreate(data);
+      result.current.createLibrary(data);
     });
 
     expect(create).toBeCalledWith(data);
@@ -84,7 +84,7 @@ describe('useMoviesSugestion', () => {
     );
 
     act(() => {
-      result.current.onSearch('John doe');
+      result.current.listenEventSearch('John doe');
     });
 
     expect(result.current.messageData.text).toEqual('John doe');

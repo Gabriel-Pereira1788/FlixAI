@@ -13,8 +13,8 @@ const mockRedirectScreen = jest.fn();
 const mockReturnImpl = {
   moviesList: movies,
   isLoading: false,
-  onCreate: mockOnCreate,
-  onSearch: mockOnSearch,
+  createLibrary: mockOnCreate,
+  listenEventSearch: mockOnSearch,
   redirectScreen: mockRedirectScreen,
   textGpt: 'Hello John doe',
   username: 'John doe',

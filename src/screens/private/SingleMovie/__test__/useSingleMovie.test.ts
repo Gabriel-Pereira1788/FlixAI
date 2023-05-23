@@ -3,6 +3,12 @@ import {useSingleMovie} from '../useSingleMovie';
 import {SingleMovieImpl} from '../../../../store/server/useSingleMovie';
 import {movies} from '../../../../../mocks/movies';
 import {act} from 'react-test-renderer';
+import {useFocusedScreen} from '../../../../helpers/hooks/useFocusedScreen';
+
+const mockUseFocusedScreen = useFocusedScreen as jest.Mock<
+  ReturnType<typeof useFocusedScreen>
+>;
+jest.mock('../../../../helpers/hooks/useFocusedScreen');
 
 const mockUseSingeMovieServer: SingleMovieImpl = () => ({
   data: movies[0],
@@ -11,6 +17,11 @@ const mockUseSingeMovieServer: SingleMovieImpl = () => ({
 });
 
 describe('useSingleMovie', () => {
+  beforeAll(() => {
+    mockUseFocusedScreen.mockImplementation(() => ({
+      focused: true,
+    }));
+  });
   it('call hook correctly', () => {
     const {result} = renderHook(() =>
       useSingleMovie({

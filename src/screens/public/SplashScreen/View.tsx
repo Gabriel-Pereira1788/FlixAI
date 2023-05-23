@@ -24,6 +24,7 @@ export default function SplashScreen({
         navigation.replace('SignIn');
       }, INTERVALS.navigation_timeout);
     }
+
     if (!focused) {
       clearInterval(navigationTimeout.current!);
     }

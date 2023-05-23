@@ -4,18 +4,29 @@ import JestProviders from '../../../../providers/JestProviders';
 import ListMovies from '../View';
 import {ListMoviesViewModel} from '../model';
 import {movies} from '../../../../../mocks/movies';
-
+import {allPlaylistMock} from '../../../../../mocks/useCasePlaylist';
 const mockOnSearch = jest.fn();
 const mockUseListMovies: ListMoviesViewModel = () => ({
   title: 'Titulo 1',
-  dataMovies: movies,
+  moviesList: movies,
   handleOnSearch: mockOnSearch,
+  library: allPlaylistMock[0],
 });
+
+const navigation = {
+  goBack: jest.fn(),
+} as any;
+
+const route = {} as any;
 describe('ListMovies', () => {
   it('render component correctly', () => {
     const {getByText} = render(
       <JestProviders>
-        <ListMovies useListMovies={mockUseListMovies} />
+        <ListMovies
+          useListMovies={mockUseListMovies}
+          navigation={navigation}
+          route={route}
+        />
       </JestProviders>,
     );
 
@@ -25,7 +36,11 @@ describe('ListMovies', () => {
   it('call onSearch function', () => {
     const {getByTestId} = render(
       <JestProviders>
-        <ListMovies useListMovies={mockUseListMovies} />
+        <ListMovies
+          useListMovies={mockUseListMovies}
+          navigation={navigation}
+          route={route}
+        />
       </JestProviders>,
     );
 

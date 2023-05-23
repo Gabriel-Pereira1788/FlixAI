@@ -18,17 +18,17 @@ describe('BottomTab', () => {
     expect(mockedNavigate).toBeCalledWith('Home', {screen: 'movies'});
   });
 
-  it('render component correctly in allPlaylist path', () => {
+  it('render component correctly in userLibrary path', () => {
     const {getByTestId} = render(
       <JestProviders>
-        <BottomTab currentPath="allPlaylist" />
+        <BottomTab currentPath="userLibrary" />
       </JestProviders>,
     );
 
-    const element = getByTestId('allPlaylistId');
+    const element = getByTestId('userLibraryId');
     fireEvent.press(element);
     expect(element).toBeTruthy();
-    expect(mockedNavigate).toBeCalledWith('Home', {screen: 'allPlaylist'});
+    expect(mockedNavigate).toBeCalledWith('Home', {screen: 'userLibrary'});
   });
 
   it('render component correctly in sugestions path', () => {

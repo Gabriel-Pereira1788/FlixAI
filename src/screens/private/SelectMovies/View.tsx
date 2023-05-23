@@ -11,7 +11,7 @@ import {NavigationProps} from '../../../router/navigation';
 import {BlurView} from '@react-native-community/blur';
 import {CaretRight} from 'phosphor-react-native';
 import {modalRef} from '../../../components/Modal/View';
-import AddPlaylist from '../../../components/AddPlaylist/View';
+import CreateLibrary from '../../../components/CreateLibrary/View';
 import FilteredMovies from '../../../components/FilteredMovies/View';
 import AllMovies from '../../../components/AllMovies/View';
 
@@ -41,7 +41,9 @@ export default function SelectMovies({
   function openModal() {
     if (selectedMovies.length > 0) {
       modalRef.current?.show(
-        () => <AddPlaylist listData={selectedMovies} onCreate={onCreate} />,
+        () => (
+          <CreateLibrary moviesListToAdd={selectedMovies} onCreate={onCreate} />
+        ),
         'slide',
       );
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import {DataSugestion} from '../../../models/Sugestion';
 import {HookProps} from './models';
-import {PlaylistDTO} from '../../../models/Playlist';
+import {LibraryDTO} from '../../../models/Library';
 import {useNavigation} from '@react-navigation/native';
 //*repositories
 import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
@@ -29,10 +29,10 @@ export const useMoviesSugestion = ({
     messageData,
   });
 
-  async function onCreate(dataPlaylist: PlaylistDTO) {
-    await create(dataPlaylist);
+  async function createLibrary(library: LibraryDTO) {
+    await create(library);
   }
-  async function onSearch(value: string) {
+  async function listenEventSearch(value: string) {
     const messageSend: DataSugestion = {
       text: value,
       id: Math.random()
@@ -55,8 +55,8 @@ export const useMoviesSugestion = ({
     moviesList: focused ? data?.movies : undefined,
     textGpt: focused ? data?.text : undefined,
     isLoading,
-    onSearch,
-    onCreate,
+    listenEventSearch,
+    createLibrary,
     redirectScreen,
   };
 };

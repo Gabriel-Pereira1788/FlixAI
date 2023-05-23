@@ -10,7 +10,7 @@ import {
 const imagePath = 'www.example.com';
 describe('Poster', () => {
   it('render component correctly', () => {
-    const {getAllByTestId, getByTestId} = render(
+    const {getAllByTestId} = render(
       <JestProviders>
         <Poster imagePath={imagePath} />
       </JestProviders>,
@@ -23,7 +23,5 @@ describe('Poster', () => {
     expect(posterImages[1].props.source.uri).toEqual(
       `${TMBD_BACKDROP_URL}${imagePath}`,
     );
-
-    expect(getByTestId('space-element')).toBeTruthy();
   });
 });

@@ -7,10 +7,10 @@ import {ListRenderItem, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 interface ListProps {
-  dataMovies: Movie[];
+  moviesList: Movie[];
 }
 
-export default function List({dataMovies}: ListProps) {
+export default function List({moviesList}: ListProps) {
   const navigation = useNavigation();
 
   const renderItem: ListRenderItem<Movie> = React.useCallback(
@@ -31,7 +31,7 @@ export default function List({dataMovies}: ListProps) {
   );
   return (
     <S.FlatList
-      data={dataMovies}
+      data={moviesList}
       initialNumToRender={4}
       maxToRenderPerBatch={4}
       scrollEventThrottle={16}

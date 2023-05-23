@@ -1,6 +1,6 @@
 import React from 'react';
 import {Movie} from '../../../../models/Movie';
-import {PlaylistDTO} from '../../../../models/Playlist';
+import {LibraryDTO} from '../../../../models/Library';
 import {useQueryRealm, useRealm} from '../../db';
 import {Playlist} from '../../schemas/PlaylistSchema';
 import {PlaylistImpl} from './model';
@@ -12,9 +12,9 @@ export const usePlaylist: PlaylistImpl = () => {
   function get(): Realm.Results<Playlist> {
     return playlists;
   }
-  async function create(data: PlaylistDTO) {
+  async function create(data: LibraryDTO) {
     realm.write(() => {
-      realm.create<PlaylistDTO>('Playlist', {
+      realm.create<LibraryDTO>('Playlist', {
         _id: new Realm.BSON.ObjectID(),
         id: String(uuid.v4()),
         title: data.title,

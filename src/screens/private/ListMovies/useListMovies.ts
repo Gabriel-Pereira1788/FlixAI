@@ -5,20 +5,35 @@ import React from 'react';
 import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
 
 export const useListMovies = ({idPlaylist}: HookProps) => {
-  const playlistData = useObject(Playlist, idPlaylist!);
+  const library = useObject(Playlist, idPlaylist!);
+
   const {focused} = useFocusedScreen();
 
+  const [searchText, setSearchText] = React.useState('');
+
   const displayMovies = React.useMemo(() => {
-    return playlistData && focused ? playlistData.movies : [];
-  }, [playlistData, focused]);
+    let listMovies = library ? library.movies : [];
+
+    if (searchText.trim() !== '' && listMovies.length > 0) {
+      listMovies = listMovies.filter(movie => {
+        const normalizedSearchText = searchText.toLowerCase();
+        const normalizedMovieTitle = movie.title.toLowerCase();
+
+        return normalizedMovieTitle.startsWith(normalizedSearchText);
+      });
+    }
+
+    return library && focused ? listMovies : [];
+  }, [library, focused, searchText]);
 
   function handleOnSearch(value: string) {
-    console.log(value);
+    setSearchText(value);
   }
 
   return {
-    title: playlistData ? playlistData.title : '',
-    dataMovies: displayMovies,
+    title: library ? library.title : '',
+    moviesList: displayMovies,
+    library,
     handleOnSearch,
   };
 };

@@ -9,7 +9,7 @@ describe('List', () => {
   it('render component correctly', () => {
     const {getAllByTestId} = render(
       <JestProviders>
-        <List dataMovies={movies} />
+        <List moviesList={movies} />
       </JestProviders>,
     );
 
@@ -19,7 +19,7 @@ describe('List', () => {
   it('redirect to SingleMovie page correctly', () => {
     const {getAllByTestId} = render(
       <JestProviders>
-        <List dataMovies={movies} />
+        <List moviesList={movies} />
       </JestProviders>,
     );
 

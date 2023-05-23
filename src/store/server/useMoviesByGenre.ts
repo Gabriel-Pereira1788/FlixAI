@@ -2,8 +2,12 @@ import {useQuery} from '@tanstack/react-query';
 import {MoviesApi} from '../../repositories/services/api/modules/movies/movies';
 
 export function useMoviesByGenre(genre?: GenreIdentify) {
-  const {data, isLoading, error} = useQuery([`@${genre}`], () =>
-    MoviesApi.getByGenre(genre),
+  const {data, isLoading, error} = useQuery(
+    [`@${genre}`],
+    () => MoviesApi.getByGenre(genre),
+    {
+      refetchOnMount: false,
+    },
   );
 
   return {
@@ -13,4 +17,6 @@ export function useMoviesByGenre(genre?: GenreIdentify) {
   };
 }
 
-export type MoviesByGenreImpl = () => ReturnType<typeof useMoviesByGenre>;
+export type MoviesByGenreImpl = (
+  genre?: GenreIdentify,
+) => ReturnType<typeof useMoviesByGenre>;

@@ -1,10 +1,10 @@
 import {Movie} from '../../../../models/Movie';
-import {PlaylistDTO} from '../../../../models/Playlist';
+import {LibraryDTO} from '../../../../models/Library';
 import {Playlist} from '../../schemas/PlaylistSchema';
 
 export type PlaylistImpl = () => {
   get(): Realm.Results<Playlist>;
-  create(data: PlaylistDTO): Promise<void>;
+  create(data: LibraryDTO): Promise<void>;
   deleteItem(id: string | number): Promise<void>;
   findMovieInPlaylist(id: number): {
     dataMovie: Movie | null;

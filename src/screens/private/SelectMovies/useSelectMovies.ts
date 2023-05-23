@@ -2,7 +2,7 @@ import React from 'react';
 import {useAllMovies as _useAllMovies} from '../../../store/server/useAllMovies';
 import {HookProps} from './model';
 import {usePlaylist as _usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
-import {PlaylistDTO} from '../../../models/Playlist';
+import {LibraryDTO} from '../../../models/Library';
 import {useSelectedMoviesStore as _useSelectedMoviesStore} from '../../../store/client/SelectMovies/useSelectedMoviesStore';
 import {modalRef} from '../../../components/Modal/View';
 import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
@@ -20,7 +20,7 @@ export const _useSelectMovies = ({
   const [searchText, setSearchText] = React.useState('');
   const {focused} = useFocusedScreen();
 
-  async function onCreate(dataPlaylist: PlaylistDTO) {
+  async function onCreate(dataPlaylist: LibraryDTO) {
     await create(dataPlaylist);
     modalRef.current?.hide();
     cleanUp();

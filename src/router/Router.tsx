@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {TransitionPresets, createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import MoviesSugestion from '../screens/private/MoviesSugestion/View';
-import AllPlaylist from '../screens/private/AllPlaylist/View';
+import UserLibrary from '../screens/private/UserLibrary/View';
 import ListMovies from '../screens/private/ListMovies/View';
 import {RootParamListI} from './navigation';
 import SingleMovie from '../screens/private/SingleMovie/View';
@@ -38,8 +38,8 @@ function Home() {
         }}
       />
       <NativeStack.Screen
-        name="allPlaylist"
-        component={AllPlaylist}
+        name="userLibrary"
+        component={UserLibrary}
         options={{
           headerLeft: () => <></>,
         }}

@@ -7,7 +7,7 @@ export type RootParamListI = {
   Home:
     | undefined
     | {
-        screen: 'sugestions' | 'allPlaylist' | 'movies' | 'myAccount';
+        screen: 'sugestions' | 'userLibrary' | 'movies' | 'myAccount';
       };
   ListMovies: undefined;
   SingleMovie: {

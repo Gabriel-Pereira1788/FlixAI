@@ -1,8 +1,6 @@
-import {useFormAuth} from '../../../helpers/hooks/useFormAuth';
 import {launchImageLibrary} from 'react-native-image-picker';
-import {useAuth} from '../../../helpers/hooks/useAuth';
-
-import {useUser} from '../../../store/server/useUser';
+import {useAuth, useFormAuth} from '@hooks';
+import {useUser} from '@store';
 
 import {HookProps} from './models';
 

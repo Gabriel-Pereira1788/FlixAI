@@ -1,11 +1,13 @@
 import React from 'react';
 
-import WrapperAuthScreen from '../../../components/WrapperAuthScreen/View';
-import Input from '../../../components/Input/View';
-import Button from '../../../components/Button/View';
+import {
+  WrapperAuthScreen,
+  InputAuth,
+  InputPassword,
+  AlertRef,
+  Button,
+} from '@components';
 
-import InputPassword from '../../../components/Input/components/InputPassword';
-import {AlertRef} from '../../../components/Alert/model';
 import {NavigationProps} from '../../../router/navigation';
 import {
   FormAuthImpl,
@@ -33,13 +35,13 @@ export default function SignUp({
 
   return (
     <WrapperAuthScreen title="Cadastrar-se" alertRef={alertRef}>
-      <Input
+      <InputAuth
         placeholder="Nome"
         value={formData.name}
         error={errors?.name}
         onChangeText={value => handleFormData('name', value)}
       />
-      <Input
+      <InputAuth
         placeholder="Email"
         value={formData.email}
         error={errors?.email}
@@ -47,7 +49,6 @@ export default function SignUp({
       />
       <InputPassword
         placeholder="Senha"
-        backgroundColor="#131212"
         value={formData.password}
         error={errors?.password}
         onChangeText={value => handleFormData('password', value)}

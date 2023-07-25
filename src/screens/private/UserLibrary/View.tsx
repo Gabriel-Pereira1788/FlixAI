@@ -1,15 +1,19 @@
 import React from 'react';
-import SharedLayout from '../../../components/SharedLayout/View';
 import * as S from 'native-base';
-import BottomTab from '../../../components/BottomTab/View';
 import {useUserLibrary as _useUserLibrary} from './useUserLibrary';
-import StackMovies from '../../../components/StackMovies/View';
 import {SIZES} from '../../../helpers/constants/sizes';
 
-import SearchHeader from '../../../components/SearchHeader/View';
+import {
+  BottomTab,
+  SharedLayout,
+  SearchHeader,
+  modalRef,
+  Box,
+  StackMovies,
+} from '@components';
+
 import {TouchableOpacity} from 'react-native';
 import {Plus} from 'phosphor-react-native';
-import {modalRef} from '../../../components/Modal/View';
 import NewLibrary from './components/NewLibrary/View';
 import {UserLibraryViewModel} from './model';
 
@@ -27,19 +31,14 @@ export default function UserLibrary({useUserLibrary = _useUserLibrary}: Props) {
   } = useUserLibrary({});
 
   function openModal() {
-    modalRef.current?.show(() => (
-      <NewLibrary redirectScreen={redirectScreen} />
-    ));
+    modalRef.current?.show(<NewLibrary redirectScreen={redirectScreen} />);
   }
   return (
     <SharedLayout
       HeaderComponent={
-        <S.Box px={10} my={4}>
+        <Box paddingHorizontal={'xl'} marginVertical={'xl'}>
           <SearchHeader
             title="Biblioteca de filmes"
-            titleProps={{
-              fontSize: '3xl',
-            }}
             RightComponent={
               <TouchableOpacity testID="button-open" onPress={openModal}>
                 <Plus size={25} color="#fff" weight="bold" />
@@ -51,7 +50,7 @@ export default function UserLibrary({useUserLibrary = _useUserLibrary}: Props) {
               onChangeText: handleChangeText,
             }}
           />
-        </S.Box>
+        </Box>
       }
       BottomComponent={<BottomTab currentPath="userLibrary" />}
       containerStyle={{

@@ -2,10 +2,6 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/assets/bg.jpg",
-      "sha1": "a8abfad3de4afc15ba80ceeb4bb993fca9861f1b"
-    },
-    {
       "path": "src/assets/launch.png",
       "sha1": "87272c24a504999f01ddc4d9a6f503cfe32259c1"
     },

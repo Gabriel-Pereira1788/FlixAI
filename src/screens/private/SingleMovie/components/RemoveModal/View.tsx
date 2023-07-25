@@ -4,7 +4,8 @@ import {RemoveModalViewModel} from './model';
 import {useRemoveModal} from './useRemoveModal';
 import {Movie} from '../../../../../models/Movie';
 import {Playlist} from '../../../../../repositories/database/schemas/PlaylistSchema';
-import Button from '../../../../../components/Button/View';
+import {Button} from '../../../../../components/Atoms';
+
 interface RemoveModalProps {
   movie: Movie;
   playlist: Playlist[];

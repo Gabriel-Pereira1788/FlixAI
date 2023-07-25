@@ -1,11 +1,10 @@
 import React from 'react';
 import * as S from 'native-base';
-import Input from '../../../../../components/Input/View';
-import Button from '../../../../../components/Button/View';
+import {InputAuth, modalRef, Button} from '@components';
+
 import {useNewLibrary as _useNewLibrary} from './useNewLibrary';
 import Movies from '../Movies/View';
 import {TouchableOpacity} from 'react-native';
-import {modalRef} from '../../../../../components/Modal/View';
 import {NewLibraryViewModel} from './model';
 
 interface NewLibraryProps {
@@ -39,7 +38,7 @@ export default function NewLibrary({
       <S.Text color="#ddd" fontSize="2xl" fontWeight={500}>
         Criar nova biblioteca
       </S.Text>
-      <Input
+      <InputAuth
         placeholder="Nome para biblioteca"
         value={titleLibrary}
         onChangeText={handleChangeText}

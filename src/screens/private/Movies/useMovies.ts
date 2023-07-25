@@ -1,9 +1,8 @@
 import React from 'react';
-import {TMDB_GENRES} from '../../../helpers/constants/tmdb';
-
-import {useAllMovies} from '../../../store/server/useAllMovies';
-import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
-import {Genre} from '../../../models/Movie';
+import {TMDB_GENRES} from '@constants';
+import {useAllMovies} from '@store';
+import {useFocusedScreen} from '@hooks';
+import {Genre} from '@models';
 
 export const _useMovies = () => {
   const {data, isLoading, error} = useAllMovies();

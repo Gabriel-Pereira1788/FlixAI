@@ -1,10 +1,10 @@
 import {useQuery} from '@tanstack/react-query';
-import {MoviesApi} from '../../repositories/services/api/modules/movies/movies';
+import {MoviesService} from '@domain';
 
 export function useMoviesByGenre(genre?: GenreIdentify) {
   const {data, isLoading, error} = useQuery(
     [`@${genre}`],
-    () => MoviesApi.getByGenre(genre),
+    () => MoviesService.getByGenre(genre),
     {
       refetchOnMount: false,
     },

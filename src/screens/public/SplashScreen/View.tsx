@@ -1,9 +1,8 @@
 import React from 'react';
-import SharedLayout from '../../../components/SharedLayout/View';
+import {SharedLayout, Loading} from '@components';
 
 import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
 import {NavigationProps} from '../../../router/navigation';
-import Loading from '../../../components/Loading/View';
 import {useUser} from '../../../store/server/useUser';
 
 const INTERVALS = {

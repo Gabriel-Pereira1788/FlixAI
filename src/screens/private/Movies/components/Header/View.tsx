@@ -1,14 +1,11 @@
 import React from 'react';
 
 import * as S from 'native-base';
-import RenderIF from '../../../../../components/RenderIF/View';
+import {RenderIF} from '@components';
+import {UserImpl, useUser as _useUser} from '@store';
 
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {UserCircle} from 'phosphor-react-native';
-import {
-  UserImpl,
-  useUser as _useUser,
-} from '../../../../../store/server/useUser';
 
 type Props = {
   useUser?: UserImpl;

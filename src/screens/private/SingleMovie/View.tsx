@@ -13,8 +13,8 @@ import {SingleMovieViewModel} from './models';
 import Header from './components/Header/View';
 import {PlaylistImpl} from '../../../repositories/database/useCases/Playlist/model';
 import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
-import RenderIF from '../../../components/RenderIF/View';
-import Loading from '../../../components/Loading/View';
+import RenderIF from '../../../components/Atoms/RenderIF/View';
+import Loading from '../../../components/Molecules/Loading/View';
 
 interface SingleMovieProps extends NavigationProps<'SingleMovie'> {
   useSingleMovie?: SingleMovieViewModel;

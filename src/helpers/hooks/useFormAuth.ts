@@ -5,7 +5,7 @@ import {ERRORS_FIREBASE_MESSAGE} from '../constants/errorsMessage';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootParamListI} from '../../router/navigation';
 import {AuthImpl, useAuth as _useAuth} from './useAuth';
-import {AlertRef} from '../../components/Alert/model';
+import {AlertRef} from '../../components/Molecules/Alert/model';
 
 export type Errors = {
   [name in keyof AuthDTO]: string;

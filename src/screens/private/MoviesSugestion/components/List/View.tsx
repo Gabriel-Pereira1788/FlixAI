@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from 'native-base';
-import CardMovie from '../../../../../components/CardMovie/View';
+import {CardMovie} from '@components';
 import {Movie} from '../../../../../models/Movie';
 import {StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';

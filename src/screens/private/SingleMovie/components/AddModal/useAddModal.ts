@@ -1,6 +1,6 @@
 import React from 'react';
 import {HookProps} from './models';
-import {modalRef} from '../../../../../components/Modal/View';
+import {modalRef} from '../../../../../components/Organisms/Modal/View';
 import {usePlaylist} from '../../../../../repositories/database/useCases/Playlist/usePlaylist';
 import {useRealm} from '../../../../../repositories/database/db';
 

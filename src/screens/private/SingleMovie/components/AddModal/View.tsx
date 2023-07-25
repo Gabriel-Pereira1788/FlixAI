@@ -1,9 +1,9 @@
 import React from 'react';
 import * as S from 'native-base';
 import {Movie} from '../../../../../models/Movie';
-import Button from '../../../../../components/Button/View';
 import {AddModalViewModel} from './models';
 import {useAddModal as _useAddModal} from './useAddModal';
+import {Button} from '../../../../../components/Atoms';
 
 interface AddModalProps {
   movie: Movie;

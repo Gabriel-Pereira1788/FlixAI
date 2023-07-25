@@ -1,5 +1,4 @@
-import {Movie} from '../../../../models/Movie';
-import {LibraryDTO} from '../../../../models/Library';
+import {Movie, LibraryDTO} from '@models';
 import {Playlist} from '../../schemas/PlaylistSchema';
 
 export type PlaylistImpl = () => {

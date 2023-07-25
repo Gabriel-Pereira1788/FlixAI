@@ -1,11 +1,8 @@
 import React from 'react';
-import {Playlist} from '../../../../../repositories/database/schemas/PlaylistSchema';
+import {AlertRef, Alert, modalRef, Button} from '@components';
+import {useRealm, Playlist} from '@database';
 import * as S from 'native-base';
-import Button from '../../../../../components/Button/View';
-import Alert from '../../../../../components/Alert/View';
-import {useRealm} from '../../../../../repositories/database/db';
-import {AlertRef} from '../../../../../components/Alert/model';
-import {modalRef} from '../../../../../components/Modal/View';
+
 interface DeleteLibraryProps {
   library: (Playlist & Realm.Object<Playlist, never>) | null;
   goBack(): void;

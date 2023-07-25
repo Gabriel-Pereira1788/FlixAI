@@ -1,5 +1,5 @@
 import React from 'react';
-import {AlertRef} from '../../../components/Alert/model';
+import {AlertRef} from '@components';
 import {useMyAccount} from './useMyAccount';
 
 export type HookProps = {

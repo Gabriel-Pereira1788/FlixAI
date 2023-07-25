@@ -1,8 +1,7 @@
 import {HookProps} from './model';
-import {useObject} from '../../../repositories/database/db';
-import {Playlist} from '../../../repositories/database/schemas/PlaylistSchema';
+import {useObject, Playlist} from '@database';
+import {useFocusedScreen} from '@hooks';
 import React from 'react';
-import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
 
 export const useListMovies = ({idPlaylist}: HookProps) => {
   const library = useObject(Playlist, idPlaylist!);

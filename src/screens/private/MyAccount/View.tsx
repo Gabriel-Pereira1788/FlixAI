@@ -1,17 +1,13 @@
 import React from 'react';
 import * as S from 'native-base';
-
-import Input from '../../../components/Input/View';
-import Button from '../../../components/Button/View';
+import {TouchableOpacity} from 'react-native';
+import {RenderIF, Alert, AlertRef, InputAuth, Button} from '@components';
 
 import {useMyAccount as _useMyAccount} from './useMyAccount';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import RenderIF from '../../../components/RenderIF/View';
+
 import {MyAccountViewModel} from './models';
 import {SignOut, UserCircle} from 'phosphor-react-native';
-import Alert from '../../../components/Alert/View';
-import {AlertRef} from '../../../components/Alert/model';
-import {TouchableOpacity} from 'react-native';
 
 interface MyAccountProps {
   useMyAccount?: MyAccountViewModel;
@@ -58,13 +54,13 @@ export default function MyAccount({
               />
             </RenderIF>
           </TouchableOpacity>
-          <Input
+          <InputAuth
             placeholder="Email"
             value={formData.email}
             error={errors?.email}
             onChangeText={value => handleFormData('email', value)}
           />
-          <Input
+          <InputAuth
             placeholder="Nome"
             value={formData.name}
             error={errors?.name}

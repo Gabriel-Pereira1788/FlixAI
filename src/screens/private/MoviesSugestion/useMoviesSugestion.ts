@@ -1,37 +1,43 @@
 import React from 'react';
-import {DataSugestion} from '../../../models/Sugestion';
-import {HookProps} from './models';
-import {LibraryDTO} from '../../../models/Library';
 import {useNavigation} from '@react-navigation/native';
-//*repositories
-import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
+import {useQuery} from '@tanstack/react-query';
 
-import {_useSugestions} from '../../../store/server/useSugestions';
+import {LibraryDTO, DataSugestion} from '@models';
+import {QUERY_KEYS} from '@constants';
+import {usePlaylist} from '@database';
+import {useAssistantSuggestion} from '@domain';
+
 import {useUser} from '../../../store/server/useUser';
-import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
+import {HookProps} from './models';
 
 export const useMoviesSugestion = ({
-  useSugestions = _useSugestions,
   usePlaylistImpl = usePlaylist,
   useUserImpl = useUser,
+  useAssistantSuggestionImpl = useAssistantSuggestion,
 }: HookProps) => {
   const navigation = useNavigation();
   const {create} = usePlaylistImpl();
   const {user} = useUserImpl();
+  const {fetchMoviesSuggestions} = useAssistantSuggestionImpl({});
 
-  const {focused} = useFocusedScreen();
   const [messageData, setMessageData] = React.useState<DataSugestion>({
     text: '',
     id: '',
   });
 
-  const {data, isLoading, error} = useSugestions({
-    messageData,
-  });
+  const {data, isLoading, error} = useQuery(
+    [QUERY_KEYS.suggestions, messageData.text.trim()],
+    () => fetchMoviesSuggestions(messageData.text),
+    {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    },
+  );
 
   async function createLibrary(library: LibraryDTO) {
     await create(library);
   }
+
   async function listenEventSearch(value: string) {
     const messageSend: DataSugestion = {
       text: value,
@@ -52,8 +58,8 @@ export const useMoviesSugestion = ({
     username: user?.name ?? '',
     messageData,
     error,
-    moviesList: focused ? data?.movies : undefined,
-    textGpt: focused ? data?.text : undefined,
+    moviesList: data?.movies,
+    textGpt: data?.text,
     isLoading,
     listenEventSearch,
     createLibrary,

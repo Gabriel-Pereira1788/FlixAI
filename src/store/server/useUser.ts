@@ -1,18 +1,16 @@
 import {useQuery} from '@tanstack/react-query';
-import {QUERY_KEYS} from '../../helpers/constants/queryKeys';
-import auth from '../../repositories/services/auth/auth';
+import {QUERY_KEYS} from '@constants';
+import {AuthService} from '@domain';
 
 export function useUser() {
   const {data, isLoading, error} = useQuery(
     [QUERY_KEYS.user],
-    auth.persistUser,
+    AuthService.persistUser,
     {
       refetchOnMount: false,
       refetchOnWindowFocus: false,
     },
   );
-
-  console.log('data-user', data);
 
   return {
     user: data,

@@ -1,12 +1,11 @@
 import React from 'react';
-import CardMovie, {
-  CardMoviesProps,
-} from '../../../../../components/CardMovie/View';
+
 import {
   SelectedMoviesStoreImpl,
   useSelectedMoviesStore as _useSelectedMoviesStore,
 } from '../../../../../store/client/SelectMovies/useSelectedMoviesStore';
 
+import {CardMovie, CardMoviesProps} from '@components';
 import * as S from 'native-base';
 import {Check} from 'phosphor-react-native';
 

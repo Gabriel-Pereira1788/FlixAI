@@ -4,17 +4,20 @@ import * as S from 'native-base';
 import {MoviesViewModel} from './model';
 import {_useMovies} from './useMovies';
 
-import BottomTab from '../../../components/BottomTab/View';
-import SharedLayout from '../../../components/SharedLayout/View';
-import SearchBar from '../../../components/SearchBar/View';
+import {
+  BottomTab,
+  SearchBar,
+  SharedLayout,
+  Category,
+  RenderIF,
+  FilteredMovies,
+  AllMovies,
+  MovieBox,
+} from '@components';
+import {SIZES} from '@constants';
+import {Movie} from '@models';
+
 import Header from './components/Header/View';
-import Category from '../../../components/Category/View';
-import RenderIF from '../../../components/RenderIF/View';
-import FilteredMovies from '../../../components/FilteredMovies/View';
-import AllMovies from '../../../components/AllMovies/View';
-import {Movie} from '../../../models/Movie';
-import MovieBox from '../../../components/MovieBox/View';
-import {SIZES} from '../../../helpers/constants/sizes';
 import {useNavigation} from '@react-navigation/native';
 interface MoviesProps {
   useMovies?: MoviesViewModel;
@@ -84,6 +87,7 @@ export default function Movies({useMovies = _useMovies}: MoviesProps) {
         horizontal
         data={categories}
         showsHorizontalScrollIndicator={false}
+        scrollToOverflowEnabled={false}
         contentContainerStyle={styles.contentStyle}
         renderItem={({item, index}) => (
           <TouchableOpacity

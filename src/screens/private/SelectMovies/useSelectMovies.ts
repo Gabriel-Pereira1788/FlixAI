@@ -1,11 +1,14 @@
 import React from 'react';
-import {useAllMovies as _useAllMovies} from '../../../store/server/useAllMovies';
+import {usePlaylist as _usePlaylist} from '@database';
+import {LibraryDTO} from '@models';
+import {
+  useSelectedMoviesStore as _useSelectedMoviesStore,
+  useAllMovies as _useAllMovies,
+} from '@store';
+import {modalRef} from '@components';
+import {useFocusedScreen} from '@hooks';
+
 import {HookProps} from './model';
-import {usePlaylist as _usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
-import {LibraryDTO} from '../../../models/Library';
-import {useSelectedMoviesStore as _useSelectedMoviesStore} from '../../../store/client/SelectMovies/useSelectedMoviesStore';
-import {modalRef} from '../../../components/Modal/View';
-import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
 
 export const _useSelectMovies = ({
   navigation,

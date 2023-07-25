@@ -1,18 +1,22 @@
 import React from 'react';
-import * as S from 'native-base';
-import WrapperAuthScreen from '../../../components/WrapperAuthScreen/View';
-import Input from '../../../components/Input/View';
-import Button from '../../../components/Button/View';
+//*components
+import {
+  InputPassword,
+  InputAuth,
+  WrapperAuthScreen,
+  AlertRef,
+  Box,
+  Text,
+  Button,
+} from '@components';
 
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 
-import InputPassword from '../../../components/Input/components/InputPassword';
 import {NavigationProps} from '../../../router/navigation';
 import {
   FormAuthImpl,
   useFormAuth as _useFormAuth,
 } from '../../../helpers/hooks/useFormAuth';
-import {AlertRef} from '../../../components/Alert/model';
 
 interface SignInProps extends NavigationProps<'SignIn'> {
   useFormAuth?: FormAuthImpl<'SignIn'>;
@@ -38,10 +42,10 @@ export default function SignIn({
   }
   return (
     <WrapperAuthScreen title="Entrar" alertRef={alertRef}>
-      <Input
-        placeholder="Email"
+      <InputAuth
         value={formData.email}
         error={errors?.email}
+        placeholder="Email"
         onChangeText={value => handleFormData('email', value)}
       />
       <InputPassword
@@ -50,24 +54,24 @@ export default function SignIn({
         error={errors?.password}
         onChangeText={value => handleFormData('password', value)}
       />
-      <Button isLoading={loading} onPress={onSubmit}>
+      <Button onPress={onSubmit} isLoading={loading}>
         Confirmar
       </Button>
-      <S.HStack
-        w="100%"
+      <Box
+        flexDirection="row"
+        width="100%"
         alignItems="center"
         justifyContent="flex-start"
-        space={3}
-        px={2}>
-        <S.Text color="#636262" fontSize="md" fontWeight={500}>
-          Não possui conta ?
-        </S.Text>
+        gap="s"
+        paddingHorizontal="s">
+        <Text color="grayTextColor">Não possui conta ?</Text>
+
         <TouchableOpacity testID="register" onPress={redirect}>
-          <S.Text color="orange.500" fontSize="lg" fontWeight={500}>
+          <Text color="orange" fontWeight="600">
             Cadastar-se
-          </S.Text>
+          </Text>
         </TouchableOpacity>
-      </S.HStack>
+      </Box>
     </WrapperAuthScreen>
   );
 }

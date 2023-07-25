@@ -2,9 +2,8 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {RootParamListI} from '../../../router/navigation';
 
-import {SelectedMoviesStoreImpl} from '../../../store/client/SelectMovies/useSelectedMoviesStore';
-import {PlaylistImpl} from '../../../repositories/database/useCases/Playlist/model';
-import {AllMoviesImpl} from '../../../store/server/useAllMovies';
+import {SelectedMoviesStoreImpl, AllMoviesImpl} from '@store';
+import {PlaylistImpl} from '@database';
 import {_useSelectMovies} from './useSelectMovies';
 
 export type HookProps = {

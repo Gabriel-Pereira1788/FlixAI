@@ -5,12 +5,17 @@ import {useMoviesSugestion as _useMoviesSugestion} from './useMoviesSugestion';
 import Animated, {FadeInDown} from 'react-native-reanimated';
 import {MoviesSugestionViewModel} from './models';
 //*components
-import RenderIF from '../../../components/RenderIF/View';
-import {modalRef} from '../../../components/Modal/View';
-import CreateLibrary from '../../../components/CreateLibrary/View';
-import BottomTab from '../../../components/BottomTab/View';
-import SharedLayout from '../../../components/SharedLayout/View';
-import SearchHeader from '../../../components/SearchHeader/View';
+
+import {
+  RenderIF,
+  BottomTab,
+  SharedLayout,
+  SearchHeader,
+  modalRef,
+  CreateLibrary,
+  Box,
+} from '@components';
+
 import List from './components/List/View';
 import AddToLibrary from './components/AddToLibrary/View';
 
@@ -34,27 +39,23 @@ export default function MoviesSugestion({
   function openModal() {
     if (moviesList && moviesList.length > 0) {
       modalRef.current?.show(
-        () => (
-          <CreateLibrary
-            moviesListToAdd={moviesList}
-            onCreate={createLibrary}
-          />
-        ),
+        <CreateLibrary moviesListToAdd={moviesList} onCreate={createLibrary} />,
         'slide',
       );
     }
   }
+
   return (
     <SharedLayout
       error={error}
       isLoadingData={isLoading}
       HeaderComponent={
-        <S.Box px={10} paddingTop={10}>
+        <Box paddingHorizontal={'xl'} marginVertical={'xl'}>
           <SearchHeader
             listenEventSearch={listenEventSearch}
             title={textGpt || `Olá ${username} oque precisa para hoje?`}
           />
-        </S.Box>
+        </Box>
       }
       BottomComponent={<BottomTab currentPath="sugestions" />}>
       <RenderIF condition={!isLoading && !!moviesList && moviesList.length > 0}>

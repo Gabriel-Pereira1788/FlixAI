@@ -1,10 +1,11 @@
 import React from 'react';
 import * as S from 'native-base';
-import {Movie} from '../../../../../models/Movie';
-import CardMovie from '../../../../../components/CardMovie/View';
-import {SIZES} from '../../../../../helpers/constants/sizes';
 import {ListRenderItem, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+
+import {Movie} from '@models';
+import {CardMovie} from '@components';
+import {SIZES} from '@constants';
 
 interface ListProps {
   moviesList: Movie[];

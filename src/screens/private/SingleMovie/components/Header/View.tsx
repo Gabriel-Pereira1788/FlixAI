@@ -3,7 +3,7 @@ import * as S from 'native-base';
 import {Movie} from '../../../../../models/Movie';
 import {Heart} from 'phosphor-react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {modalRef} from '../../../../../components/Modal/View';
+import {modalRef} from '../../../../../components/Organisms/Modal/View';
 import AddModal from '../AddModal/View';
 import {useHeader} from './useHeader';
 import RemoveModal from '../RemoveModal/View';
@@ -24,13 +24,11 @@ export default function Header({
 
   function openModal() {
     if (movie && !haveInPlaylist) {
-      modalRef.current?.show(() => <AddModal movie={movie} />, 'fade');
+      modalRef.current?.show(<AddModal movie={movie} />, 'fade');
     }
 
     if (haveInPlaylist && movie && playlist) {
-      modalRef.current?.show(() => (
-        <RemoveModal movie={movie} playlist={playlist} />
-      ));
+      modalRef.current?.show(<RemoveModal movie={movie} playlist={playlist} />);
     }
   }
 

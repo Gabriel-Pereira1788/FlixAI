@@ -2,7 +2,7 @@ import React from 'react';
 
 import {HookProps} from './model';
 
-import {modalRef} from '../../../../../components/Modal/View';
+import {modalRef} from '../../../../../components/Organisms/Modal/View';
 
 import {useSelectedMoviesStore as _useSelectedMoviesStore} from '../../../../../store/client/SelectMovies/useSelectedMoviesStore';
 

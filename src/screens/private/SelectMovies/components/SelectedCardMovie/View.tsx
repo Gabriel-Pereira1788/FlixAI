@@ -4,12 +4,12 @@ import * as S from 'native-base';
 import {Movie} from '../../../../../models/Movie';
 
 import {Check} from 'phosphor-react-native';
-import RenderIF from '../../../../../components/RenderIF/View';
+import {RenderIF} from '../../../../../components/Atoms/RenderIF/View';
 import {
   SelectedMoviesStoreImpl,
   useSelectedMoviesStore as _useSelectedMoviesStore,
 } from '../../../../../store/client/SelectMovies/useSelectedMoviesStore';
-import MovieBox from '../../../../../components/MovieBox/View';
+import {MovieBox} from '../../../../../components/Organisms/MovieBox/View';
 
 type Props = {
   dataMovie: Movie;
@@ -19,7 +19,7 @@ type Props = {
   testID?: string;
 };
 
-export default function SelectedCardMovie({
+export function SelectedCardMovie({
   dataMovie,
   w,
   h,

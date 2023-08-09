@@ -1,10 +1,13 @@
-import {Box, SearchHeader, modalRef} from '@components';
-import {TouchableOpacity} from 'react-native';
 import React from 'react';
-import DeleteLibrary from '../DeleteLibrary/View';
+import {TouchableOpacity} from 'react-native';
+
 import {useNavigation} from '@react-navigation/native';
-import {ListMoviesViewModel} from '../../model';
 import {Trash} from 'phosphor-react-native';
+
+import {Box, SearchHeader, modalRef} from '@components';
+
+import {ListMoviesViewModel} from '../../model';
+import DeleteLibrary from '../DeleteLibrary/View';
 
 type Props = {
   title: string;

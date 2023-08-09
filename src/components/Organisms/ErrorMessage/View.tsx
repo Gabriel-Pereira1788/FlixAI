@@ -1,6 +1,8 @@
 import React from 'react';
+
 import {Warning} from 'phosphor-react-native';
-import {Box, Text} from '@components/atoms';
+
+import {Box, Text} from '@components';
 interface ErrorMessageProps {
   message: string;
   children?: React.ReactNode;

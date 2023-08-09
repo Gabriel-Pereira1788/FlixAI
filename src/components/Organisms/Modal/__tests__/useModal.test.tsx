@@ -1,8 +1,10 @@
 import React from 'react';
+
 import {act, renderHook} from '@testing-library/react-hooks';
+import {Text} from 'native-base';
+
 import {useModal} from '../useModal';
 import {modalRef} from '../View';
-import {Text} from 'native-base';
 
 const setShowComponentMock = jest.fn();
 

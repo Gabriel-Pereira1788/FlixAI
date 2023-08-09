@@ -1,9 +1,10 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
 
-import Alert from '../View';
-import {AlertConfig, AlertRef, AlertViewModel} from '../model';
 import JestProviders from '../../../../providers/JestProviders';
+import {AlertConfig, AlertRef, AlertViewModel} from '../model';
+import Alert from '../View';
 
 const hideMock = jest.fn();
 const openMock = jest.fn();

@@ -1,8 +1,9 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
-import Input from '../View';
 
 import JestProviders from '../../../../providers/JestProviders';
+import Input from '../View';
 
 const handleChangeMock = jest.fn();
 

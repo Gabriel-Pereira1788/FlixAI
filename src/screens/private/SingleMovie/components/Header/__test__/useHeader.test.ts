@@ -1,7 +1,8 @@
 import {renderHook} from '@testing-library/react-hooks';
-import {useHeader} from '../useHeader';
+
 import {movies} from '../../../../../../../mocks/movies';
 import {mockUseCasePlaylist} from '../../../../../../../mocks/useCasePlaylist';
+import {useHeader} from '../useHeader';
 
 const {findMovieInPlaylist} = mockUseCasePlaylist();
 describe('useHeader', () => {

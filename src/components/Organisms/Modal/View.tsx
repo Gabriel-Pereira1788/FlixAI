@@ -1,6 +1,7 @@
 import React from 'react';
 import {Modal as ModalNative, Pressable} from 'react-native';
-import {Box, RenderIF} from '@components/atoms';
+
+import {Box, RenderIF} from '@components';
 
 import {ModalRefProps, ModalViewModel} from './model';
 import {useModal as _useModal} from './useModal';

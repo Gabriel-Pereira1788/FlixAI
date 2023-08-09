@@ -1,7 +1,8 @@
 import {Movie} from '@models';
-import {ApiMessage} from './model';
 
-export class AssistantSuggestionAdapters {
+import {ApiMessage, SuggestionsAdaptersImpl} from './model';
+
+export class AssistantSuggestionAdapters implements SuggestionsAdaptersImpl {
   toMoviesApiList<DataMovie extends Movie>(movies: DataMovie[]): Movie[] {
     return movies.map(dataMovie => ({
       backdrop_path: dataMovie.backdrop_path,

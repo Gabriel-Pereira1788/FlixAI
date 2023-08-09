@@ -1,9 +1,11 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
-import JestProviders from '../../../../../../providers/JestProviders';
-import Header from '../View';
-import {UserImpl} from '../../../../../../store/server/useUser';
+
 import {userMock} from '../../../../../../../mocks/user';
+import JestProviders from '../../../../../../providers/JestProviders';
+import {UserImpl} from '../../../../../../store/server/useUser';
+import Header from '../View';
 const mockUseUser: UserImpl = () => ({
   error: null,
   isLoading: false,

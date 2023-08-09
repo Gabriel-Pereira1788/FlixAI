@@ -1,11 +1,11 @@
 import React from 'react';
-
 import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
-import Animated, {FadeInDown} from 'react-native-reanimated';
-import {Movie} from '@models';
-import {ProgressiveImage} from '@components/molecules';
+
 import {TMBD_BACKDROP_PREVIEW, TMBD_BACKDROP_URL, SIZES} from '@constants';
-import {Box, Text} from '@components/atoms';
+import {Movie} from '@models';
+import Animated, {FadeInDown} from 'react-native-reanimated';
+
+import {Box, Text, ProgressiveImage} from '@components';
 
 interface MovieBoxProps extends TouchableOpacityProps {
   dataMovie: Movie;

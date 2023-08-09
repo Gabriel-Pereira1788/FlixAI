@@ -1,8 +1,9 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
 
-import Button from '../View';
 import JestProviders from '../../../../providers/JestProviders';
+import Button from '../View';
 
 describe('Button', () => {
   it('render component correctly', () => {

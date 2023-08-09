@@ -1,6 +1,7 @@
-import axios from 'axios';
-import {ApiMessage, BodyDTO} from './model';
 import {GPT_KEY} from '@env';
+import axios from 'axios';
+
+import {ApiMessage, BodyDTO} from './model';
 
 export class AssistantSuggestionApi {
   async postMessage(

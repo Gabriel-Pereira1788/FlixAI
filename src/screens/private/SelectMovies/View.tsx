@@ -1,8 +1,12 @@
 import React from 'react';
 import {ListRenderItem, StyleSheet, TouchableOpacity} from 'react-native';
-import {SelectMoviesViewModel} from './model';
+
+import {SIZES} from '@constants';
+import {Movie} from '@models';
+import {BlurView} from '@react-native-community/blur';
 import * as S from 'native-base';
-import {_useSelectMovies} from './useSelectMovies';
+import {CaretRight} from 'phosphor-react-native';
+
 import {
   RenderIF,
   SearchHeader,
@@ -12,14 +16,12 @@ import {
   AllMovies,
   modalRef,
 } from '@components';
-import {SIZES} from '@constants';
-import {Movie} from '@models';
 
 import {NavigationProps} from '../../../router/navigation';
-import {BlurView} from '@react-native-community/blur';
-import {CaretRight} from 'phosphor-react-native';
 
 import {SelectedCardMovie} from './components/SelectedCardMovie/View';
+import {SelectMoviesViewModel} from './model';
+import {_useSelectMovies} from './useSelectMovies';
 
 interface SelectMoviesProps extends NavigationProps<'SelectMovies'> {
   useSelectMovies?: SelectMoviesViewModel;
@@ -28,22 +30,15 @@ export default function SelectMovies({
   useSelectMovies = _useSelectMovies,
   navigation,
 }: SelectMoviesProps) {
-  const {
-    dataMovies,
-    error,
-    loading,
-    selectedMovies,
-    searchText,
-    handleChange,
-    onCreate,
-  } = useSelectMovies({
-    navigation,
-  });
+  const {dataMovies, error, loading, selectedMovies, searchText, handleChange} =
+    useSelectMovies({
+      navigation,
+    });
 
   function openModal() {
     if (selectedMovies.length > 0) {
       modalRef.current?.show(
-        <CreateLibrary moviesListToAdd={selectedMovies} onCreate={onCreate} />,
+        <CreateLibrary moviesListToAdd={selectedMovies} />,
         'slide',
       );
     }

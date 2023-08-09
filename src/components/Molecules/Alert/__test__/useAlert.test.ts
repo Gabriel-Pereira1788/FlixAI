@@ -1,6 +1,8 @@
-import {renderHook} from '@testing-library/react-native';
 import React from 'react';
+
+import {renderHook} from '@testing-library/react-native';
 import {act} from 'react-test-renderer';
+
 import {AlertConfig, AlertRef} from '../model';
 import {useAlert} from '../useAlert';
 

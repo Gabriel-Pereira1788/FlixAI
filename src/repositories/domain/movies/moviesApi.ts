@@ -1,8 +1,9 @@
 import {api} from '@api';
-import {TMDB_KEY} from '@env';
-import {MovieApiResponse} from './model';
 import {TMDB_GENRES} from '@constants';
+import {TMDB_KEY} from '@env';
 import {Movie} from '@models';
+
+import {MovieApiResponse} from './model';
 
 export class MoviesApi {
   constructor() {}

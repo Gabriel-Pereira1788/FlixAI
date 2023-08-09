@@ -1,9 +1,11 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
-import JestProviders from '../../../../../../providers/JestProviders';
-import SelectedCardMovie from '../View';
+
 import {movies} from '../../../../../../../mocks/movies';
+import JestProviders from '../../../../../../providers/JestProviders';
 import {SelectedMoviesStoreImpl} from '../../../../../../store/client/SelectMovies/useSelectedMoviesStore';
+import SelectedCardMovie from '../View';
 
 const addToSelected = jest.fn();
 const cleanUp = jest.fn();

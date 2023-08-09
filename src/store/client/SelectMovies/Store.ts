@@ -1,4 +1,5 @@
 import {create} from 'zustand';
+
 import {Movie} from '../../../models/Movie';
 
 type Actions = {

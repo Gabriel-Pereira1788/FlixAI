@@ -1,15 +1,21 @@
 import React from 'react';
-
 import {TouchableOpacity} from 'react-native';
-import {MagnifyingGlass, PaperPlaneRight} from 'phosphor-react-native';
 
+import {MagnifyingGlass, PaperPlaneRight} from 'phosphor-react-native';
 import Animated, {
   FadeInDown,
   FadeInLeft,
   FadeInUp,
 } from 'react-native-reanimated';
-import {RenderIF, Box, Text, ITextProps, DSInputProps} from '@components/atoms';
-import {SearchBar} from '@components/molecules';
+
+import {
+  RenderIF,
+  Box,
+  Text,
+  ITextProps,
+  DSInputProps,
+  SearchBar,
+} from '@components';
 import {useVisible} from '@hooks';
 
 interface HeaderProps {

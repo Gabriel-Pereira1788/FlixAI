@@ -1,12 +1,13 @@
+import React from 'react';
+import {TextInput, TextInputProps} from 'react-native';
+
 import {
   VariantProps,
   createRestyleComponent,
   createVariant,
 } from '@shopify/restyle';
-import React from 'react';
 import {Theme} from '@styles';
 
-import {TextInput, TextInputProps} from 'react-native';
 import {Box} from '../Box/View';
 import {RenderIF} from '../RenderIF/View';
 

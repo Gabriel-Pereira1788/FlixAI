@@ -1,4 +1,5 @@
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
+
 import {User} from '../../models/User';
 
 export function formatUser(

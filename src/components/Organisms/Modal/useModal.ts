@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {ModalConfig, ModalViewModel} from './model';
 
 export const useModal: ModalViewModel = ({modalRef, setShowComponent}) => {

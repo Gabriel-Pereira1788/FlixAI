@@ -1,11 +1,13 @@
 import React from 'react';
 import {FlatList, ListRenderItem} from 'react-native';
-import {IDataMovie, Movie} from '@models';
-import {SIZES} from '@constants';
 
-import {useFilteredMovies as _useFilteredMovies} from './useFilteredMovies';
+import {SIZES} from '@constants';
+import {IDataMovie, Movie} from '@models';
+
+import {Box} from '@components';
+
 import {FilteredMoviesViewModel} from './model';
-import {Box} from '@components/atoms';
+import {useFilteredMovies as _useFilteredMovies} from './useFilteredMovies';
 
 export interface FilteredMoviesProps {
   movies?: IDataMovie[];

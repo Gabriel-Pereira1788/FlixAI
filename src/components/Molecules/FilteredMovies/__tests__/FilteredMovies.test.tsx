@@ -1,9 +1,11 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
-import JestProviders from '../../../../providers/JestProviders';
-import FilteredMovies from '../View';
-import {FilteredMoviesViewModel} from '../model';
+
 import {IDataMovie, Movie} from '../../../../models/Movie';
+import JestProviders from '../../../../providers/JestProviders';
+import {FilteredMoviesViewModel} from '../model';
+import FilteredMovies from '../View';
 
 const movies: Movie[] = [
   {

@@ -1,10 +1,12 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
-import JestProviders from '../../../../../../providers/JestProviders';
-import AddModal from '../View';
+
 import {movies} from '../../../../../../../mocks/movies';
-import {AddModalViewModel} from '../models';
 import {allPlaylistMock} from '../../../../../../../mocks/useCasePlaylist';
+import JestProviders from '../../../../../../providers/JestProviders';
+import {AddModalViewModel} from '../models';
+import AddModal from '../View';
 
 const handleChange = jest.fn();
 const onAdd = jest.fn();

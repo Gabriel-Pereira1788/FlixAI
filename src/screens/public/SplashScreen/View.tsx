@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {SharedLayout, Loading} from '@components';
 
 import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
@@ -9,6 +10,7 @@ const INTERVALS = {
   loading_timeout: 1000,
   navigation_timeout: 15000,
 };
+//TODO:APAGAR
 export default function SplashScreen({
   navigation,
 }: NavigationProps<'SplashScreen'>) {

@@ -1,7 +1,10 @@
 import React from 'react';
-import {AlertRef, Alert, modalRef, Button} from '@components';
+
 import {useRealm, Playlist} from '@database';
+import {useAlertStore} from '@store';
 import * as S from 'native-base';
+
+import {Alert, modalRef, Button} from '@components';
 
 interface DeleteLibraryProps {
   library: (Playlist & Realm.Object<Playlist, never>) | null;
@@ -15,17 +18,12 @@ export default function DeleteLibrary({
   useRealmImpl = useRealm,
 }: DeleteLibraryProps) {
   const realm = useRealmImpl();
-
-  const alertRef = React.useRef<AlertRef>(null);
+  const {success} = useAlertStore();
 
   function confirmDelete() {
     realm.write(() => {
       realm.delete(library);
-      alertRef.current?.open({
-        isOpen: true,
-        text: 'Biblioteca apagada...',
-        status: 'success',
-      });
+      success('Biblioteca apagada...');
 
       goBack();
       modalRef.current?.hide();
@@ -33,7 +31,7 @@ export default function DeleteLibrary({
   }
   return (
     <>
-      <Alert ref={alertRef} />
+      <Alert />
       <S.VStack
         alignItems="center"
         justifyContent="center"

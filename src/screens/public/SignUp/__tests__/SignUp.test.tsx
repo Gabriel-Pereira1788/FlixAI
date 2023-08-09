@@ -1,8 +1,9 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
-import JestProviders from '../../../../providers/JestProviders';
 
 import {FormAuthImpl} from '../../../../helpers/hooks/useFormAuth';
+import JestProviders from '../../../../providers/JestProviders';
 import SignUp from '../View';
 
 const navigation = {

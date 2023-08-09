@@ -1,11 +1,13 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
-import JestProviders from '../../../../../../providers/JestProviders';
-import CardCast from '../View';
-import {Cast} from '../../../../../../models/Cast';
+
+import {dataCast} from '../../../../../../../mocks/cast';
 import {TMBD_BACKDROP_URL} from '../../../../../../helpers/constants/tmdb';
 import {TMBD_BACKDROP_PREVIEW} from '../../../../../../helpers/constants/tmdb';
-import {dataCast} from '../../../../../../../mocks/cast';
+import {Cast} from '../../../../../../models/Cast';
+import JestProviders from '../../../../../../providers/JestProviders';
+import CardCast from '../View';
 
 describe('CardCast', () => {
   it('render component correctly', () => {

@@ -1,6 +1,8 @@
-import {PlaylistImpl} from '../src/repositories/database/useCases/Playlist/model';
-import {movies} from './movies';
 import {Realm} from '@realm/react';
+
+import {PlaylistImpl} from '../src/repositories/database/useCases/Playlist/model';
+
+import {movies} from './movies';
 export const allPlaylistMock: any = [
   {
     _id: new Realm.BSON.ObjectId(),

@@ -1,9 +1,11 @@
 import React from 'react';
-import * as S from 'native-base';
-import ErrorMessage from '../ErrorMessage/View';
-import {RenderIF} from '@components/atoms';
-import {Loading} from '@components/molecules';
+
 import {SIZES, ERROR_DEFAULT} from '@constants';
+import * as S from 'native-base';
+
+import {Loading, RenderIF} from '@components';
+
+import ErrorMessage from '../ErrorMessage/View';
 
 type Props = {
   children: React.ReactNode;

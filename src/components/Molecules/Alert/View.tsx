@@ -1,20 +1,19 @@
 import React from 'react';
-import Animated, {FadeInUp} from 'react-native-reanimated';
 import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
-import {RenderIF, Box, Text} from '@components/atoms';
-import {Theme} from '@styles';
+
 import {
   VariantProps,
   createRestyleComponent,
   createVariant,
 } from '@shopify/restyle';
+import {useAlertStore} from '@store';
+import {Theme} from '@styles';
+import Animated, {FadeInUp} from 'react-native-reanimated';
 
-import {AlertRef, AlertViewModel} from './model';
-import {useAlert as _useAlert} from './useAlert';
+import {RenderIF, Box, Text} from '@components';
 
 type Props = {
   containerStyle?: StyleProp<ViewStyle>;
-  useAlert?: AlertViewModel;
 };
 
 const AlertWrapper = createRestyleComponent<
@@ -22,40 +21,46 @@ const AlertWrapper = createRestyleComponent<
   Theme
 >([createVariant({themeKey: 'alertVariants'})], Box);
 
-export const Alert = React.forwardRef<AlertRef, Props>(
-  ({containerStyle, useAlert = _useAlert}, ref) => {
-    const {alertConfig} = useAlert({ref});
+export function Alert({containerStyle}: Props) {
+  const {state, hide} = useAlertStore();
 
-    return (
-      <RenderIF condition={alertConfig.isOpen}>
-        <Animated.View
-          testID="alert"
-          entering={FadeInUp.delay(150).duration(200)}
-          style={[styles.animatedStyle, containerStyle]}>
-          <AlertWrapper testID="alertContainer" variant={alertConfig.status}>
+  React.useEffect(() => {
+    if (state.isOpen) {
+      setTimeout(() => {
+        hide();
+      }, 3000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state]);
+  return (
+    <RenderIF condition={state.isOpen}>
+      <Animated.View
+        testID="alert"
+        entering={FadeInUp.delay(150).duration(200)}
+        style={[styles.animatedStyle, containerStyle]}>
+        <AlertWrapper testID="alertContainer" variant={state.status}>
+          <Box
+            flexDirection="row"
+            flexShrink={1}
+            gap={'xs'}
+            alignItems="center"
+            justifyContent="space-between">
             <Box
               flexDirection="row"
               flexShrink={1}
               gap={'xs'}
               alignItems="center"
-              justifyContent="space-between">
-              <Box
-                flexDirection="row"
-                flexShrink={1}
-                gap={'xs'}
-                alignItems="center"
-                paddingHorizontal={'xs'}>
-                <Text fontWeight="600" color="black">
-                  {alertConfig.text}
-                </Text>
-              </Box>
+              paddingHorizontal={'xs'}>
+              <Text fontWeight="600" color="black">
+                {state.text}
+              </Text>
             </Box>
-          </AlertWrapper>
-        </Animated.View>
-      </RenderIF>
-    );
-  },
-);
+          </Box>
+        </AlertWrapper>
+      </Animated.View>
+    </RenderIF>
+  );
+}
 
 const styles = StyleSheet.create({
   animatedStyle: {

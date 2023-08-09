@@ -1,16 +1,17 @@
 import {renderHook} from '@testing-library/react-hooks';
+import {act} from '@testing-library/react-native';
+
+import {mockedNavigate} from '../../../../../jestSetup';
 import {movies} from '../../../../../mocks/movies';
-import {SugestionsImpl} from '../../../../store/server/useSugestions';
-import {useMoviesSugestion} from '../useMoviesSugestion';
 import {
   mockUseCasePlaylist,
   create,
 } from '../../../../../mocks/useCasePlaylist';
-import {act} from '@testing-library/react-native';
-import {mockedNavigate} from '../../../../../jestSetup';
-import {UserImpl} from '../../../../store/server/useUser';
 import {userMock} from '../../../../../mocks/user';
 import {useFocusedScreen} from '../../../../helpers/hooks/useFocusedScreen';
+import {SugestionsImpl} from '../../../../store/server/useSugestions';
+import {UserImpl} from '../../../../store/server/useUser';
+import {useMoviesSugestion} from '../useMoviesSugestion';
 
 const mockFocusedScreen = useFocusedScreen as jest.Mock<
   ReturnType<typeof useFocusedScreen>

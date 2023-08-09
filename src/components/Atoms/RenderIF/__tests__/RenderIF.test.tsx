@@ -1,8 +1,10 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
+import {Text} from 'native-base';
+
 import JestProviders from '../../../../providers/JestProviders';
 import RenderIF from '../View';
-import {Text} from 'native-base';
 
 describe('RenderIF', () => {
   it('render component with condition truthy', () => {

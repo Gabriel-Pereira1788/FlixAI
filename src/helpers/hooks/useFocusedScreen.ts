@@ -1,5 +1,6 @@
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
+
+import {useNavigation} from '@react-navigation/native';
 
 export function useFocusedScreen() {
   const [focused, setFocused] = React.useState(false);

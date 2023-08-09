@@ -1,6 +1,8 @@
 import {KeywordsDTO} from '@models';
+
 import {useQueryRealm, useRealm} from '../../db';
 import {KeywordsGpt} from '../../schemas/KeywordsGpt';
+
 import {KeywordsGptImpl} from './model';
 
 //TODO: Refatorar nome

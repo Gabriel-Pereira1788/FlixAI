@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {FlatList} from 'react-native-gesture-handler';
+
 import {Cast} from '../../../../../models/Cast';
 import CardCast from '../CardCast/View';
 

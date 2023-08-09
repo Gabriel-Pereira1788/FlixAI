@@ -1,11 +1,16 @@
 import {PROMPT_INITIAL} from '@env';
-import {AssistantSuggestionAdapters} from './assistantSuggestionAdapters';
-import {ApiMessage} from './model';
-import {AssistantSuggestionApi} from './assistantSuggestionApi';
 
-export class AssistantSuggestionService {
+import {AssistantSuggestionAdapters} from './assistantSuggestionAdapters';
+import {AssistantSuggestionApi} from './assistantSuggestionApi';
+import {
+  ApiMessage,
+  SuggestionServiceImpl,
+  SuggestionsAdaptersImpl,
+} from './model';
+
+export class AssistantSuggestionService implements SuggestionServiceImpl {
   private assistantApi = new AssistantSuggestionApi();
-  adapters = new AssistantSuggestionAdapters();
+  adapters: SuggestionsAdaptersImpl = new AssistantSuggestionAdapters();
 
   async getResponseAssistant(
     text: string,

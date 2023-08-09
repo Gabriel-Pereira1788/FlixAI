@@ -1,12 +1,13 @@
 import {renderHook} from '@testing-library/react-hooks';
-import {useAddModal} from '../useAddModal';
+import {act} from '@testing-library/react-native';
+
 import {movies} from '../../../../../../../mocks/movies';
 import {
   mockUseCasePlaylist,
   filtered,
 } from '../../../../../../../mocks/useCasePlaylist';
 import {mockUseRealm, write} from '../../../../../../../mocks/useRealm';
-import {act} from '@testing-library/react-native';
+import {useAddModal} from '../useAddModal';
 
 describe('useAddModal', () => {
   it('call hook correctly', () => {

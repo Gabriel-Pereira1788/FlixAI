@@ -1,15 +1,15 @@
 import React from 'react';
+
 import * as S from 'native-base';
-
-import {Movie} from '../../../../../models/Movie';
-
 import {Check} from 'phosphor-react-native';
+
 import {RenderIF} from '../../../../../components/Atoms/RenderIF/View';
+import {MovieBox} from '../../../../../components/Organisms/MovieBox/View';
+import {Movie} from '../../../../../models/Movie';
 import {
   SelectedMoviesStoreImpl,
   useSelectedMoviesStore as _useSelectedMoviesStore,
 } from '../../../../../store/client/SelectMovies/useSelectedMoviesStore';
-import {MovieBox} from '../../../../../components/Organisms/MovieBox/View';
 
 type Props = {
   dataMovie: Movie;

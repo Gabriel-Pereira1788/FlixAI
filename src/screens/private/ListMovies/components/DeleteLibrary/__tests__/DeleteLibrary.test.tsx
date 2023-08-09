@@ -1,9 +1,11 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
-import JestProviders from '../../../../../../providers/JestProviders';
-import DeleteLibrary from '../View';
+
 import {allPlaylistMock} from '../../../../../../../mocks/useCasePlaylist';
 import {mockUseRealm} from '../../../../../../../mocks/useRealm';
+import JestProviders from '../../../../../../providers/JestProviders';
+import DeleteLibrary from '../View';
 
 const goBack = jest.fn();
 

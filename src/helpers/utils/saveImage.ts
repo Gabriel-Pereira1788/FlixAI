@@ -1,5 +1,6 @@
-import firebaseStorage from '@react-native-firebase/storage';
 import {Platform} from 'react-native';
+
+import firebaseStorage from '@react-native-firebase/storage';
 
 export async function saveImage(
   file?: string | null,

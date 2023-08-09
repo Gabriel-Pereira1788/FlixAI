@@ -1,14 +1,16 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 
-import {SharedLayout, RenderIF} from '@components';
 import {usePlaylistStore} from '@store';
 
+import {SharedLayout, RenderIF} from '@components';
+
+import {NavigationProps} from '../../../router/navigation';
+
+import List from './components/List/View';
+import {ListMoviesHeader} from './components/ListMoviesHeader/View';
 import {ListMoviesViewModel} from './model';
 import {useListMovies as _useListMovies} from './useListMovies';
-import List from './components/List/View';
-import {NavigationProps} from '../../../router/navigation';
-import {ListMoviesHeader} from './components/ListMoviesHeader/View';
 
 interface ListMoviesProps extends NavigationProps<'ListMovies'> {
   useListMovies?: ListMoviesViewModel;

@@ -1,12 +1,13 @@
+import React from 'react';
+import {Image as ImageNative, ImageProps} from 'react-native';
+
 import {
   VariantProps,
   createRestyleComponent,
   createVariant,
 } from '@shopify/restyle';
-
-import React from 'react';
-import {Image as ImageNative, ImageProps} from 'react-native';
 import {Theme} from '@styles';
+
 import {Box} from '../Box/View';
 
 const ImageWrapper = createRestyleComponent<

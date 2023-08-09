@@ -1,11 +1,12 @@
 import {createTheme} from '@shopify/restyle';
-import {palette} from './colors_variants';
-import {TextVariants} from './text_variants';
-import {InputVariants} from './input_variants';
-import {ButtonVariants} from './button_variants';
+
 import {AlertVariants} from './alert_variants';
+import {ButtonVariants} from './button_variants';
 import {CardVariants} from './card_variants';
+import {palette} from './colors_variants';
 import {ImageVariants} from './image_variants';
+import {InputVariants} from './input_variants';
+import {TextVariants} from './text_variants';
 
 const theme = createTheme({
   colors: {

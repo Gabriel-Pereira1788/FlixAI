@@ -1,7 +1,8 @@
+import {Realm} from '@realm/react';
 import {renderHook} from '@testing-library/react-hooks';
 import {act} from '@testing-library/react-native';
+
 import {mockedNavigate} from '../../../../../jestSetup';
-import {Realm} from '@realm/react';
 import {
   filtered,
   mockUseCasePlaylist,

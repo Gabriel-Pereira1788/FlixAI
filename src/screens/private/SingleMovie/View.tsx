@@ -1,20 +1,22 @@
 import React from 'react';
 
 import * as S from 'native-base';
+import {CaretUp} from 'phosphor-react-native';
 import {PanGestureHandler, ScrollView} from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
-import {CaretUp} from 'phosphor-react-native';
-import Poster from './components/Poster/View';
-import {useSingleMovie as _useSingleMovie} from './useSingleMovie';
-import Info from './components/Info/View';
-import ListCast from './components/ListCast/View';
-import {NavigationProps} from '../../../router/navigation';
-import {SingleMovieViewModel} from './models';
-import Header from './components/Header/View';
-import {PlaylistImpl} from '../../../repositories/database/useCases/Playlist/model';
-import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
+
 import RenderIF from '../../../components/Atoms/RenderIF/View';
 import Loading from '../../../components/Molecules/Loading/View';
+import {PlaylistImpl} from '../../../repositories/database/useCases/Playlist/model';
+import {usePlaylist} from '../../../repositories/database/useCases/Playlist/usePlaylist';
+import {NavigationProps} from '../../../router/navigation';
+
+import Header from './components/Header/View';
+import Info from './components/Info/View';
+import ListCast from './components/ListCast/View';
+import Poster from './components/Poster/View';
+import {SingleMovieViewModel} from './models';
+import {useSingleMovie as _useSingleMovie} from './useSingleMovie';
 
 interface SingleMovieProps extends NavigationProps<'SingleMovie'> {
   useSingleMovie?: SingleMovieViewModel;

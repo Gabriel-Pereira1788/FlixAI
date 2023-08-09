@@ -1,8 +1,10 @@
 import React from 'react';
 import {ListRenderItem, StyleSheet, TouchableOpacity} from 'react-native';
+
+import {SIZES} from '@constants';
+import {Movie} from '@models';
+import {useNavigation} from '@react-navigation/native';
 import * as S from 'native-base';
-import {MoviesViewModel} from './model';
-import {_useMovies} from './useMovies';
 
 import {
   BottomTab,
@@ -14,11 +16,11 @@ import {
   AllMovies,
   MovieBox,
 } from '@components';
-import {SIZES} from '@constants';
-import {Movie} from '@models';
 
 import Header from './components/Header/View';
-import {useNavigation} from '@react-navigation/native';
+import {MoviesViewModel} from './model';
+import {_useMovies} from './useMovies';
+
 interface MoviesProps {
   useMovies?: MoviesViewModel;
 }

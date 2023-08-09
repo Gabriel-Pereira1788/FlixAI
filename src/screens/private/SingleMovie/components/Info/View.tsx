@@ -1,8 +1,10 @@
 import React from 'react';
+
 import * as S from 'native-base';
-import {Movie} from '../../../../../models/Movie';
 import {Star} from 'phosphor-react-native';
+
 import {makeVoteAverage} from '../../../../../helpers/utils/makeVoteAverage';
+import {Movie} from '../../../../../models/Movie';
 
 export default function Info({
   title,

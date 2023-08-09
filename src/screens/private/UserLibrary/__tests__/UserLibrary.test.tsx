@@ -1,10 +1,12 @@
 import React from 'react';
-import {fireEvent, render} from '@testing-library/react-native';
-import JestProviders from '../../../../providers/JestProviders';
-import UserLibrary from '../View';
-import {UserLibraryViewModel} from '../model';
+
 import {Realm} from '@realm/react';
+import {fireEvent, render} from '@testing-library/react-native';
+
 import {movies} from '../../../../../mocks/movies';
+import JestProviders from '../../../../providers/JestProviders';
+import {UserLibraryViewModel} from '../model';
+import UserLibrary from '../View';
 
 const allPlaylistMock: any = [
   {

@@ -8,10 +8,11 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
 
-import {MAIN} from './src/styles/theme';
-import Providers from './src/providers';
 import {Modal} from '@components';
+
+import Providers from './src/providers';
 import Router from './src/router/Router';
+import {MAIN} from './src/styles/theme';
 
 function App(): JSX.Element {
   return (

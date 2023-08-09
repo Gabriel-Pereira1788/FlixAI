@@ -1,10 +1,12 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
-import JestProviders from '../../../../providers/JestProviders';
-import PlaylistSugestion from '../View';
-import {MoviesSugestionViewModel} from '../models';
+
 import {movies} from '../../../../../mocks/movies';
 import {ERROR_DEFAULT} from '../../../../helpers/constants/errorsMessage';
+import JestProviders from '../../../../providers/JestProviders';
+import {MoviesSugestionViewModel} from '../models';
+import PlaylistSugestion from '../View';
 
 const mockOnCreate = jest.fn();
 const mockOnSearch = jest.fn();

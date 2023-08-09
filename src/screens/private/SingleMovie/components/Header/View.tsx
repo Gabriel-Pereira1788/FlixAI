@@ -1,13 +1,16 @@
 import React from 'react';
+
 import * as S from 'native-base';
-import {Movie} from '../../../../../models/Movie';
 import {Heart} from 'phosphor-react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+
 import {modalRef} from '../../../../../components/Organisms/Modal/View';
+import {Movie} from '../../../../../models/Movie';
 import AddModal from '../AddModal/View';
-import {useHeader} from './useHeader';
 import RemoveModal from '../RemoveModal/View';
+
 import {FindMovie, HeaderViewModel} from './model';
+import {useHeader} from './useHeader';
 
 interface HeaderProps {
   movie?: Movie;

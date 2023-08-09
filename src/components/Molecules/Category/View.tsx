@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {IBoxProps, ITextProps, Box, Text} from '@components/atoms';
+import {IBoxProps, ITextProps, Box, Text} from '@components';
 
 interface CategorieProps extends IBoxProps {
   text: string;

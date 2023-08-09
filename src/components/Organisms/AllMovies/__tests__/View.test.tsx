@@ -1,8 +1,10 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
+
+import {dataMoviesMock} from '../../../../../mocks/movies';
 import JestProviders from '../../../../providers/JestProviders';
 import AllMovies from '../View';
-import {dataMoviesMock} from '../../../../../mocks/movies';
 
 describe('AllMovies', () => {
   it('render component correctly', () => {

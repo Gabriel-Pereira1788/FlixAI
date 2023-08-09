@@ -1,12 +1,14 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
-import JestProviders from '../../../../providers/JestProviders';
-import Movies from '../View';
-import {MoviesViewModel} from '../model';
-import {TMDB_GENRES} from '../../../../helpers/constants/tmdb';
-import {dataMoviesMock, movies} from '../../../../../mocks/movies';
+
 import {mockedNavigate} from '../../../../../jestSetup';
+import {dataMoviesMock, movies} from '../../../../../mocks/movies';
 import {ERROR_DEFAULT} from '../../../../helpers/constants/errorsMessage';
+import {TMDB_GENRES} from '../../../../helpers/constants/tmdb';
+import JestProviders from '../../../../providers/JestProviders';
+import {MoviesViewModel} from '../model';
+import Movies from '../View';
 
 const handleFilterMock = jest.fn();
 const categories = TMDB_GENRES.filter(genre => !!genre.identify);

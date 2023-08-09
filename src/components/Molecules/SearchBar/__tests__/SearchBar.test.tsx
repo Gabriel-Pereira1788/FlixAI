@@ -1,9 +1,11 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
-import JestProviders from '../../../../providers/JestProviders';
-import SearchBar from '../View';
 import {Box} from 'native-base';
 import {PaperPlaneRight} from 'phosphor-react-native';
+
+import JestProviders from '../../../../providers/JestProviders';
+import SearchBar from '../View';
 
 describe('SearchBar', () => {
   it('render component correctly', () => {

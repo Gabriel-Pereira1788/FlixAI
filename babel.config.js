@@ -20,6 +20,8 @@ module.exports = {
           '@store': './src/store',
           '@hooks': './src/helpers/hooks',
           '@styles': './src/styles',
+          '@screens': './src/screens',
+          '@mocks': './mocks',
         },
       },
     ],

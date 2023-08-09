@@ -1,6 +1,6 @@
-import {useQuery} from '@tanstack/react-query';
-import {MoviesService} from '@domain';
 import {QUERY_KEYS} from '@constants';
+import {MoviesService} from '@domain';
+import {useQuery} from '@tanstack/react-query';
 
 export function useSingleMovieServer(id: number | string) {
   const {data, isLoading, error} = useQuery(

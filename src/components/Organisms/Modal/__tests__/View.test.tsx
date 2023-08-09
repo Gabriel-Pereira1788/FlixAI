@@ -1,11 +1,11 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
-
-import Modal from '../View';
-import {ModalConfig, ModalViewModel} from '../model';
-
 import * as S from 'native-base';
+
 import JestProviders from '../../../../providers/JestProviders';
+import {ModalConfig, ModalViewModel} from '../model';
+import Modal from '../View';
 
 const hideMock = jest.fn();
 

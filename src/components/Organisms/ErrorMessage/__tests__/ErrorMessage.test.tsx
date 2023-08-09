@@ -1,8 +1,10 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
-import ErrorMessage from '../View';
-import JestProviders from '../../../../providers/JestProviders';
 import {Text} from 'native-base';
+
+import JestProviders from '../../../../providers/JestProviders';
+import ErrorMessage from '../View';
 
 describe('ErrorMessage', () => {
   it('render component correctly', () => {

@@ -1,8 +1,10 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
+import {Text} from 'native-base';
+
 import JestProviders from '../../../../providers/JestProviders';
 import SharedLayout from '../View';
-import {Text} from 'native-base';
 
 describe('SharedLayout', () => {
   it('render component correctly', () => {

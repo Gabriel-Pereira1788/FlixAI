@@ -1,9 +1,10 @@
 import {renderHook} from '@testing-library/react-hooks';
-import {useSingleMovie} from '../useSingleMovie';
-import {SingleMovieImpl} from '../../../../store/server/useSingleMovie';
-import {movies} from '../../../../../mocks/movies';
 import {act} from 'react-test-renderer';
+
+import {movies} from '../../../../../mocks/movies';
 import {useFocusedScreen} from '../../../../helpers/hooks/useFocusedScreen';
+import {SingleMovieImpl} from '../../../../store/server/useSingleMovie';
+import {useSingleMovie} from '../useSingleMovie';
 
 const mockUseFocusedScreen = useFocusedScreen as jest.Mock<
   ReturnType<typeof useFocusedScreen>

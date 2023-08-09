@@ -1,8 +1,9 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
-import {CardMovie} from '@components/molecules';
+
 import {Movie} from '@models';
-import {Box, Text, IBoxProps} from '@components/atoms';
+
+import {Box, Text, IBoxProps, CardMovie} from '@components';
 
 interface StackMoviesProps extends IBoxProps {
   title: string;

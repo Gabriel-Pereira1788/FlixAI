@@ -1,6 +1,6 @@
-import {useQuery} from '@tanstack/react-query';
 import {QUERY_KEYS} from '@constants';
 import {AuthService} from '@domain';
+import {useQuery} from '@tanstack/react-query';
 
 export function useUser() {
   const {data, isLoading, error} = useQuery(

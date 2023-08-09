@@ -1,11 +1,13 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
-import JestProviders from '../../../../../../providers/JestProviders';
-import Poster from '../View';
+
 import {
   TMBD_BACKDROP_PREVIEW,
   TMBD_BACKDROP_URL,
 } from '../../../../../../helpers/constants/tmdb';
+import JestProviders from '../../../../../../providers/JestProviders';
+import Poster from '../View';
 
 const imagePath = 'www.example.com';
 describe('Poster', () => {

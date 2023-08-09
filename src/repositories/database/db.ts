@@ -1,7 +1,8 @@
 import {createRealmContext} from '@realm/react';
-import {Playlist} from './schemas/PlaylistSchema';
-import {Movies} from './schemas/MoviesSchema';
+
 import {KeywordsGpt} from './schemas/KeywordsGpt';
+import {Movies} from './schemas/MoviesSchema';
+import {Playlist} from './schemas/PlaylistSchema';
 
 export const realmConfig: Realm.Configuration = {
   schema: [Playlist, Movies, KeywordsGpt],

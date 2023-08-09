@@ -1,9 +1,10 @@
 import React from 'react';
 import {FlatList, ListRenderItem} from 'react-native';
-import {IDataMovie, Movie} from '@models';
-import {Box, Text} from '@components/atoms';
 
+import {IDataMovie, Movie} from '@models';
 import Animated, {FadeInDown} from 'react-native-reanimated';
+
+import {Box, Text} from '@components';
 
 interface AllMoviewsProps {
   dataMovies?: IDataMovie[];

@@ -1,4 +1,5 @@
 import {KeywordsDTO} from '@models';
+
 import {KeywordsGpt} from '../../schemas/KeywordsGpt';
 
 export type KeywordsGptImpl = () => {

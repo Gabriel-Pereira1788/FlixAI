@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   VariantProps,
   createRestyleComponent,
@@ -6,7 +8,6 @@ import {
 import {Theme} from '@styles';
 
 import {Box} from '../Box/View';
-import React from 'react';
 
 const Wrapper = createRestyleComponent<
   VariantProps<Theme, 'cardVariants'> & React.ComponentProps<typeof Box>,

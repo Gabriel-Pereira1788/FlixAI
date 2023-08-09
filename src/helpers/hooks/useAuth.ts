@@ -1,7 +1,7 @@
-import {AuthDTO} from '@models';
-import {saveImage, formatUser} from '@utils';
 import {AuthService} from '@domain';
+import {AuthDTO} from '@models';
 import authFB from '@react-native-firebase/auth';
+import {saveImage, formatUser} from '@utils';
 
 export function useAuth() {
   async function signUp(data: AuthDTO) {
@@ -57,4 +57,4 @@ export function useAuth() {
   return {signIn, signUp, edit, signOut};
 }
 
-export type AuthImpl = () => ReturnType<typeof useAuth>;
+export type AuthImpl = ReturnType<typeof useAuth>;

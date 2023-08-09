@@ -1,6 +1,7 @@
 import {renderHook} from '@testing-library/react-hooks';
-import {useFilteredMovies} from '../useFilteredMovies';
+
 import {IDataMovie, Movie} from '../../../../models/Movie';
+import {useFilteredMovies} from '../useFilteredMovies';
 
 const movies: Movie[] = [
   {

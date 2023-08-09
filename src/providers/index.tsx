@@ -1,13 +1,14 @@
-import {NativeBaseProvider} from 'native-base';
 import React from 'react';
-import {MAIN} from '../styles/theme';
+
+import {ThemeProvider} from '@shopify/restyle';
+import {QueryClientProvider} from '@tanstack/react-query';
+import {NativeBaseProvider} from 'native-base';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 import queryClient from '../repositories/api/config/queryClient';
-import {QueryClientProvider} from '@tanstack/react-query';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {RealmProvider} from '../repositories/database/db';
-import {ThemeProvider} from '@shopify/restyle';
 import theme from '../styles/designSystem';
+import {MAIN} from '../styles/theme';
 
 type Props = {children: React.ReactNode};
 const inset = {

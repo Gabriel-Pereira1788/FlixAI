@@ -1,30 +1,23 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
-import JestProviders from '../../../../../../providers/JestProviders';
-import CreatePlaylist from '../View';
-import {NewLibraryViewModel} from '../model';
+
 import {movies} from '../../../../../../../mocks/movies';
+import JestProviders from '../../../../../../providers/JestProviders';
+import {NewLibrary} from '../NewLibrary.view';
+import {ViewModel} from '../types';
 
-const redirectScreen = jest.fn();
-
-const handleChangeMock = jest.fn();
+// const handleChangeMock = jest.fn();
 const createLibrary = jest.fn();
 
-const useNewLibraryMock: NewLibraryViewModel = () => ({
-  popularMovies: movies,
-  titleLibrary: '',
-  handleChangeText: handleChangeMock,
-  createLibrary: createLibrary,
-  loading: false,
-});
-describe('CreatePlaylist', () => {
+const viewModel: ViewModel = {
+  onCreateLibrary: createLibrary,
+};
+describe('NewLibrary', () => {
   it('render component correctly', () => {
     const {getByText} = render(
       <JestProviders>
-        <CreatePlaylist
-          redirectScreen={redirectScreen}
-          useNewLibrary={useNewLibraryMock}
-        />
+        <NewLibrary viewModel={viewModel} popularMovies={movies} />
       </JestProviders>,
     );
 

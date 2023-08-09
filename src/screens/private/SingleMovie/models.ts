@@ -3,8 +3,9 @@ import {
   PanGestureHandlerEventPayload,
 } from 'react-native-gesture-handler';
 
-import {useSingleMovie} from './useSingleMovie';
 import {SingleMovieImpl} from '../../../store/server/useSingleMovie';
+
+import {useSingleMovie} from './useSingleMovie';
 
 export type MostView = (
   event: GestureEvent<PanGestureHandlerEventPayload>,

@@ -1,8 +1,10 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
+
+import {mockedNavigate} from '../../../../../jestSetup';
 import JestProviders from '../../../../providers/JestProviders';
 import BottomTab from '../View';
-import {mockedNavigate} from '../../../../../jestSetup';
 
 describe('BottomTab', () => {
   it('render component correctly in movies path', () => {

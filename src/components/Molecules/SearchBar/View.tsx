@@ -1,8 +1,9 @@
 import React from 'react';
+import {TouchableOpacity, View} from 'react-native';
 
 import {MagnifyingGlass} from 'phosphor-react-native';
-import {TouchableOpacity, View} from 'react-native';
-import {DSInputProps, Input} from '@components/atoms';
+
+import {DSInputProps, Input} from '@components';
 interface SearchBarProps extends Omit<DSInputProps, 'variant'> {
   onSearch?: (value: string) => void;
   Icon?: React.FC;

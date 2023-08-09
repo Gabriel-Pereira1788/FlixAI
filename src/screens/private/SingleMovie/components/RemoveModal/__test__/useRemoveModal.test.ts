@@ -1,9 +1,10 @@
 import {renderHook} from '@testing-library/react-hooks';
-import {useRemoveModal} from '../useRemoveModal';
+import {act} from '@testing-library/react-native';
+
 import {movies} from '../../../../../../../mocks/movies';
 import {allPlaylistMock} from '../../../../../../../mocks/useCasePlaylist';
 import {mockUseRealm, write, data} from '../../../../../../../mocks/useRealm';
-import {act} from '@testing-library/react-native';
+import {useRemoveModal} from '../useRemoveModal';
 
 describe('useRemoveModal', () => {
   it('call hook correctly', () => {

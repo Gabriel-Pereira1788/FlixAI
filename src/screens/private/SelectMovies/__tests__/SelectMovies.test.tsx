@@ -1,10 +1,12 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
-import JestProviders from '../../../../providers/JestProviders';
-import SelectMovies from '../View';
-import {SelectMoviesViewModel} from '../model';
+
 import {dataMoviesMock, movies} from '../../../../../mocks/movies';
 import {ERROR_DEFAULT} from '../../../../helpers/constants/errorsMessage';
+import JestProviders from '../../../../providers/JestProviders';
+import {SelectMoviesViewModel} from '../model';
+import SelectMovies from '../View';
 
 const navigation: any = {};
 const route: any = {};

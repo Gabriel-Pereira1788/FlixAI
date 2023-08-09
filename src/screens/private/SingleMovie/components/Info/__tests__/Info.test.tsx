@@ -1,9 +1,11 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
-import JestProviders from '../../../../../../providers/JestProviders';
-import Info from '../View';
+
 import {movies} from '../../../../../../../mocks/movies';
 import {makeVoteAverage} from '../../../../../../helpers/utils/makeVoteAverage';
+import JestProviders from '../../../../../../providers/JestProviders';
+import Info from '../View';
 
 describe('Info', () => {
   it('render component correctly', () => {

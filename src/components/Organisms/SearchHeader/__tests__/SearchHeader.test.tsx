@@ -1,9 +1,11 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
+import {Box, Text} from 'native-base';
+
+import {useVisible} from '../../../../helpers/hooks/useVisible';
 import JestProviders from '../../../../providers/JestProviders';
 import SearchHeader from '../View';
-import {useVisible} from '../../../../helpers/hooks/useVisible';
-import {Box, Text} from 'native-base';
 
 const useVisibleMock = useVisible as jest.Mock<ReturnType<typeof useVisible>>;
 const toggleVisibleMock = jest.fn();

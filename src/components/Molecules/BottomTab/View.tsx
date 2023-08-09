@@ -1,4 +1,8 @@
 import React from 'react';
+import {Platform} from 'react-native';
+
+import {useNavigation} from '@react-navigation/native';
+import {useUser} from '@store';
 import {
   MagnifyingGlass,
   Queue,
@@ -6,11 +10,8 @@ import {
   UserCircle,
 } from 'phosphor-react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {Platform} from 'react-native';
 
-import {useUser} from '@store';
-import {useNavigation} from '@react-navigation/native';
-import {RenderIF, Box, Image} from '@components/atoms';
+import {RenderIF, Box, Image} from '@components';
 
 interface BottomTabProps {
   currentPath: 'sugestions' | 'userLibrary' | 'movies';

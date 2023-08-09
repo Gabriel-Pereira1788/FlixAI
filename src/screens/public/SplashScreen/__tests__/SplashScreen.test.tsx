@@ -1,8 +1,10 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
+
+import {useFocusedScreen} from '../../../../helpers/hooks/useFocusedScreen';
 import JestProviders from '../../../../providers/JestProviders';
 import SplashScreen from '../View';
-import {useFocusedScreen} from '../../../../helpers/hooks/useFocusedScreen';
 
 const mockUseFocusedScreen = useFocusedScreen as jest.Mock<
   ReturnType<typeof useFocusedScreen>

@@ -1,13 +1,15 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
-import JestProviders from '../../../../providers/JestProviders';
-import MovieBox from '../View';
-import {Movie} from '../../../../models/Movie';
+import {Text} from 'native-base';
+
 import {
   TMBD_BACKDROP_PREVIEW,
   TMBD_BACKDROP_URL,
 } from '../../../../helpers/constants/tmdb';
-import {Text} from 'native-base';
+import {Movie} from '../../../../models/Movie';
+import JestProviders from '../../../../providers/JestProviders';
+import MovieBox from '../View';
 
 const dataMovie: Movie = {
   backdrop_path: 'www.example.com',

@@ -1,10 +1,12 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
-import JestProviders from '../../../../providers/JestProviders';
-import ListMovies from '../View';
-import {ListMoviesViewModel} from '../model';
+
 import {movies} from '../../../../../mocks/movies';
 import {allPlaylistMock} from '../../../../../mocks/useCasePlaylist';
+import JestProviders from '../../../../providers/JestProviders';
+import {ListMoviesViewModel} from '../model';
+import ListMovies from '../View';
 const mockOnSearch = jest.fn();
 const mockUseListMovies: ListMoviesViewModel = () => ({
   title: 'Titulo 1',

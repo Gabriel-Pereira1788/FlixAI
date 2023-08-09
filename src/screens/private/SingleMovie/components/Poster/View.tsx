@@ -1,5 +1,7 @@
 import React from 'react';
+
 import * as S from 'native-base';
+
 import ProgressiveImage from '../../../../../components/Molecules/ProgressiveImage/View';
 import {
   TMBD_BACKDROP_PREVIEW,

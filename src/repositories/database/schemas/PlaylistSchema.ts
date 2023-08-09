@@ -1,4 +1,5 @@
 import {Realm} from '@realm/react';
+
 import {Movie} from '../../../models/Movie';
 
 export class Playlist extends Realm.Object<Playlist> {

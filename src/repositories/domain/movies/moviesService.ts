@@ -1,4 +1,5 @@
 import {Movie, IDataMovie} from '@models';
+
 import {MoviesImpl} from './model';
 import {MoviesAdapter} from './moviesAdapters';
 import {MoviesApi} from './moviesApi';

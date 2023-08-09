@@ -1,8 +1,8 @@
 import {IDataMovie, Movie} from '../../../models/Movie';
 
 export interface MoviesImpl {
-  findById(id: string): Promise<any>;
-  getAllByName(name: string[]): Promise<any>;
+  findById(id: string): Promise<Movie>;
+  getAllByName(name: string[]): Promise<Movie[]>;
   getMoviesList(): Promise<IDataMovie[]>;
 }
 

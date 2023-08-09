@@ -17,7 +17,9 @@
       "@models": ["src/models"],
       "@store": ["src/store"],
       "@styles": ["src/styles"],
-      "@hooks": ["src/helpers/hooks"]
+      "@hooks": ["src/helpers/hooks"],
+      "@screens": ["src/screens"],
+      "@mocks": ["mocks"]
     }
   }
 }

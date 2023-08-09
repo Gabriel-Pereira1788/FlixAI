@@ -1,8 +1,10 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
+
+import {FormAuthImpl} from '../../../../helpers/hooks/useFormAuth';
 import JestProviders from '../../../../providers/JestProviders';
 import SignIn from '../View';
-import {FormAuthImpl} from '../../../../helpers/hooks/useFormAuth';
 
 const navigation = {
   navigate: jest.fn(),

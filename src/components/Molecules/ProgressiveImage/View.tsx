@@ -1,8 +1,9 @@
 import React from 'react';
+import {ImageProps, StyleSheet} from 'react-native';
 
 import Animated, {AnimateProps} from 'react-native-reanimated';
-import {ImageProps, StyleSheet} from 'react-native';
-import {IBoxProps, Box} from '@components/atoms';
+
+import {IBoxProps, Box} from '@components';
 
 interface ProgressiveImageProps extends AnimateProps<ImageProps> {
   containerProps?: IBoxProps;

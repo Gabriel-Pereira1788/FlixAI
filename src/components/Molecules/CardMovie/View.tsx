@@ -1,13 +1,14 @@
 import React from 'react';
 import {StyleProp, StyleSheet, TouchableOpacity, ViewStyle} from 'react-native';
-import {Movie} from '@models';
-import {TMBD_BACKDROP_URL} from '@constants';
-import {makeVoteAverage} from '@utils';
-import {Box, Image, Text, WrapperCard, WrapperProps} from '@components/atoms';
 
-import Animated, {FadeInDown} from 'react-native-reanimated';
-import {Star} from 'phosphor-react-native';
+import {TMBD_BACKDROP_URL} from '@constants';
+import {Movie} from '@models';
 import {BlurView} from '@react-native-community/blur';
+import {makeVoteAverage} from '@utils';
+import {Star} from 'phosphor-react-native';
+import Animated, {FadeInDown} from 'react-native-reanimated';
+
+import {Box, Image, Text, WrapperCard, WrapperProps} from '@components';
 
 export interface CardMoviesProps extends Movie {
   index?: number;

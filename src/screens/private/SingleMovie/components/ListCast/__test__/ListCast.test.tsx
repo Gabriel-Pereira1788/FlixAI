@@ -1,8 +1,10 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
+
+import {dataCast} from '../../../../../../../mocks/cast';
 import JestProviders from '../../../../../../providers/JestProviders';
 import ListCast from '../View';
-import {dataCast} from '../../../../../../../mocks/cast';
 
 describe('ListCast', () => {
   it('render component correctly', () => {

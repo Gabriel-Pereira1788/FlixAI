@@ -1,19 +1,24 @@
+import React from 'react';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {TransitionPresets, createStackNavigator} from '@react-navigation/stack';
-import React from 'react';
-import MoviesSugestion from '../screens/private/MoviesSugestion/View';
-import UserLibrary from '../screens/private/UserLibrary/View';
+
+import {
+  MoviesSuggestion,
+  UserLibrary,
+  SignUp,
+  SignIn,
+  MyAccount,
+} from '@screens';
+
 import ListMovies from '../screens/private/ListMovies/View';
-import {RootParamListI} from './navigation';
-import SingleMovie from '../screens/private/SingleMovie/View';
-import SelectMovies from '../screens/private/SelectMovies/View';
 import Movies from '../screens/private/Movies/View';
-import SignIn from '../screens/public/SignIn/View';
-import SignUp from '../screens/public/SignUp/View';
-import MyAccount from '../screens/private/MyAccount/View';
+import SelectMovies from '../screens/private/SelectMovies/View';
+import SingleMovie from '../screens/private/SingleMovie/View';
 import {useUser} from '../store/server/useUser';
-import SplashScreen from '../screens/public/SplashScreen/View';
+
+import {RootParamListI} from './navigation';
 
 type Props = {};
 
@@ -32,7 +37,7 @@ function Home() {
       }}>
       <NativeStack.Screen
         name="sugestions"
-        component={MoviesSugestion}
+        component={MoviesSuggestion}
         options={{
           headerLeft: () => <></>,
         }}
@@ -104,15 +109,6 @@ export default function Router({}: Props) {
           </>
         ) : (
           <>
-            <Stack.Screen
-              name="SplashScreen"
-              component={SplashScreen}
-              options={{
-                headerTintColor: '#fff',
-                headerTransparent: true,
-                headerTitle: '',
-              }}
-            />
             <Stack.Screen
               name="SignIn"
               component={SignIn}

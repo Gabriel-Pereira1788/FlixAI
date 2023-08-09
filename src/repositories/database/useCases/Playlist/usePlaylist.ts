@@ -1,10 +1,12 @@
 import React from 'react';
+
 import {Movie, LibraryDTO} from '@models';
+import uuid from 'react-native-uuid';
 
 import {useQueryRealm, useRealm} from '../../db';
 import {Playlist} from '../../schemas/PlaylistSchema';
+
 import {PlaylistImpl} from './model';
-import uuid from 'react-native-uuid';
 
 //TODO: Modificar nomenclatura para MoviesLibrary
 export const usePlaylist: PlaylistImpl = () => {

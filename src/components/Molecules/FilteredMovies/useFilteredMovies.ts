@@ -1,8 +1,10 @@
 import React from 'react';
-import {FilteredMoviesViewModel} from './model';
-import {useMoviesByGenre} from '../../../store/server/useMoviesByGenre';
+
 import {uniqueObjectList} from '../../../helpers/utils/uniqueObjectList';
 import {Movie} from '../../../models/Movie';
+import {useMoviesByGenre} from '../../../store/server/useMoviesByGenre';
+
+import {FilteredMoviesViewModel} from './model';
 
 export const useFilteredMovies: FilteredMoviesViewModel = ({
   movies,

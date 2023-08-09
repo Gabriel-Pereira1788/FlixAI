@@ -1,5 +1,5 @@
-import {useQuery} from '@tanstack/react-query';
 import {MoviesService} from '@domain';
+import {useQuery} from '@tanstack/react-query';
 
 export function useMoviesByGenre(genre?: GenreIdentify) {
   const {data, isLoading, error} = useQuery(

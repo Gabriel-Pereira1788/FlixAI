@@ -1,10 +1,12 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
-import JestProviders from '../../../../../../providers/JestProviders';
-import RemoveModal from '../View';
+
 import {movies} from '../../../../../../../mocks/movies';
 import {allPlaylistMock} from '../../../../../../../mocks/useCasePlaylist';
+import JestProviders from '../../../../../../providers/JestProviders';
 import {RemoveModalViewModel} from '../model';
+import RemoveModal from '../View';
 
 const handleChange = jest.fn();
 const onRemove = jest.fn();

@@ -1,4 +1,5 @@
 import {act, renderHook} from '@testing-library/react-native';
+
 import {dataMoviesMock, movies} from '../../../../../mocks/movies';
 import {
   mockUseCasePlaylist,

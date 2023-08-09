@@ -1,14 +1,15 @@
 import React from 'react';
-import {render} from '@testing-library/react-native';
-import JestProviders from '../../../../../../providers/JestProviders';
-import Header from '../View';
-import {movies} from '../../../../../../../mocks/movies';
 
+import {render} from '@testing-library/react-native';
+
+import {movies} from '../../../../../../../mocks/movies';
 import {
   allPlaylistMock,
   mockUseCasePlaylist,
 } from '../../../../../../../mocks/useCasePlaylist';
+import JestProviders from '../../../../../../providers/JestProviders';
 import {HeaderViewModel} from '../model';
+import Header from '../View';
 
 const mockUseHeader: HeaderViewModel = () => ({
   haveInPlaylist: true,

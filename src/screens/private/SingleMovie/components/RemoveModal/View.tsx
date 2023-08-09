@@ -1,10 +1,13 @@
 import React from 'react';
+
 import * as S from 'native-base';
-import {RemoveModalViewModel} from './model';
-import {useRemoveModal} from './useRemoveModal';
+
+import {Button} from '../../../../../components/Atoms';
 import {Movie} from '../../../../../models/Movie';
 import {Playlist} from '../../../../../repositories/database/schemas/PlaylistSchema';
-import {Button} from '../../../../../components/Atoms';
+
+import {RemoveModalViewModel} from './model';
+import {useRemoveModal} from './useRemoveModal';
 
 interface RemoveModalProps {
   movie: Movie;

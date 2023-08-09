@@ -1,11 +1,13 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
+import {Text} from 'native-base';
+
+import {TMBD_BACKDROP_URL} from '../../../../helpers/constants/tmdb';
+import {makeVoteAverage} from '../../../../helpers/utils/makeVoteAverage';
+import {Movie} from '../../../../models/Movie';
 import JestProviders from '../../../../providers/JestProviders';
 import CardMovie from '../View';
-import {Movie} from '../../../../models/Movie';
-import {TMBD_BACKDROP_URL} from '../../../../helpers/constants/tmdb';
-import {Text} from 'native-base';
-import {makeVoteAverage} from '../../../../helpers/utils/makeVoteAverage';
 
 const dataMovie: Movie = {
   backdrop_path: 'www.example.com',

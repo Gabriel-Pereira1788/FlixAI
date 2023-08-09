@@ -1,19 +1,23 @@
+import {_useKeywordsGpt} from '@database';
 import {toValidKeyWords} from '@utils';
-import {_useKeywordsGpt, KeywordsGptImpl} from '@database';
-import {AssistantSuggestionService} from '../assistantSuggestionService';
+
 import {MoviesService} from '../../movies';
+import {AssistantSuggestionService} from '../assistantSuggestionService';
 
-const assistantSuggestionService = new AssistantSuggestionService();
+import {HookProps} from './model';
 
-type Props = {
-  useKeywordsImpl?: KeywordsGptImpl;
-};
 export function useAssistantSuggestion({
   useKeywordsImpl = _useKeywordsGpt,
-}: Props) {
+  assistantSuggestionService = new AssistantSuggestionService(),
+  moviesServices = MoviesService,
+}: HookProps) {
   const keywordsImpl = useKeywordsImpl();
 
   async function fetchMoviesSuggestions(searchText: string) {
+    console.log('search-text', searchText);
+    if (searchText.trim().length === 0) {
+      return null;
+    }
     const keywords = toValidKeyWords(searchText);
     const databaseResponse = await fetchDatabaseSuggestions(keywords);
     const alreadyExistsInDatabase = !!databaseResponse;
@@ -57,7 +61,7 @@ export function useAssistantSuggestion({
     );
 
     if (response?.listSuggestions && response.listSuggestions.length > 0) {
-      const movies = await MoviesService.getAllByName(
+      const movies = await moviesServices.getAllByName(
         response?.listSuggestions,
       );
 
@@ -73,5 +77,5 @@ export function useAssistantSuggestion({
 }
 
 export type AssistantSuggestionServiceImpl = (
-  props: Props,
+  props: HookProps,
 ) => ReturnType<typeof useAssistantSuggestion>;

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
+
 import JestProviders from '../../../../providers/JestProviders';
 import Loading from '../View';
 

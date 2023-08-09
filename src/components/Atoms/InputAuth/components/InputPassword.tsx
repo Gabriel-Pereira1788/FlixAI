@@ -1,10 +1,12 @@
 import React from 'react';
-import {InputAuth, InputProps} from '../View';
+import {TouchableOpacity} from 'react-native';
+
+import {Eye, EyeSlash} from 'phosphor-react-native';
+
 import {useVisible} from '@hooks';
 
-import {TouchableOpacity} from 'react-native';
 import {RenderIF} from '../../RenderIF/View';
-import {Eye, EyeSlash} from 'phosphor-react-native';
+import {InputAuth, InputProps} from '../View';
 
 export function InputPassword({...rest}: InputProps) {
   const {visible, toggleVisible} = useVisible();

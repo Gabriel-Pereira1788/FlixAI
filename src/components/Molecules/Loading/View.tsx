@@ -1,13 +1,16 @@
 import React from 'react';
+
+import {SIZES} from '@constants';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
+
+import {RenderIF, Image, IImageProps} from '@components';
+
 import LaunchImage from '../../../assets/launch.png';
 import MovieImage from '../../../assets/movie.png';
-import {SIZES} from '@constants';
-import {RenderIF, Image, IImageProps} from '@components/atoms';
 
 interface LoadingProps {
   typeLoading: 'IA' | 'simple';

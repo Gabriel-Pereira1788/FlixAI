@@ -4,9 +4,11 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {HookProps} from './models';
-import {useSingleMovieServer} from '../../../store/server/useSingleMovie';
+
 import {useFocusedScreen} from '../../../helpers/hooks/useFocusedScreen';
+import {useSingleMovieServer} from '../../../store/server/useSingleMovie';
+
+import {HookProps} from './models';
 
 export const useSingleMovie = ({
   id,

@@ -1,5 +1,5 @@
 import {AuthDTO} from '@models';
-import {useAlertStore, useUser} from '@store';
+import {useToastActions, useUser} from '@store';
 import {launchImageLibrary} from 'react-native-image-picker';
 
 import {useAuth, useForm} from '@hooks';
@@ -7,7 +7,7 @@ import {useAuth, useForm} from '@hooks';
 export function useMyAccountViewModel() {
   const {user} = useUser();
   const {signOut, edit} = useAuth();
-  const {success, error} = useAlertStore();
+  const toast = useToastActions();
 
   const {errors, formData, handleFormData, loading, submit} = useForm({
     defaultData: {
@@ -25,11 +25,11 @@ export function useMyAccountViewModel() {
   }
 
   function onSuccess() {
-    success('Usuário editado com sucesso!');
+    toast.success('Usuário editado com sucesso!');
   }
 
   function onError(message: string) {
-    error(message);
+    toast.error(message);
   }
 
   async function handleSignOut() {

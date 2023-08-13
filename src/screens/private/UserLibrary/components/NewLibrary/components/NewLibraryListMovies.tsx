@@ -2,7 +2,7 @@ import React from 'react';
 import {FlatList, ListRenderItemInfo, ViewStyle} from 'react-native';
 
 import {Movie} from '@models';
-import {useSelectedMoviesStore} from '@store';
+import {useSelectedMoviesActions, useSelectedMoviesStore} from '@store';
 
 import {NewLibraryCardMovie} from './NewLibraryCardMovie';
 
@@ -11,11 +11,9 @@ type Props = {
 };
 
 export function NewLibraryListMovies({movies}: Props) {
-  const {
-    state: {selectedMovies},
-    addToSelected,
-    removeToSelected,
-  } = useSelectedMoviesStore();
+  const selectedMovies = useSelectedMoviesStore();
+
+  const {removeToSelected, addToSelected} = useSelectedMoviesActions();
 
   const renderItem = React.useCallback(
     ({item}: ListRenderItemInfo<Movie>) => {

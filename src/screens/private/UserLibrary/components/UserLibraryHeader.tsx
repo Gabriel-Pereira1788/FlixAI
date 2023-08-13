@@ -1,10 +1,11 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
 
+import {useNavigation} from '@react-navigation/native';
 import {Plus} from 'phosphor-react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {Box, SearchHeader, modalRef} from '@components';
+import {useAppSafeArea} from '@hooks';
 
 import {NewLibrary} from './NewLibrary';
 
@@ -13,10 +14,17 @@ type Props = {
 };
 
 export function UserLibraryHeader({onSearch}: Props) {
-  const {top} = useSafeAreaInsets();
+  const {top} = useAppSafeArea();
+  const navigation = useNavigation();
+
+  function redirectToSelectMovies() {
+    navigation.navigate('SelectMovies');
+  }
 
   function openModal() {
-    modalRef.current?.show(<NewLibrary />);
+    modalRef.current?.show(
+      <NewLibrary redirectToSelectMovies={redirectToSelectMovies} />,
+    );
   }
 
   return (

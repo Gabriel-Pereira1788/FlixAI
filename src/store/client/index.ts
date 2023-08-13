@@ -1,3 +1,3 @@
 export * from './PlaylistStore/usePlaylistStore';
 export * from './SelectMovies/useSelectedMoviesStore';
-export * from './Alert/useAlertStore';
+export * from './ToastStore/useToastStore';

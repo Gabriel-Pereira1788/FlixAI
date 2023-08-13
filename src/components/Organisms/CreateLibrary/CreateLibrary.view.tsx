@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Box, Button, Text, Alert, IBoxProps, InputAuth} from '@components';
+import {Box, Button, Text, IBoxProps, InputAuth} from '@components';
 
 import {CreateLibraryMoviesList} from './components';
 import {CreateLibraryProps} from './types';
@@ -13,27 +13,20 @@ export function CreateLibraryView({
     viewModel;
 
   return (
-    <>
-      <Alert
-        containerStyle={{
-          top: 5,
-        }}
+    <Box
+      {...$boxStyle}
+      style={{
+        backgroundColor: 'rgba(15, 15, 22, 1)',
+      }}>
+      <Text variant="titleLibrary">{titleLibrary}</Text>
+      <CreateLibraryMoviesList moviesListToAdd={moviesListToAdd} />
+      <InputAuth
+        placeholder="Nome para a biblioteca..."
+        value={titleLibrary}
+        onChangeText={handleChangeTitleLibrary}
       />
-      <Box
-        {...$boxStyle}
-        style={{
-          backgroundColor: 'rgba(15, 15, 22, 1)',
-        }}>
-        <Text variant="titleLibrary">{titleLibrary}</Text>
-        <CreateLibraryMoviesList moviesListToAdd={moviesListToAdd} />
-        <InputAuth
-          placeholder="Nome para a biblioteca..."
-          value={titleLibrary}
-          onChangeText={handleChangeTitleLibrary}
-        />
-        <Button onPress={handleCreateLibrary}>Confirmar</Button>
-      </Box>
-    </>
+      <Button onPress={handleCreateLibrary}>Confirmar</Button>
+    </Box>
   );
 }
 

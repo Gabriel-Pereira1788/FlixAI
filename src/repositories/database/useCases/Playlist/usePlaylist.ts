@@ -1,28 +1,26 @@
 import React from 'react';
 
+import {makeId, useDatabase, useGetQuery} from '@infra';
 import {Movie, LibraryDTO} from '@models';
 import uuid from 'react-native-uuid';
 
-import {useQueryRealm, useRealm} from '../../db';
 import {Playlist} from '../../schemas/PlaylistSchema';
 
 import {PlaylistImpl} from './model';
 
 //TODO: Modificar nomenclatura para MoviesLibrary
 export const usePlaylist: PlaylistImpl = () => {
-  const realm = useRealm();
-  const playlists = useQueryRealm(Playlist);
+  const database = useDatabase();
+  const playlists = useGetQuery(Playlist);
   function get(): Realm.Results<Playlist> {
     return playlists;
   }
   async function create(data: LibraryDTO) {
-    realm.write(() => {
-      realm.create<LibraryDTO>('Playlist', {
-        _id: new Realm.BSON.ObjectID(),
-        id: String(uuid.v4()),
-        title: data.title,
-        movies: data.movies,
-      });
+    database.create<LibraryDTO>('Playlist', {
+      _id: makeId(),
+      id: String(uuid.v4()),
+      title: data.title,
+      movies: data.movies,
     });
   }
 

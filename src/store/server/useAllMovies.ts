@@ -1,15 +1,15 @@
 import {QUERY_KEYS} from '@constants';
 import {MoviesService} from '@domain';
-import {useQuery} from '@tanstack/react-query';
+import {useFetch} from '@infra';
 
 export const useAllMovies = () => {
-  const {data, isLoading, error} = useQuery(
-    [QUERY_KEYS.allMovies],
-    () => MoviesService.getMoviesList(),
-    {
+  const {data, isLoading, error} = useFetch({
+    queryKey: [QUERY_KEYS.allMovies],
+    queryFn: () => MoviesService.getMoviesList(),
+    options: {
       refetchOnMount: false,
     },
-  );
+  });
 
   return {data, isLoading, error};
 };

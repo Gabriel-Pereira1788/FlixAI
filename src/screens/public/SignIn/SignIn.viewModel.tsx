@@ -1,5 +1,5 @@
 import {AuthDTO} from '@models';
-import {useAlertStore} from '@store';
+import {useToastActions} from '@store';
 
 import {useAuth, useForm} from '@hooks';
 
@@ -9,7 +9,7 @@ type HookProps = {
 
 export function useSignInViewModel({redirectToHome}: HookProps) {
   const {signIn} = useAuth();
-  const {success, error} = useAlertStore();
+  const toast = useToastActions();
   const {loading, errors, formData, handleFormData, submit} = useForm({
     onSubmit,
     onSuccess,
@@ -23,11 +23,11 @@ export function useSignInViewModel({redirectToHome}: HookProps) {
   function onSuccess() {
     redirectToHome();
 
-    success('Sucesso!');
+    toast.success('Sucesso!');
   }
 
   function onError(message: string) {
-    error(message);
+    toast.error(message);
   }
 
   return {

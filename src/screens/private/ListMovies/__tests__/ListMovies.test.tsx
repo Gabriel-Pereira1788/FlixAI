@@ -3,46 +3,32 @@ import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
 
 import {movies} from '../../../../../mocks/movies';
-import {allPlaylistMock} from '../../../../../mocks/useCasePlaylist';
 import JestProviders from '../../../../providers/JestProviders';
-import {ListMoviesViewModel} from '../model';
-import ListMovies from '../View';
+import ListMovies from '../ListMovies.view';
+import {ListMoviesViewModel} from '../types';
 const mockOnSearch = jest.fn();
-const mockUseListMovies: ListMoviesViewModel = () => ({
-  title: 'Titulo 1',
+const mockConfirmation = jest.fn();
+const viewModelMock: ListMoviesViewModel = {
   moviesList: movies,
   handleOnSearch: mockOnSearch,
-  library: allPlaylistMock[0],
-});
+  openModalConfirmation: mockConfirmation,
+};
 
-const navigation = {
-  goBack: jest.fn(),
-} as any;
-
-const route = {} as any;
 describe('ListMovies', () => {
   it('render component correctly', () => {
     const {getByText} = render(
       <JestProviders>
-        <ListMovies
-          useListMovies={mockUseListMovies}
-          navigation={navigation}
-          route={route}
-        />
+        <ListMovies title="John doe" viewModel={viewModelMock} />
       </JestProviders>,
     );
 
-    expect(getByText('Titulo 1')).toBeTruthy();
+    expect(getByText('John doe')).toBeTruthy();
   });
 
   it('call onSearch function', () => {
     const {getByTestId} = render(
       <JestProviders>
-        <ListMovies
-          useListMovies={mockUseListMovies}
-          navigation={navigation}
-          route={route}
-        />
+        <ListMovies viewModel={viewModelMock} title="John doe" />
       </JestProviders>,
     );
 

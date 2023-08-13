@@ -1,16 +1,16 @@
 import {QUERY_KEYS} from '@constants';
 import {MoviesService} from '@domain';
-import {useQuery} from '@tanstack/react-query';
+import {useFetch} from '@infra';
 
 export function useSingleMovieServer(id: number | string) {
-  const {data, isLoading, error} = useQuery(
-    [QUERY_KEYS.singleMovie, id],
-    () => MoviesService.findById(id),
-    {
+  const {data, isLoading, error} = useFetch({
+    queryKey: [QUERY_KEYS.singleMovie, String(id)],
+    queryFn: () => MoviesService.findById(id),
+    options: {
       refetchOnMount: false,
       refetchOnWindowFocus: false,
     },
-  );
+  });
 
   return {
     data,

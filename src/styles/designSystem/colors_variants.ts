@@ -12,6 +12,7 @@ export const palette = {
     gray: '#636262',
     grayLight: '#a3a1a1',
     red: '#f87171',
+    grayDark: '#8e8888c3',
   },
   borderColor: {
     main: '#dddddd3d',

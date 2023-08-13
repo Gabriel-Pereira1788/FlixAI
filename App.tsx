@@ -8,7 +8,7 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
 
-import {Modal} from '@components';
+import {Toast, Modal} from '@components';
 
 import Providers from './src/providers';
 import Router from './src/router/Router';
@@ -23,6 +23,7 @@ function App(): JSX.Element {
       />
       <Router />
       <Modal />
+      <Toast />
     </Providers>
   );
 }

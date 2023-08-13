@@ -1,14 +1,14 @@
 import {MoviesService} from '@domain';
-import {useQuery} from '@tanstack/react-query';
+import {useFetch} from '@infra';
 
 export function useMoviesByGenre(genre?: GenreIdentify) {
-  const {data, isLoading, error} = useQuery(
-    [`@${genre}`],
-    () => MoviesService.getByGenre(genre),
-    {
+  const {data, isLoading, error} = useFetch({
+    queryKey: [`@${genre}`],
+    queryFn: () => MoviesService.getByGenre(genre),
+    options: {
       refetchOnMount: false,
     },
-  );
+  });
 
   return {
     data,

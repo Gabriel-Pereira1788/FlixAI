@@ -1,5 +1,5 @@
 import {AuthDTO} from '@models';
-import {useAlertStore} from '@store';
+import {useToastActions} from '@store';
 
 import {useAuth, useForm} from '@hooks';
 
@@ -9,7 +9,7 @@ type Props = {
 
 export function useSignUpViewModel({redirectToHome}: Props) {
   const {signUp} = useAuth();
-  const {success, error} = useAlertStore();
+  const toast = useToastActions();
   const {errors, formData, loading, handleFormData, submit} = useForm({
     onSubmit,
     onSuccess,
@@ -22,11 +22,11 @@ export function useSignUpViewModel({redirectToHome}: Props) {
 
   function onSuccess() {
     redirectToHome();
-    success('Sucesso!');
+    toast.success('Sucesso!');
   }
 
   function onError(message: string) {
-    error(message);
+    toast.error(message);
   }
 
   return {

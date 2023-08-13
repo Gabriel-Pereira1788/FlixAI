@@ -2,7 +2,6 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native';
 
 import {Movie} from '@models';
-import {useNavigation} from '@react-navigation/native';
 import * as S from 'native-base';
 
 import {InputAuth, modalRef, Button} from '@components';
@@ -13,18 +12,17 @@ import {ViewModel} from './types';
 interface NewLibraryProps {
   viewModel: ViewModel;
   popularMovies: Movie[];
+  handleRedirectScreen: () => void;
 }
 
-export function NewLibrary({viewModel, popularMovies}: NewLibraryProps) {
-  const navigation = useNavigation();
+export function NewLibrary({
+  viewModel,
+  popularMovies,
+  handleRedirectScreen,
+}: NewLibraryProps) {
   const {onCreateLibrary} = viewModel;
 
   const [titleLibrary, setTitleLibrary] = React.useState('');
-
-  function handleRedirectScreen() {
-    modalRef.current?.hide();
-    navigation.navigate('SelectMovies');
-  }
 
   async function handleCreateLibrary() {
     await onCreateLibrary(titleLibrary);

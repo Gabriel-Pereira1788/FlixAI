@@ -1,26 +1,24 @@
+import {ObjectId, useDatabase, useGetQuery} from '@infra';
 import {KeywordsDTO} from '@models';
 
-import {useQueryRealm, useRealm} from '../../db';
 import {KeywordsGpt} from '../../schemas/KeywordsGpt';
 
 import {KeywordsGptImpl} from './model';
 
 //TODO: Refatorar nome
 export const _useKeywordsGpt: KeywordsGptImpl = () => {
-  const keywordsGpt = useQueryRealm(KeywordsGpt);
-  const realm = useRealm();
+  const keywordsGpt = useGetQuery(KeywordsGpt);
+  const database = useDatabase();
 
-  function get(): Realm.Results<KeywordsGpt> {
+  function get() {
     return keywordsGpt;
   }
   async function create(data: KeywordsDTO) {
-    realm.write(() => {
-      realm.create<KeywordsDTO>('KeywordsGpt', {
-        _id: new Realm.BSON.ObjectID(),
-        text: data.text,
-        movies: data.movies,
-        keywords: data.keywords,
-      });
+    database.create<KeywordsDTO>('KeywordsGpt', {
+      _id: new ObjectId(),
+      text: data.text,
+      movies: data.movies,
+      keywords: data.keywords,
     });
   }
 

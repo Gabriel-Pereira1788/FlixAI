@@ -7,9 +7,14 @@ import {
   MoviesSuggestionsHeader,
   MoviesSuggestionsList,
 } from './components';
-import {ViewProps} from './types';
+import {MoviesSugestionViewModel} from './types';
 
-export function MoviesSuggestionView({viewModel, username}: ViewProps) {
+type Props = {
+  username: string;
+  viewModel: MoviesSugestionViewModel;
+};
+
+export function MoviesSuggestionView({viewModel, username}: Props) {
   const {moviesList, message, isLoading, error, listenEventSearch} = viewModel;
 
   return (

@@ -1,13 +1,10 @@
 import React from 'react';
 
-import {QUERY_KEYS} from '@constants';
-import {useAssistantSuggestion} from '@domain';
+import {useGetSuggestions} from '@domain';
 import {DataSugestion} from '@models';
 import {useNavigation} from '@react-navigation/native';
-import {useQuery} from '@tanstack/react-query';
 
 export const useMoviesSuggestionViewModel = () => {
-  const {fetchMoviesSuggestions} = useAssistantSuggestion({});
   const navigation = useNavigation();
 
   const [messageData, setMessageData] = React.useState<DataSugestion>({
@@ -15,14 +12,9 @@ export const useMoviesSuggestionViewModel = () => {
     id: '',
   });
 
-  const {data, isLoading, error} = useQuery(
-    [QUERY_KEYS.suggestions, messageData.text.trim()],
-    () => fetchMoviesSuggestions(messageData.text),
-    {
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    },
-  );
+  const {data, isLoading, error} = useGetSuggestions({
+    searchText: messageData.text,
+  });
 
   async function listenEventSearch(value: string) {
     const messageSend: DataSugestion = {

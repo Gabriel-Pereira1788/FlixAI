@@ -4,16 +4,12 @@ import {act} from '@testing-library/react-native';
 
 import {movies} from '../../../../../../../mocks/movies';
 import {create, mockImpl} from '../../../../../../../mocks/useCasePlaylist';
-import {useSelectedMoviesStore} from '../../../../../../store/client/SelectMovies/useSelectedMoviesStore';
+// import {useSelectedMoviesStore} from '../../../../../../store/client/SelectMovies/useSelectedMoviesStore';
 import {useNewLibraryViewModel} from '../NewLibrary.viewModel';
 
-const mockSelectedStore = useSelectedMoviesStore as jest.MockedFunction<
-  typeof useSelectedMoviesStore
->;
-
-const mockPlaylist = usePlaylist as jest.MockedFunction<typeof usePlaylist>;
-jest.mock('../../../../../../store/client/SelectMovies/useSelectedMoviesStore');
-jest.mock('@database');
+// const mockSelectedStore = useSelectedMoviesStore as jest.MockedFunction<
+//   typeof useSelectedMoviesStore
+// >;
 
 const addToSelected = jest.fn();
 const cleanUp = jest.fn();
@@ -21,14 +17,25 @@ const removeToSelected = jest.fn();
 
 const selectedMovies = movies.slice(0, 2);
 
-beforeAll(() => {
-  mockSelectedStore.mockImplementation(() => ({
-    addToSelected,
-    cleanUp,
-    removeToSelected,
-    state: {selectedMovies},
-  }));
+const mockPlaylist = usePlaylist as jest.MockedFunction<typeof usePlaylist>;
 
+const selectMoviesActions = () => ({
+  addToSelected,
+  cleanUp,
+  removeToSelected,
+});
+
+const selectMoviesStore = () => selectedMovies;
+jest.mock(
+  '../../../../../../store/client/SelectMovies/useSelectedMoviesStore',
+  () => ({
+    useSelectedMoviesStore: selectMoviesStore,
+    useSelectedMoviesActions: selectMoviesActions,
+  }),
+);
+jest.mock('@database');
+
+beforeAll(() => {
   mockPlaylist.mockImplementation(() => mockImpl);
 });
 describe('useNewLibraryViewModel', () => {

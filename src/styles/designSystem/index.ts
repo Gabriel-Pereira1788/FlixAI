@@ -19,6 +19,7 @@ const theme = createTheme({
     thirdTextColor: palette.textColor.third,
     redTextColor: palette.textColor.red,
     grayTextColor: palette.textColor.gray,
+    grayDarkTextColor: palette.textColor.grayDark,
     grayLightTextColor: palette.textColor.grayLight,
     borderMainColor: palette.borderColor.main,
     borderGray: palette.borderColor.gray,

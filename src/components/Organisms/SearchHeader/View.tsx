@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, ViewStyle} from 'react-native';
 
 import {MagnifyingGlass, PaperPlaneRight} from 'phosphor-react-native';
 import Animated, {
@@ -24,6 +24,7 @@ interface HeaderProps {
   titleProps?: ITextProps;
   RightComponent?: JSX.Element;
   inputProps?: DSInputProps;
+  boxStyle?: ViewStyle;
 }
 
 const Icon: React.FC = () => <PaperPlaneRight color="#ddd" />;
@@ -34,6 +35,7 @@ export function SearchHeader({
   RightComponent,
   titleProps,
   inputProps,
+  boxStyle,
 }: HeaderProps) {
   const {visible, toggleVisible} = useVisible();
 
@@ -51,7 +53,8 @@ export function SearchHeader({
       alignItems="center"
       justifyContent="center"
       gap="s"
-      marginTop="m">
+      marginTop="m"
+      style={boxStyle}>
       <RenderIF condition={visible}>
         <Box width="100%" bottom={0}>
           <Animated.View

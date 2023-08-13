@@ -1,2 +1,2 @@
 export * from './assistantSuggestionService';
-export * from './useCases/useAssistantSuggestion';
+export * from './useCases/useGetSuggestions';

@@ -14,6 +14,7 @@ module.exports = {
           '@api': './src/repositories/api',
           '@database': './src/repositories/database',
           '@domain': './src/repositories/domain',
+          '@infra': './src/repositories/infra',
           '@utils': './src/helpers/utils',
           '@constants': './src/helpers/constants',
           '@models': './src/models',

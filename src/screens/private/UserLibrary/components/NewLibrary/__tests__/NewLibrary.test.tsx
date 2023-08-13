@@ -13,11 +13,17 @@ const createLibrary = jest.fn();
 const viewModel: ViewModel = {
   onCreateLibrary: createLibrary,
 };
+
+const handleRedirectScreenMock = jest.fn();
 describe('NewLibrary', () => {
   it('render component correctly', () => {
     const {getByText} = render(
       <JestProviders>
-        <NewLibrary viewModel={viewModel} popularMovies={movies} />
+        <NewLibrary
+          viewModel={viewModel}
+          handleRedirectScreen={handleRedirectScreenMock}
+          popularMovies={movies}
+        />
       </JestProviders>,
     );
 

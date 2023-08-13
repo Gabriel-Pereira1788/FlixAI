@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {usePlaylist} from '@database';
-import {useAlertStore} from '@store';
+import {useToastActions} from '@store';
 
 import {modalRef} from '@components';
 
@@ -12,7 +12,7 @@ export function useCreateLibraryViewModel(
 ) {
   const [titleLibrary, setTitleLibrary] = React.useState('');
   const {create} = usePlaylist();
-  const {warning} = useAlertStore();
+  const toast = useToastActions();
 
   function handleChangeTitleLibrary(text: string) {
     setTitleLibrary(text);
@@ -20,7 +20,7 @@ export function useCreateLibraryViewModel(
 
   async function handleCreateLibrary() {
     if (titleLibrary.trim() === '') {
-      warning('Por favor preencha todos os campos.');
+      toast.warning('Por favor preencha todos os campos.');
 
       return;
     }

@@ -24,6 +24,7 @@ export function MoviesSuggestionsCreateLibrary({moviesList}: Props) {
 
   return (
     <Box
+      testID="container-add"
       flexDirection="row"
       position="absolute"
       zIndex={10}

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Animated, {FadeInLeft} from 'react-native-reanimated';
 
-import {Alert, Box, Text} from '@components';
+import {Box, Text} from '@components';
 
 type Props = {
   children: React.ReactNode;
@@ -17,7 +17,6 @@ export function WrapperAuthScreen({children, title}: Props) {
       alignItems="center"
       justifyContent="center"
       padding={'m'}>
-      <Alert />
       <Box
         flex={1}
         width="100%"

@@ -11,6 +11,7 @@
       "@components/molecules": ["src/components/Molecules"],
       "@api": ["src/repositories/api"],
       "@domain": ["src/repositories/domain"],
+      "@infra": ["src/repositories/infra"],
       "@database": ["src/repositories/database"],
       "@constants": ["src/helpers/constants"],
       "@utils": ["src/helpers/utils"],

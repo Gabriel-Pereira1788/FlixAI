@@ -1,16 +1,16 @@
 import {QUERY_KEYS} from '@constants';
 import {AuthService} from '@domain';
-import {useQuery} from '@tanstack/react-query';
+import {useFetch} from '@infra';
 
 export function useUser() {
-  const {data, isLoading, error} = useQuery(
-    [QUERY_KEYS.user],
-    AuthService.persistUser,
-    {
+  const {data, isLoading, error} = useFetch({
+    queryKey: [QUERY_KEYS.user],
+    queryFn: AuthService.persistUser,
+    options: {
       refetchOnMount: false,
       refetchOnWindowFocus: false,
     },
-  );
+  });
 
   return {
     user: data,

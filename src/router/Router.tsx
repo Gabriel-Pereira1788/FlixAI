@@ -10,11 +10,11 @@ import {
   SignUp,
   SignIn,
   MyAccount,
+  Movies,
+  ListMovies,
+  SelectMovies,
 } from '@screens';
 
-import ListMovies from '../screens/private/ListMovies/View';
-import Movies from '../screens/private/Movies/View';
-import SelectMovies from '../screens/private/SelectMovies/View';
 import SingleMovie from '../screens/private/SingleMovie/View';
 import {useUser} from '../store/server/useUser';
 

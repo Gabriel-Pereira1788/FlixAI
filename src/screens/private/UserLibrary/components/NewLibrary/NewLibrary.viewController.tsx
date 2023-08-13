@@ -2,14 +2,29 @@ import React from 'react';
 
 import {useMoviesByGenre} from '@store';
 
+import {modalRef} from '@components';
+
 import {NewLibrary} from './NewLibrary.view';
 import {useNewLibraryViewModel} from './NewLibrary.viewModel';
 
-type Props = {};
+type Props = {
+  redirectToSelectMovies: () => void;
+};
 
-export function NewLibraryViewController({}: Props) {
+export function NewLibraryViewController({redirectToSelectMovies}: Props) {
   const viewModel = useNewLibraryViewModel({});
   const {data} = useMoviesByGenre('popular');
 
-  return <NewLibrary viewModel={viewModel} popularMovies={data ?? []} />;
+  function handleRedirectScreen() {
+    modalRef.current?.hide();
+    redirectToSelectMovies();
+  }
+
+  return (
+    <NewLibrary
+      viewModel={viewModel}
+      handleRedirectScreen={handleRedirectScreen}
+      popularMovies={data ?? []}
+    />
+  );
 }

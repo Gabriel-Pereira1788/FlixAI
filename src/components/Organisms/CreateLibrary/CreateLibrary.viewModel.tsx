@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {usePlaylist} from '@database';
+import {useCollection} from '@database';
 import {useToastActions} from '@store';
 
 import {modalRef} from '@components';
@@ -11,7 +11,7 @@ export function useCreateLibraryViewModel(
   moviesListToAdd: CreateLibraryProps['moviesListToAdd'],
 ) {
   const [titleLibrary, setTitleLibrary] = React.useState('');
-  const {create} = usePlaylist();
+  const {create} = useCollection();
   const toast = useToastActions();
 
   function handleChangeTitleLibrary(text: string) {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Playlist} from '@database';
+import {Collection} from '@database';
 import {useDatabase} from '@infra';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useToastActions} from '@store';
@@ -10,7 +10,7 @@ import {modalRef} from '@components';
 import {ListMoviesConfirmDelete} from './components/ListMoviesConfirmDelete';
 
 export const useListMoviesViewModel = (
-  library: (Playlist & Realm.Object<Playlist, never>) | null,
+  library: (Collection & Realm.Object<Collection, never>) | null,
 ) => {
   const database = useDatabase();
   const toast = useToastActions();

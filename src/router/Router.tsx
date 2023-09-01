@@ -13,9 +13,9 @@ import {
   Movies,
   ListMovies,
   SelectMovies,
+  SingleMovie,
 } from '@screens';
 
-import SingleMovie from '../screens/private/SingleMovie/View';
 import {useUser} from '../store/server/useUser';
 
 import {RootParamListI} from './navigation';

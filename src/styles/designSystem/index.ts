@@ -10,6 +10,7 @@ import {TextVariants} from './text_variants';
 
 const theme = createTheme({
   colors: {
+    green: palette.greenMain,
     orange: palette.orangeMain,
     background: palette.backgroundMain,
     primary: palette.primary,
@@ -20,6 +21,7 @@ const theme = createTheme({
     redTextColor: palette.textColor.red,
     grayTextColor: palette.textColor.gray,
     grayDarkTextColor: palette.textColor.grayDark,
+    grayDarkTextColor2: palette.textColor.grayDark2,
     grayLightTextColor: palette.textColor.grayLight,
     borderMainColor: palette.borderColor.main,
     borderGray: palette.borderColor.gray,

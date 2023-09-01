@@ -1,6 +1,6 @@
 import {Realm} from '@realm/react';
 
-import {PlaylistImpl} from '../src/repositories/database/useCases/Playlist/model';
+import {CollectionImpl} from '../src/repositories/database/useCases/Collection/model';
 
 import {movies} from './movies';
 export const allPlaylistMock: any = [
@@ -39,4 +39,4 @@ export const mockImpl = {
   filtered,
 };
 
-export const mockUseCasePlaylist: PlaylistImpl = () => mockImpl;
+export const mockUseCasePlaylist: CollectionImpl = () => mockImpl;

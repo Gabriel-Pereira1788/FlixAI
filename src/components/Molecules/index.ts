@@ -6,3 +6,4 @@ export * from './Toast/Toast.view';
 export * from './CardMovie/View';
 export * from './Loading/View';
 export * from './ProgressiveImage/View';
+export * from './SelectItem/SelectItem.view';

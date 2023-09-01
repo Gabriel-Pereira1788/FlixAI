@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {usePlaylist} from '@database';
+import {useCollection} from '@database';
 import {LibraryDTO} from '@models';
 import {useIsFocused} from '@react-navigation/native';
 import {useAllMovies, useSelectedMoviesActions} from '@store';
@@ -12,7 +12,7 @@ import {HookProps} from './types';
 export const useSelectMoviesViewModel = ({navigation}: HookProps) => {
   const {cleanUp} = useSelectedMoviesActions();
   const {data, isLoading, error} = useAllMovies();
-  const libraryQuery = usePlaylist();
+  const libraryQuery = useCollection();
 
   const [searchText, setSearchText] = React.useState('');
   const focused = useIsFocused();

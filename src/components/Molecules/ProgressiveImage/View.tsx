@@ -1,12 +1,12 @@
 import React from 'react';
-import {ImageProps, StyleSheet} from 'react-native';
+import {ImageProps, StyleSheet, ViewStyle} from 'react-native';
 
 import Animated, {AnimateProps} from 'react-native-reanimated';
 
 import {IBoxProps, Box} from '@components';
 
 interface ProgressiveImageProps extends AnimateProps<ImageProps> {
-  containerProps?: IBoxProps;
+  containerProps?: IBoxProps & {style?: ViewStyle};
   thumbnailSource: string;
   children?: React.ReactNode;
 }

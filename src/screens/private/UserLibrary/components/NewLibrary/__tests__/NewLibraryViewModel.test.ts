@@ -1,4 +1,4 @@
-import {usePlaylist} from '@database';
+import {useCollection} from '@database';
 import {renderHook} from '@testing-library/react-hooks';
 import {act} from '@testing-library/react-native';
 
@@ -17,7 +17,7 @@ const removeToSelected = jest.fn();
 
 const selectedMovies = movies.slice(0, 2);
 
-const mockPlaylist = usePlaylist as jest.MockedFunction<typeof usePlaylist>;
+const mockPlaylist = useCollection as jest.MockedFunction<typeof useCollection>;
 
 const selectMoviesActions = () => ({
   addToSelected,

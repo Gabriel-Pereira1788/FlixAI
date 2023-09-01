@@ -46,7 +46,9 @@ export function MovieBox({dataMovie, w, h, children, ...rest}: MovieBoxProps) {
             {children && children}
           </ProgressiveImage>
 
-          <Text variant="movieTitle">{title}</Text>
+          <Text variant="movieTitle" textAlign="center">
+            {title}
+          </Text>
         </Box>
       </TouchableOpacity>
     </Animated.View>

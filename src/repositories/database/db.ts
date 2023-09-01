@@ -1,11 +1,11 @@
 import {createRealmContext} from '@realm/react';
 
+import {Collection} from './schemas/CollectionSchema';
 import {KeywordsGpt} from './schemas/KeywordsGpt';
 import {Movies} from './schemas/MoviesSchema';
-import {Playlist} from './schemas/PlaylistSchema';
 
 export const realmConfig: Realm.Configuration = {
-  schema: [Playlist, Movies, KeywordsGpt],
+  schema: [Collection, Movies, KeywordsGpt],
   deleteRealmIfMigrationNeeded: true,
 };
 // Create a realm context

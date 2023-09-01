@@ -5,6 +5,7 @@ export const palette = {
   active: '#ffffffef',
   transparent: 'rgba(0,0,0,0.5)',
   bottomTabTranparent: 'rgba(0,0,0,0.8)',
+  greenMain: '#bbf7d0',
   textColor: {
     primary: '#ddd',
     secondary: '#ffffffc3',
@@ -13,6 +14,7 @@ export const palette = {
     grayLight: '#a3a1a1',
     red: '#f87171',
     grayDark: '#8e8888c3',
+    grayDark2: '#ffffff8a',
   },
   borderColor: {
     main: '#dddddd3d',

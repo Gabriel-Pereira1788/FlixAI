@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Playlist} from '@database';
+import {Collection} from '@database';
 import {useNavigation} from '@react-navigation/native';
 import {Realm} from '@realm/react';
 import {Results} from 'realm';
@@ -10,7 +10,7 @@ import {HookProps} from './types';
 export const useUserLibrary = ({selectPlaylist, dataPlaylists}: HookProps) => {
   const navigation = useNavigation();
 
-  const [allPlaylists, setAllPlaylists] = React.useState<Results<Playlist>>();
+  const [allPlaylists, setAllPlaylists] = React.useState<Results<Collection>>();
 
   function fetchPlaylists(text?: string) {
     if (text && text.trim() !== '') {

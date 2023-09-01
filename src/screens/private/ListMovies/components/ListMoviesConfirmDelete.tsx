@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {Playlist} from '@database';
+import {Collection} from '@database';
 
 import {Box, Button, Text} from '@components';
 
 interface DeleteLibraryProps {
-  library: (Playlist & Realm.Object<Playlist, never>) | null;
+  library: (Collection & Realm.Object<Collection, never>) | null;
   onConfirmation(): void;
 }
 

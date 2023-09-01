@@ -1,4 +1,4 @@
-import {usePlaylist} from '@database';
+import {useCollection} from '@database';
 import {useSelectedMoviesActions, useSelectedMoviesStore} from '@store';
 
 import {HookProps} from './types';
@@ -6,7 +6,7 @@ import {HookProps} from './types';
 export const useNewLibraryViewModel = ({}: HookProps) => {
   const {cleanUp} = useSelectedMoviesActions();
   const selectedMovies = useSelectedMoviesStore();
-  const {create} = usePlaylist();
+  const {create} = useCollection();
 
   async function onCreateLibrary(titleLibrary: string) {
     if (titleLibrary.trim().length === 0) {

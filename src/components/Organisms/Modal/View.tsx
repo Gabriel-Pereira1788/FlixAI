@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal as ModalNative, Pressable} from 'react-native';
+import {Modal as ModalNative, TouchableWithoutFeedback} from 'react-native';
 
 import {Box, RenderIF} from '@components';
 
@@ -23,7 +23,7 @@ export function Modal({useModal = _useModal, children}: ModalProps) {
       onRequestClose={hide}
       visible={configModal.isOpen}
       animationType={configModal.animationPreset}>
-      <Pressable style={{flex: 1}} onPress={hide}>
+      <TouchableWithoutFeedback onPress={hide}>
         <Box
           flex={1}
           backgroundColor="transparent"
@@ -34,7 +34,7 @@ export function Modal({useModal = _useModal, children}: ModalProps) {
             {children && children}
           </RenderIF>
         </Box>
-      </Pressable>
+      </TouchableWithoutFeedback>
     </ModalNative>
   );
 }

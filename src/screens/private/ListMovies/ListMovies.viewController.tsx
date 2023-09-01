@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Playlist, useObject} from '@database';
+import {Collection, useObject} from '@database';
 import {usePlaylistStore} from '@store';
 
 import ListMovies from './ListMovies.view';
@@ -13,7 +13,7 @@ export function ListMoviesViewController({}: Props) {
     state: {idPlaylist},
   } = usePlaylistStore();
 
-  const library = useObject(Playlist, idPlaylist!);
+  const library = useObject(Collection, idPlaylist!);
 
   const viewModel = useListMoviesViewModel(library);
   return (

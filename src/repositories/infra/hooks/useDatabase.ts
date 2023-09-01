@@ -19,6 +19,15 @@ export function useDatabase() {
     });
   }
 
+  function edit<QueryData extends Pick<OmittedRealmTypes<QueryData>, never>>(
+    queryKey: string,
+    data: QueryData,
+  ) {
+    realm.write(() => {
+      realm.create<QueryData>(queryKey, data, Realm.UpdateMode.Modified);
+    });
+  }
+
   function deleteItem(object: any) {
     realm.write(() => {
       realm.delete(object);
@@ -27,6 +36,7 @@ export function useDatabase() {
 
   return {
     create,
+    edit,
     deleteItem,
   };
 }

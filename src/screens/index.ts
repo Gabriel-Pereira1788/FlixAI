@@ -6,3 +6,4 @@ export {MyAccountViewController as MyAccount} from './private/MyAccount/MyAccoun
 export {MoviesViewController as Movies} from './private/Movies/Movies.viewController';
 export {ListMoviesViewController as ListMovies} from './private/ListMovies/ListMovies.viewController';
 export {SelectMoviesViewController as SelectMovies} from './private/SelectMovies/SelectMovies.viewController';
+export {SingleMovieViewController as SingleMovie} from './private/SingleMovie/SingleMovie.viewController';

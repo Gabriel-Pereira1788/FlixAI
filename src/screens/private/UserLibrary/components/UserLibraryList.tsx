@@ -2,19 +2,19 @@ import React from 'react';
 import {FlatList, ListRenderItemInfo, ViewStyle} from 'react-native';
 
 import {SIZES} from '@constants';
-import {Playlist} from '@database';
+import {Collection} from '@database';
 import {BSON, Results} from 'realm';
 
 import {Box, StackMovies} from '@components';
 
 type Props = {
-  allPlaylists: Results<Playlist> | undefined;
+  allPlaylists: Results<Collection> | undefined;
   selectLibrary: (id: BSON.ObjectId) => void;
 };
 
 export function UserLibraryList({allPlaylists, selectLibrary}: Props) {
   const renderItem = React.useCallback(
-    ({item}: ListRenderItemInfo<Playlist>) => {
+    ({item}: ListRenderItemInfo<Collection>) => {
       return (
         <StackMovies
           title={item.title}

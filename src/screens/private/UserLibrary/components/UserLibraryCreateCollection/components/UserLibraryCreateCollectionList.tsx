@@ -4,13 +4,13 @@ import {FlatList, ListRenderItemInfo, ViewStyle} from 'react-native';
 import {Movie} from '@models';
 import {useSelectedMoviesActions, useSelectedMoviesStore} from '@store';
 
-import {NewLibraryCardMovie} from './NewLibraryCardMovie';
+import {UserLibraryCreateCollectionCard} from './UserLibraryCreateCollectionCard';
 
 type Props = {
   movies: Movie[];
 };
 
-export function NewLibraryListMovies({movies}: Props) {
+export function UserLibraryCreateCollectionList({movies}: Props) {
   const selectedMovies = useSelectedMoviesStore();
 
   const {removeToSelected, addToSelected} = useSelectedMoviesActions();
@@ -23,7 +23,7 @@ export function NewLibraryListMovies({movies}: Props) {
         isSelected ? removeToSelected(item) : addToSelected(item);
       }
       return (
-        <NewLibraryCardMovie
+        <UserLibraryCreateCollectionCard
           isSelected={!!isSelected}
           toggleSelected={toggleSelected}
           {...item}
@@ -35,6 +35,7 @@ export function NewLibraryListMovies({movies}: Props) {
   );
   return (
     <FlatList
+      horizontal={false}
       testID="list-movies"
       initialNumToRender={4}
       maxToRenderPerBatch={4}

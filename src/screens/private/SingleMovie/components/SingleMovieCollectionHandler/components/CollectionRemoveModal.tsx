@@ -10,7 +10,7 @@ interface RemoveModalProps {
   collectionsAvailable: PlaylistResults;
   movie: Movie;
   playlist: Collection[];
-  onRemove: () => void; //TODO:Implementar
+  onRemove: () => void;
 }
 
 export function CollectionRemoveModal({

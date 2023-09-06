@@ -12,6 +12,7 @@ export const CardVariants = {
   },
   cardMovie: {
     width: '100%',
+    maxWidth: '100%',
     flexDirection: 'row',
     shadowOffset: {
       width: 1,

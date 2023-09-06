@@ -4,12 +4,12 @@ import {movies} from '@mocks';
 import {render} from '@testing-library/react-native';
 
 import JestProviders from '../../../../../../../providers/JestProviders';
-import {NewLibraryListMovies} from '../NewLibraryListMovies';
-describe('NewLibraryListMovies', () => {
+import {UserLibraryCreateCollectionList} from '../UserLibraryCreateCollectionList';
+describe('UserCreateCollectionList', () => {
   it('render component correctly', () => {
     const {getAllByTestId} = render(
       <JestProviders>
-        <NewLibraryListMovies movies={movies} />
+        <UserLibraryCreateCollectionList movies={movies} />
       </JestProviders>,
     );
 

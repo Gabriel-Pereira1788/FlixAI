@@ -18,12 +18,13 @@ export class AssistantSuggestionApi {
     try {
       return await this.trySendMessage(BODY);
     } catch (error) {
-      console.log('error-get', error);
+      console.log('error-get', error.message);
       return null;
     }
   }
 
   private async trySendMessage(body: BodyDTO) {
+    console.log('entrou aqui');
     const {data} = await axios({
       url: 'https://api.openai.com/v1/chat/completions',
       method: 'POST',

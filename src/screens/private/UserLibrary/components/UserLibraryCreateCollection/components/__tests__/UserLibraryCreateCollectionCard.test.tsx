@@ -4,14 +4,14 @@ import {movies} from '@mocks';
 import {fireEvent, render} from '@testing-library/react-native';
 
 import JestProviders from '../../../../../../../providers/JestProviders';
-import {NewLibraryCardMovie} from '../NewLibraryCardMovie';
+import {UserLibraryCreateCollectionCard} from '../UserLibraryCreateCollectionCard';
 
 const toggleSelectedMock = jest.fn();
-describe('NewLibraryCardMovie', () => {
+describe('UserLibraryCreateCollectionCard', () => {
   it('render component correctly', () => {
     const {getByTestId} = render(
       <JestProviders>
-        <NewLibraryCardMovie
+        <UserLibraryCreateCollectionCard
           isSelected={true}
           toggleSelected={toggleSelectedMock}
           {...movies[0]}
@@ -25,7 +25,7 @@ describe('NewLibraryCardMovie', () => {
   it('render component if unselected', () => {
     const {queryByTestId} = render(
       <JestProviders>
-        <NewLibraryCardMovie
+        <UserLibraryCreateCollectionCard
           isSelected={false}
           toggleSelected={toggleSelectedMock}
           {...movies[0]}
@@ -39,7 +39,7 @@ describe('NewLibraryCardMovie', () => {
   it('click component correctly', () => {
     const {getByTestId} = render(
       <JestProviders>
-        <NewLibraryCardMovie
+        <UserLibraryCreateCollectionCard
           isSelected={true}
           toggleSelected={toggleSelectedMock}
           {...movies[0]}

@@ -7,7 +7,7 @@ import {Plus} from 'phosphor-react-native';
 import {Box, SearchHeader, modalRef} from '@components';
 import {useAppSafeArea} from '@hooks';
 
-import {NewLibrary} from './NewLibrary';
+import {UserLibraryCreateCollection} from './UserLibraryCreateCollection';
 
 type Props = {
   onSearch: (text: string) => void;
@@ -23,7 +23,9 @@ export function UserLibraryHeader({onSearch}: Props) {
 
   function openModal() {
     modalRef.current?.show(
-      <NewLibrary redirectToSelectMovies={redirectToSelectMovies} />,
+      <UserLibraryCreateCollection
+        redirectToSelectMovies={redirectToSelectMovies}
+      />,
     );
   }
 

@@ -1,16 +1,15 @@
 import React from 'react';
 
-import * as S from 'native-base';
 import {Check} from 'phosphor-react-native';
 
-import {CardMovie, CardMoviesProps} from '@components';
+import {Box, CardMovie, CardMoviesProps} from '@components';
 
 interface Props extends CardMoviesProps {
   isSelected: boolean;
   toggleSelected(): void;
 }
 
-export function NewLibraryCardMovie({
+export function UserLibraryCreateCollectionCard({
   isSelected,
   toggleSelected,
   ...rest
@@ -22,18 +21,20 @@ export function NewLibraryCardMovie({
       onPress={toggleSelected}
       stackStyle={{
         position: 'relative',
+        overflow: 'hidden',
       }}>
       {isSelected && (
-        <S.Circle
+        <Box
           testID="icon-selected"
           zIndex={20}
-          p={2}
-          backgroundColor="orange.500"
+          padding={'s'}
+          borderRadius="full"
+          backgroundColor="orange"
           position="absolute"
           top={1}
           right={1}>
-          <Check size={10} color="#fff" />
-        </S.Circle>
+          <Check size={15} color="#fff" />
+        </Box>
       )}
     </CardMovie>
   );

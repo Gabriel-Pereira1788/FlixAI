@@ -83,7 +83,7 @@ export function SearchHeader({
           key={title}
           style={{width: '85%'}}
           entering={FadeInLeft.delay(150).duration(200)}>
-          <Text variant="header" {...titleProps}>
+          <Text preset="headingMedium" variant="header" {...titleProps}>
             {title}
           </Text>
         </Animated.View>

@@ -22,7 +22,7 @@ export function Category({
       marginHorizontal={'s'}
       shadowOffset={{width: 2, height: 2}}
       shadowColor="black"
-      paddingHorizontal={'s'}
+      paddingHorizontal={'m'}
       paddingVertical={'xs'}
       backgroundColor={currentCategory === identify ? 'activeColor' : 'primary'}
       borderRadius="m"

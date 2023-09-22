@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {IZStackProps} from 'native-base';
-
-import {BottomTab, SharedLayout} from '@components';
+import {IBoxProps, SharedLayout} from '@components';
 
 import {UserLibraryHeader, UserLibraryList} from './components';
 import {UserLibraryViewModel} from './types';
@@ -17,7 +15,6 @@ export default function UserLibraryView({viewModel}: Props) {
   return (
     <SharedLayout
       HeaderComponent={<UserLibraryHeader onSearch={fetchPlaylists} />}
-      BottomComponent={<BottomTab currentPath="userLibrary" />}
       containerStyle={$sharedContainerStyle}>
       <UserLibraryList
         allPlaylists={allPlaylists}
@@ -27,7 +24,7 @@ export default function UserLibraryView({viewModel}: Props) {
   );
 }
 
-const $sharedContainerStyle: IZStackProps = {
+const $sharedContainerStyle: IBoxProps = {
   justifyContent: 'flex-start',
   alignItems: 'center',
 };

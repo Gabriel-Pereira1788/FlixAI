@@ -1,16 +1,17 @@
 import React from 'react';
 
 import {fireEvent, render} from '@testing-library/react-native';
-import {Box, Text} from 'native-base';
 
 import {useVisible} from '../../../../helpers/hooks/useVisible';
 import JestProviders from '../../../../providers/JestProviders';
-import SearchHeader from '../View';
+import {Box} from '../../../Atoms/Box/View';
+import {Text} from '../../../Atoms/Text/View';
+import {SearchHeader} from '../View';
 
 const useVisibleMock = useVisible as jest.Mock<ReturnType<typeof useVisible>>;
 const toggleVisibleMock = jest.fn();
 const setVisibleMock = jest.fn();
-jest.mock('../../../helpers/hooks/useVisible');
+jest.mock('../../../../helpers/hooks/useVisible');
 
 describe('SearchHeader', () => {
   beforeEach(() => {

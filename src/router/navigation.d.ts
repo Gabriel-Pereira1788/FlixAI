@@ -1,5 +1,7 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
+import {AppTabParamList} from './AppTabNavigator';
+
 export type RootParamListI = {
   SplashScreen: undefined;
   SignIn: undefined;
@@ -7,7 +9,7 @@ export type RootParamListI = {
   Home:
     | undefined
     | {
-        screen: 'sugestions' | 'userLibrary' | 'movies' | 'myAccount';
+        screen: keyof AppTabParamList;
       };
   ListMovies: undefined;
   SingleMovie: {

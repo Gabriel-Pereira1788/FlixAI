@@ -9,7 +9,7 @@ interface Props extends NavigationProps<'SignIn'> {}
 
 export function SignInViewController({navigation}: Props) {
   function redirectToHome() {
-    navigation.navigate('Home', {screen: 'sugestions'});
+    navigation.navigate('Home', {screen: 'SuggestionsScreen'});
   }
 
   function redirectToSignUp() {

@@ -1,3 +1,5 @@
+import {ViewStyle} from 'react-native';
+
 import {createTheme} from '@shopify/restyle';
 
 import {AlertVariants} from './alert_variants';
@@ -7,6 +9,17 @@ import {palette} from './colors_variants';
 import {ImageVariants} from './image_variants';
 import {InputVariants} from './input_variants';
 import {TextVariants} from './text_variants';
+
+export const $shadowProps: ViewStyle = {
+  elevation: 10,
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: -3,
+  },
+  shadowOpacity: 0.05,
+  shadowRadius: 12,
+};
 
 const theme = createTheme({
   colors: {

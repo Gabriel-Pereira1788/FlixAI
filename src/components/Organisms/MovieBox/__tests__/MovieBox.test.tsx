@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {render} from '@testing-library/react-native';
-import {Text} from 'native-base';
 
 import {
   TMBD_BACKDROP_PREVIEW,
@@ -9,7 +8,8 @@ import {
 } from '../../../../helpers/constants/tmdb';
 import {Movie} from '../../../../models/Movie';
 import JestProviders from '../../../../providers/JestProviders';
-import MovieBox from '../View';
+import {Text} from '../../../Atoms/Text/View';
+import {MovieBox} from '../View';
 
 const dataMovie: Movie = {
   backdrop_path: 'www.example.com',

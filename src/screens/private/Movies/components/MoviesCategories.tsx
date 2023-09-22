@@ -61,4 +61,5 @@ const $contentStyle: ViewStyle = {
   height: 100,
   alignItems: 'flex-start',
   justifyContent: 'center',
+  paddingHorizontal: 10,
 };

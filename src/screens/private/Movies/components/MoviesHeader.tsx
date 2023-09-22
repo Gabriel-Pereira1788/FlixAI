@@ -14,7 +14,7 @@ type Props = {
 export function MoviesHeader({filterText, onFilter}: Props) {
   //TODO: use app safe area for make the header correctly
   return (
-    <Box px="xl" my="l">
+    <Box px="l" my="l" width="100%">
       <WelcomeUser />
       <SearchBar
         testID="input-search"
@@ -36,17 +36,16 @@ function WelcomeUser() {
   return (
     <Box
       flexDirection="row"
-      width="100%"
       pt="sm"
       pb="one"
       px="m"
       alignItems="center"
       justifyContent="space-between">
       <Box gap="one">
-        <Text color="grayDarkTextColor" fontSize={10}>
+        <Text preset="headingMedium" color="grayDarkTextColor" fontSize={10}>
           Olá {user && user.name}
         </Text>
-        <Text color="secondaryTextColor" fontWeight={'500'} fontSize={20}>
+        <Text preset="paragraphMedium" color="secondaryTextColor">
           Relaxe e escolha um filme...
         </Text>
       </Box>

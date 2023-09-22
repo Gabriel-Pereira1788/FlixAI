@@ -6,7 +6,6 @@ import {Movie} from '@models';
 import {useNavigation} from '@react-navigation/native';
 
 import {
-  BottomTab,
   SharedLayout,
   RenderIF,
   FilteredMovies,
@@ -64,7 +63,6 @@ export default function Movies({viewModel}: MoviesProps) {
       isLoadingData={isLoading}
       typeLoading="simple"
       error={error}
-      BottomComponent={<BottomTab currentPath="movies" />}
       HeaderComponent={
         <MoviesHeader filterText={filter.text ?? ''} onFilter={handleFilter} />
       }>

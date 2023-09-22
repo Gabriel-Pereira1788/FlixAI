@@ -10,7 +10,7 @@ import {useToastActions, useToastStore} from '@store';
 import {Theme} from '@styles';
 import Animated, {FadeInUp} from 'react-native-reanimated';
 
-import {RenderIF, Box, Text} from '@components';
+import {Box, RenderIF, Text} from '../../Atoms';
 
 type Props = {
   containerStyle?: StyleProp<ViewStyle>;

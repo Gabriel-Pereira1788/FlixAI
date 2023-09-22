@@ -1,12 +1,12 @@
 import React from 'react';
 
 import {render} from '@testing-library/react-native';
-import {Text} from 'native-base';
 
 import {TMBD_BACKDROP_URL} from '../../../../helpers/constants/tmdb';
 import {makeVoteAverage} from '../../../../helpers/utils/makeVoteAverage';
 import {Movie} from '../../../../models/Movie';
 import JestProviders from '../../../../providers/JestProviders';
+import {Text} from '../../../Atoms/Text/View';
 import CardMovie from '../View';
 
 const dataMovie: Movie = {

@@ -19,6 +19,7 @@ export function SearchBar({onSearch, Icon, ...rest}: SearchBarProps) {
   }
   return (
     <Input
+      maxHeight={50}
       placeholder="Pesquise aqui..."
       placeholderTextColor="#ddd"
       variant="search"

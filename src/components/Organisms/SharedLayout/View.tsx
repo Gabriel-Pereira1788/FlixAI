@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {SIZES, ERROR_DEFAULT} from '@constants';
-import * as S from 'native-base';
 
-import {Loading, RenderIF} from '@components';
+import {Box, IBoxProps, Loading, RenderIF} from '@components';
 
 import ErrorMessage from '../ErrorMessage/View';
 
@@ -12,7 +11,7 @@ type Props = {
   error?: unknown;
   HeaderComponent?: JSX.Element;
   BottomComponent?: JSX.Element;
-  containerStyle?: S.IZStackProps;
+  containerStyle?: IBoxProps;
   isLoadingData?: boolean;
   typeLoading?: 'IA' | 'simple';
 };
@@ -27,15 +26,15 @@ export function SharedLayout({
   typeLoading = 'IA',
 }: Props) {
   return (
-    <S.VStack
+    <Box
       testID="containerStack"
-      w="100%"
+      width="100%"
       flex={1}
       alignItems="center"
       justifyContent="flex-start"
-      py={2}
-      backgroundColor="background.main"
-      space={2}
+      py={'xs'}
+      backgroundColor="background"
+      gap={'m'}
       {...containerStyle}>
       <RenderIF
         condition={!isLoadingData && !error}
@@ -43,7 +42,7 @@ export function SharedLayout({
           error ? (
             <ErrorMessage message={ERROR_DEFAULT} />
           ) : (
-            <S.VStack
+            <Box
               testID="loading"
               flex={1}
               alignItems="center"
@@ -55,13 +54,13 @@ export function SharedLayout({
                   height: SIZES.width - 125,
                 }}
               />
-            </S.VStack>
+            </Box>
           )
         }>
         {HeaderComponent && HeaderComponent}
         {children}
       </RenderIF>
       {BottomComponent && BottomComponent}
-    </S.VStack>
+    </Box>
   );
 }

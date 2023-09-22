@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Box, SearchHeader} from '@components';
+import {useAppSafeArea} from '@hooks';
 
 type Props = {
   title: string;
@@ -8,8 +9,9 @@ type Props = {
 };
 
 export function MoviesSuggestionsHeader({title, listenEventSearch}: Props) {
+  const {top} = useAppSafeArea();
   return (
-    <Box paddingHorizontal={'xl'} marginVertical={'xl'}>
+    <Box paddingHorizontal={'xl'} style={{marginTop: top}}>
       <SearchHeader listenEventSearch={listenEventSearch} title={title} />
     </Box>
   );

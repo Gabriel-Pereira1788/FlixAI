@@ -1,7 +1,8 @@
 import React from 'react';
 
-import * as S from 'native-base';
 import {SafeAreaView} from 'react-native-safe-area-context';
+
+import {Box} from '@components';
 
 import {MyAccountForm} from './components/MyAccountForm';
 import {MyAccountImageProfile} from './components/MyAccountImageProfile';
@@ -23,16 +24,16 @@ export default function MyAccount({viewModel}: MyAccountProps) {
   } = viewModel;
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#0f0f16'}}>
-      <S.VStack
+      <Box
         flex={1}
-        backgroundColor="background.main"
+        backgroundColor="background"
         alignItems="center"
         justifyContent="center">
-        <S.VStack
-          w="100%"
-          p={3}
+        <Box
+          width="100%"
+          p={'m'}
           flex={1}
-          space={3}
+          gap={'m'}
           alignItems="center"
           justifyContent="center">
           <MyAccountImageProfile
@@ -47,8 +48,8 @@ export default function MyAccount({viewModel}: MyAccountProps) {
             submit={submit}
           />
           <MyAccountSignOut handleSignOut={handleSignOut} />
-        </S.VStack>
-      </S.VStack>
+        </Box>
+      </Box>
     </SafeAreaView>
   );
 }

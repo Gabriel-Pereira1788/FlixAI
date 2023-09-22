@@ -15,7 +15,7 @@ export function SingleMovieInformation({movie}: Props) {
   const vote = makeVoteAverage(vote_count, vote_average);
   return (
     <Box py={'sm'} width="100%" overflow="hidden">
-      <Box padding={'s'} gap={'s'}>
+      <Box paddingHorizontal="m" gap={'s'}>
         <Box
           flexDirection="row"
           alignItems="center"
@@ -32,6 +32,7 @@ export function SingleMovieInformation({movie}: Props) {
           alignItems="center"
           justifyContent="space-between">
           <Text
+            preset="headingSmall"
             paddingTop="l"
             lineHeight={30}
             fontWeight={'500'}

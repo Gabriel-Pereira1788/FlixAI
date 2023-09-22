@@ -70,7 +70,7 @@ export function SingleMovieCollectionHandler({
       style={$boxStyle}>
       <TouchableOpacity onPress={openModal}>
         <Heart
-          size={40}
+          size={30}
           color="#fff"
           weight={belongsToCollection ? 'fill' : 'bold'}
         />

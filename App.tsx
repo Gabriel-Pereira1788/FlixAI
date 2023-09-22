@@ -5,23 +5,30 @@
  * @format
  */
 
-import React from 'react';
-import {StatusBar} from 'react-native';
+import React, {useEffect} from 'react';
+import {StatusBar, View} from 'react-native';
+
+import SplashScreen from 'react-native-splash-screen';
 
 import {Toast, Modal} from '@components';
 
 import Providers from './src/providers';
 import Router from './src/router/Router';
-import {MAIN} from './src/styles/theme';
+import {palette} from './src/styles/designSystem/colors_variants';
 
 function App(): JSX.Element {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <Providers>
       <StatusBar
         barStyle={'light-content'}
-        backgroundColor={MAIN.colors.background.main}
+        backgroundColor={palette.backgroundMain}
       />
-      <Router />
+      <View style={{flex: 1, backgroundColor: palette.backgroundMain}}>
+        <Router />
+      </View>
       <Modal />
       <Toast />
     </Providers>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {RenderIF, BottomTab, SharedLayout} from '@components';
+import {RenderIF, SharedLayout} from '@components';
 
 import {
   MoviesSuggestionsCreateLibrary,
@@ -26,8 +26,7 @@ export function MoviesSuggestionView({viewModel, username}: Props) {
           listenEventSearch={listenEventSearch}
           title={message || `Olá ${username} oque precisa para hoje?`}
         />
-      }
-      BottomComponent={<BottomTab currentPath="sugestions" />}>
+      }>
       <RenderIF condition={!isLoading && !!moviesList && moviesList.length > 0}>
         <MoviesSuggestionsList list={moviesList} />
         <MoviesSuggestionsCreateLibrary moviesList={moviesList} />

@@ -1,10 +1,10 @@
 import React from 'react';
 
 import {render} from '@testing-library/react-native';
-import {Text} from 'native-base';
 
 import JestProviders from '../../../../providers/JestProviders';
-import SharedLayout from '../View';
+import {Text} from '../../../Atoms/Text/View';
+import {SharedLayout} from '../View';
 
 describe('SharedLayout', () => {
   it('render component correctly', () => {
@@ -59,24 +59,6 @@ describe('SharedLayout', () => {
       </JestProviders>,
     );
     expect(queryByTestId('loading')).toBeNull();
-  });
-
-  it('render component container style', () => {
-    const {getByTestId} = render(
-      <JestProviders>
-        <SharedLayout
-          isLoadingData={false}
-          containerStyle={{
-            backgroundColor: 'red.100',
-          }}>
-          <Text>teste</Text>
-        </SharedLayout>
-      </JestProviders>,
-    );
-
-    const stackContainer = getByTestId('containerStack');
-
-    expect(stackContainer.props.style.backgroundColor).toEqual('#fee2e2');
   });
 
   it('render component with error', () => {

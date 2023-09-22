@@ -1,9 +1,9 @@
 import React from 'react';
 
 import {render} from '@testing-library/react-native';
-import {Text} from 'native-base';
 
 import JestProviders from '../../../../providers/JestProviders';
+import {Text} from '../../../Atoms/Text/View';
 import ErrorMessage from '../View';
 
 describe('ErrorMessage', () => {

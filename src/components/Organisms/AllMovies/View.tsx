@@ -18,11 +18,10 @@ export const AllMovies = React.memo(
         <Box key={index}>
           <Animated.View entering={FadeInDown.delay(150).duration(150)}>
             <Text
-              variant="movieTitle"
-              fontWeight="600"
+              preset="headingSmall"
               color="gray"
               fontSize={18.5}
-              marginVertical={'s'}>
+              marginLeft={'m'}>
               {item.title}
             </Text>
           </Animated.View>

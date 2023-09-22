@@ -13,7 +13,7 @@ export function SignUpViewController({navigation}: Props) {
   });
 
   function redirectToHome() {
-    navigation.navigate('Home', {screen: 'sugestions'});
+    navigation.navigate('Home', {screen: 'SuggestionsScreen'});
   }
   return <SignUp viewModel={viewModel} />;
 }

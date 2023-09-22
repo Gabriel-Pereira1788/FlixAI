@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {act, renderHook} from '@testing-library/react-hooks';
-import {Text} from 'native-base';
 
+import {Text} from '../../../Atoms/Text/View';
 import {useModal} from '../useModal';
 import {modalRef} from '../View';
 

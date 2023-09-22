@@ -1,11 +1,12 @@
 import React from 'react';
 
 import {fireEvent, render} from '@testing-library/react-native';
-import * as S from 'native-base';
 
 import JestProviders from '../../../../providers/JestProviders';
+import {Button} from '../../../Atoms/Button/View';
+import {Text} from '../../../Atoms/Text/View';
 import {ModalConfig, ModalViewModel} from '../model';
-import Modal from '../View';
+import {Modal} from '../View';
 
 const hideMock = jest.fn();
 
@@ -24,9 +25,7 @@ describe('Modal', () => {
     const {getByText} = render(
       <JestProviders>
         <Modal useModal={_useModalMock}>
-          <S.Modal.Content>
-            <S.Text>Teste</S.Text>
-          </S.Modal.Content>
+          <Text>Teste</Text>
         </Modal>
       </JestProviders>,
     );
@@ -38,10 +37,8 @@ describe('Modal', () => {
     const {getByText} = render(
       <JestProviders>
         <Modal useModal={_useModalMock}>
-          <S.Modal.Content>
-            <S.Text>Teste</S.Text>
-            <S.Button onPress={hideMock}>Closed</S.Button>
-          </S.Modal.Content>
+          <Text>Teste</Text>
+          <Button onPress={hideMock}>Closed</Button>
         </Modal>
       </JestProviders>,
     );
@@ -63,9 +60,7 @@ describe('Modal', () => {
       const {queryByText} = render(
         <JestProviders>
           <Modal useModal={_useModalInternal}>
-            <S.Modal.Content>
-              <S.Text>Teste</S.Text>
-            </S.Modal.Content>
+            <Text>Teste</Text>
           </Modal>
         </JestProviders>,
       );

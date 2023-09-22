@@ -2,9 +2,25 @@
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
     "jsx": "react",
-    /* Visit https://aka.ms/tsconfig.json to read more about this file */
-
-    /* Completeness */
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "@components": ["src/components"],
+      "@components/organisms": ["src/components/Organisms"],
+      "@components/atoms": ["src/components/Atoms"],
+      "@components/molecules": ["src/components/Molecules"],
+      "@api": ["src/repositories/api"],
+      "@domain": ["src/repositories/domain"],
+      "@infra": ["src/repositories/infra"],
+      "@database": ["src/repositories/database"],
+      "@constants": ["src/helpers/constants"],
+      "@utils": ["src/helpers/utils"],
+      "@models": ["src/models"],
+      "@store": ["src/store"],
+      "@styles": ["src/styles"],
+      "@hooks": ["src/helpers/hooks"],
+      "@screens": ["src/screens"],
+      "@mocks": ["mocks"]
+    }
   }
 }

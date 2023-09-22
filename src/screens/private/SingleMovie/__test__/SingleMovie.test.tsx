@@ -1,13 +1,16 @@
 import React from 'react';
+
 import {render} from '@testing-library/react-native';
-import JestProviders from '../../../../providers/JestProviders';
-import SingleMovie from '../View';
-import {SingleMovieViewModel} from '../models';
-import {movies} from '../../../../../mocks/movies';
-import {makeVoteAverage} from '../../../../helpers/utils/makeVoteAverage';
-import {mockUseCasePlaylist} from '../../../../../mocks/useCasePlaylist';
-import {fireGestureHandler} from 'react-native-gesture-handler/jest-utils';
 import {PanGesture, State} from 'react-native-gesture-handler';
+import {fireGestureHandler} from 'react-native-gesture-handler/jest-utils';
+
+import {movies} from '../../../../../mocks/movies';
+import {mockUseCasePlaylist} from '../../../../../mocks/useCasePlaylist';
+import {makeVoteAverage} from '../../../../helpers/utils/makeVoteAverage';
+import JestProviders from '../../../../providers/JestProviders';
+import {SingleMovieViewModel} from '../models';
+import SingleMovie from '../View';
+
 const navigation = {} as any;
 
 const route = {

@@ -1,6 +1,8 @@
-import {PlaylistImpl} from '../src/repositories/database/useCases/Playlist/model';
-import {movies} from './movies';
 import {Realm} from '@realm/react';
+
+import {CollectionImpl} from '../src/repositories/database/useCases/Collection/model';
+
+import {movies} from './movies';
 export const allPlaylistMock: any = [
   {
     _id: new Realm.BSON.ObjectId(),
@@ -37,4 +39,4 @@ export const mockImpl = {
   filtered,
 };
 
-export const mockUseCasePlaylist: PlaylistImpl = () => mockImpl;
+export const mockUseCasePlaylist: CollectionImpl = () => mockImpl;

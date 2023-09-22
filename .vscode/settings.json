@@ -1,0 +1,23 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+  // "files.exclude": {
+  //   "**/.git": true,
+  //   "**/.svn": true,
+  //   "**/.hg": true,
+  //   "**/CVS": true,
+  //   "**/.DS_Store": true,
+  //   "**/Thumbs.db": true,
+  //   "**/package-lock.json": true,
+  //   "**/Gemfile": true,
+  //   "**/Gemfile.lock": true,
+  //   "**/.watchmanconfig": true,
+  //   "**/metro.config.js": true,
+  //   "**/index.js": true,
+  //   "**/.bundle": true,
+  //   "**/README.md": true,
+  //   "**/.node-version": true
+  // }
+}

@@ -1,19 +1,15 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
+
 import JestProviders from '../../../../providers/JestProviders';
-
-import {FormAuthImpl} from '../../../../helpers/hooks/useFormAuth';
-import SignUp from '../View';
-
-const navigation = {
-  navigate: jest.fn(),
-} as any;
-const route = {} as any;
+import {SignUp} from '../SignUp.view';
+import {SignUpViewModel} from '../types';
 
 const handleFormData = jest.fn();
 const onSubmit = jest.fn();
-const setformData = jest.fn();
-const mockUseFormAuth: FormAuthImpl<'SignUp'> = () => ({
+
+const viewModelMock: SignUpViewModel = {
   errors: null,
   formData: {
     email: '',
@@ -21,19 +17,14 @@ const mockUseFormAuth: FormAuthImpl<'SignUp'> = () => ({
   },
   loading: false,
   handleFormData,
-  onSubmit,
-  setformData,
-});
+  submit: onSubmit,
+};
 
 describe('SignIn', () => {
   it('render component correctly', () => {
     const {getByText, getByPlaceholderText} = render(
       <JestProviders>
-        <SignUp
-          navigation={navigation}
-          route={route}
-          useFormAuth={mockUseFormAuth}
-        />
+        <SignUp viewModel={viewModelMock} />
       </JestProviders>,
     );
     const inputEmail = getByPlaceholderText('Email');
@@ -52,11 +43,7 @@ describe('SignIn', () => {
   it('change values form', () => {
     const {getByPlaceholderText, getByText} = render(
       <JestProviders>
-        <SignUp
-          navigation={navigation}
-          route={route}
-          useFormAuth={mockUseFormAuth}
-        />
+        <SignUp viewModel={viewModelMock} />
       </JestProviders>,
     );
     const inputEmail = getByPlaceholderText('Email');

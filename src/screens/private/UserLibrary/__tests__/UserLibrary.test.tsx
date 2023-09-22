@@ -1,10 +1,14 @@
 import React from 'react';
-import {fireEvent, render} from '@testing-library/react-native';
-import JestProviders from '../../../../providers/JestProviders';
-import UserLibrary from '../View';
-import {UserLibraryViewModel} from '../model';
+
 import {Realm} from '@realm/react';
+import {fireEvent, render} from '@testing-library/react-native';
+
 import {movies} from '../../../../../mocks/movies';
+import JestProviders from '../../../../providers/JestProviders';
+import {UserLibraryViewModel} from '../types';
+import UserLibrary from '../UserLibrary.view';
+
+jest.useFakeTimers();
 
 const allPlaylistMock: any = [
   {
@@ -22,23 +26,20 @@ const allPlaylistMock: any = [
     movies: movies,
   },
 ];
+const handleSelectLibrary = jest.fn();
+const fetchPlaylists = jest.fn();
 
-const handleChangeMock = jest.fn();
-const handleSelectPlaylistMock = jest.fn();
-const redirectScreenMock = jest.fn();
-const useUserLibraryMock: UserLibraryViewModel = () => ({
+const viewModelMock: UserLibraryViewModel = {
   allPlaylists: allPlaylistMock,
-  handleChangeText: handleChangeMock,
-  handleSelectPlaylist: handleSelectPlaylistMock,
-  redirectScreen: redirectScreenMock,
-  searchText: '',
-});
+  fetchPlaylists,
+  handleSelectLibrary,
+};
 
 describe('UserLibrary', () => {
   it('render component correctly', () => {
     const {getByText} = render(
       <JestProviders>
-        <UserLibrary useUserLibrary={useUserLibraryMock} />
+        <UserLibrary viewModel={viewModelMock} />
       </JestProviders>,
     );
 
@@ -48,21 +49,21 @@ describe('UserLibrary', () => {
   it('call function search change', () => {
     const {getByTestId} = render(
       <JestProviders>
-        <UserLibrary useUserLibrary={useUserLibraryMock} />
+        <UserLibrary viewModel={viewModelMock} />
       </JestProviders>,
     );
     const button = getByTestId('buttonVisible');
     fireEvent.press(button);
     const input = getByTestId('input');
-    fireEvent.changeText(input, 'John doe');
+    fireEvent(input, 'onChange', {nativeEvent: {text: 'John doe'}});
 
-    expect(handleChangeMock).toBeCalledWith('John doe');
+    expect(fetchPlaylists).toBeCalledWith('John doe');
   });
 
   it('render libraries correctly', () => {
     const {getAllByTestId} = render(
       <JestProviders>
-        <UserLibrary useUserLibrary={useUserLibraryMock} />
+        <UserLibrary viewModel={viewModelMock} />
       </JestProviders>,
     );
     const stackElements = getAllByTestId('stackElement');

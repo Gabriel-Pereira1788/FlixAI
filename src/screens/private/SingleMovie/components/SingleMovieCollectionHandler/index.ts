@@ -1,0 +1,1 @@
+export {SingleMovieCollectionHandler} from './SingleMovieCollectionHandler';

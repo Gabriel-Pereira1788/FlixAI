@@ -1,17 +1,21 @@
 import React from 'react';
+
 import {fireEvent, render} from '@testing-library/react-native';
-import JestProviders from '../../../../providers/JestProviders';
-import Movies from '../View';
-import {MoviesViewModel} from '../model';
-import {TMDB_GENRES} from '../../../../helpers/constants/tmdb';
-import {dataMoviesMock, movies} from '../../../../../mocks/movies';
+
 import {mockedNavigate} from '../../../../../jestSetup';
+import {dataMoviesMock, movies} from '../../../../../mocks/movies';
 import {ERROR_DEFAULT} from '../../../../helpers/constants/errorsMessage';
+import {TMDB_GENRES} from '../../../../helpers/constants/tmdb';
+import JestProviders from '../../../../providers/JestProviders';
+import Movies from '../Movies.view';
+import {MoviesViewModel} from '../types';
+
+jest.useFakeTimers();
 
 const handleFilterMock = jest.fn();
 const categories = TMDB_GENRES.filter(genre => !!genre.identify);
 
-const data: ReturnType<MoviesViewModel> = {
+const viewModelMock: MoviesViewModel = {
   categories,
   dataMovies: dataMoviesMock,
   filter: {
@@ -22,13 +26,12 @@ const data: ReturnType<MoviesViewModel> = {
   isLoading: false,
   error: null,
 };
-const useMoviesMock: MoviesViewModel = () => data;
 
 describe('Movies', () => {
   it('render component correctly', () => {
     const {getAllByTestId} = render(
       <JestProviders>
-        <Movies useMovies={useMoviesMock} />
+        <Movies viewModel={viewModelMock} />
       </JestProviders>,
     );
 
@@ -39,7 +42,7 @@ describe('Movies', () => {
   it('render list categories', () => {
     const {getAllByTestId} = render(
       <JestProviders>
-        <Movies useMovies={useMoviesMock} />
+        <Movies viewModel={viewModelMock} />
       </JestProviders>,
     );
     const allCategories = getAllByTestId('category-element');
@@ -47,16 +50,16 @@ describe('Movies', () => {
     expect(allCategories.length).toEqual(categories.length);
   });
   it('render list with filter', () => {
-    const useMoviesMock: MoviesViewModel = () => ({
-      ...data,
+    const viewModelMockFilterTest: MoviesViewModel = {
+      ...viewModelMock,
       filter: {
         category: 'all',
         text: 'Teste',
       },
-    });
+    };
     const {getAllByTestId} = render(
       <JestProviders>
-        <Movies useMovies={useMoviesMock} />
+        <Movies viewModel={viewModelMockFilterTest} />
       </JestProviders>,
     );
     const filteredMovies = getAllByTestId('filtered-movie-item');
@@ -67,7 +70,7 @@ describe('Movies', () => {
   it('toggle category onpress element', () => {
     const {getAllByTestId} = render(
       <JestProviders>
-        <Movies useMovies={useMoviesMock} />
+        <Movies viewModel={viewModelMock} />
       </JestProviders>,
     );
     const allCategories = getAllByTestId('category-element');
@@ -82,7 +85,7 @@ describe('Movies', () => {
   it('call handle search function', () => {
     const {getByTestId} = render(
       <JestProviders>
-        <Movies useMovies={useMoviesMock} />
+        <Movies viewModel={viewModelMock} />
       </JestProviders>,
     );
 
@@ -96,7 +99,7 @@ describe('Movies', () => {
   it('redirect to Single Movie screen', () => {
     const {getAllByTestId} = render(
       <JestProviders>
-        <Movies useMovies={useMoviesMock} />
+        <Movies viewModel={viewModelMock} />
       </JestProviders>,
     );
 
@@ -108,13 +111,13 @@ describe('Movies', () => {
   });
 
   it('render error screen', () => {
-    const useMoviesMock: MoviesViewModel = () => ({
-      ...data,
+    const viewModelMockTestError: MoviesViewModel = {
+      ...viewModelMock,
       error: true,
-    });
+    };
     const {getByText} = render(
       <JestProviders>
-        <Movies useMovies={useMoviesMock} />
+        <Movies viewModel={viewModelMockTestError} />
       </JestProviders>,
     );
 

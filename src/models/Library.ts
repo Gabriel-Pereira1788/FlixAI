@@ -4,5 +4,5 @@ export interface LibraryDTO {
   _id?: Realm.BSON.ObjectId;
   id?: string;
   title: string;
-  movies: Movie[];
+  movies?: (Movie | undefined)[];
 }

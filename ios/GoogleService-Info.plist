@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>857639575165-blrvr0i3hj5uvcbj31a176t7ormg1lo6.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.857639575165-blrvr0i3hj5uvcbj31a176t7ormg1lo6</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDi1BVsBo1eXxdNTlZ9p-jspBiiJO3_lSA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>857639575165</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.flixai</string>
+	<key>PROJECT_ID</key>
+	<string>flixie-cb66b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flixie-cb66b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:857639575165:ios:5126c64fc467d10b5bdb14</string>
+</dict>
+</plist>

@@ -1,18 +1,15 @@
 import React from 'react';
-import {fireEvent, render} from '@testing-library/react-native';
-import JestProviders from '../../../../providers/JestProviders';
-import SignIn from '../View';
-import {FormAuthImpl} from '../../../../helpers/hooks/useFormAuth';
 
-const navigation = {
-  navigate: jest.fn(),
-} as any;
-const route = {} as any;
+import {fireEvent, render} from '@testing-library/react-native';
+
+import JestProviders from '../../../../providers/JestProviders';
+import {SignIn} from '../SignIn.view';
+import {SignInViewModel} from '../types';
 
 const handleFormData = jest.fn();
 const onSubmit = jest.fn();
-const setformData = jest.fn();
-const mockUseFormAuth: FormAuthImpl<'SignIn'> = () => ({
+const redirectToSignUp = jest.fn();
+const viewModelMock: SignInViewModel = {
   errors: null,
   formData: {
     email: '',
@@ -20,19 +17,14 @@ const mockUseFormAuth: FormAuthImpl<'SignIn'> = () => ({
   },
   loading: false,
   handleFormData,
-  onSubmit,
-  setformData,
-});
+  submit: onSubmit,
+};
 
 describe('SignIn', () => {
   it('render component correctly', () => {
     const {getByText} = render(
       <JestProviders>
-        <SignIn
-          navigation={navigation}
-          route={route}
-          useFormAuth={mockUseFormAuth}
-        />
+        <SignIn redirectToSignUp={redirectToSignUp} viewModel={viewModelMock} />
       </JestProviders>,
     );
 
@@ -45,11 +37,7 @@ describe('SignIn', () => {
   it('change values form', () => {
     const {getByPlaceholderText, getByText} = render(
       <JestProviders>
-        <SignIn
-          navigation={navigation}
-          route={route}
-          useFormAuth={mockUseFormAuth}
-        />
+        <SignIn redirectToSignUp={redirectToSignUp} viewModel={viewModelMock} />
       </JestProviders>,
     );
     const inputEmail = getByPlaceholderText('Email');
@@ -68,11 +56,7 @@ describe('SignIn', () => {
   it('redirect to signUp screen', () => {
     const {getByTestId} = render(
       <JestProviders>
-        <SignIn
-          navigation={navigation}
-          route={route}
-          useFormAuth={mockUseFormAuth}
-        />
+        <SignIn redirectToSignUp={redirectToSignUp} viewModel={viewModelMock} />
       </JestProviders>,
     );
 
@@ -80,6 +64,6 @@ describe('SignIn', () => {
 
     fireEvent.press(register);
 
-    expect(navigation.navigate).toBeCalledWith('SignUp');
+    expect(redirectToSignUp).toBeCalled();
   });
 });

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {logger} from '@utils';
+
 import {ModalConfig, ModalViewModel} from './model';
 
 export const useModal: ModalViewModel = ({modalRef, setShowComponent}) => {
@@ -12,7 +14,7 @@ export const useModal: ModalViewModel = ({modalRef, setShowComponent}) => {
     setConfigModal(prev => ({...prev, isOpen: false}));
   }
 
-  console.log(configModal);
+  logger.log(configModal);
 
   function show(
     Component: JSX.Element,

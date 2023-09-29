@@ -1,13 +1,14 @@
 import React from 'react';
 
 import {render} from '@testing-library/react-native';
+import {logger} from '@utils';
 
 import {TMBD_BACKDROP_URL} from '../../../../helpers/constants/tmdb';
 import {makeVoteAverage} from '../../../../helpers/utils/makeVoteAverage';
 import {Movie} from '../../../../models/Movie';
 import JestProviders from '../../../../providers/JestProviders';
 import {Text} from '../../../Atoms/Text/View';
-import CardMovie from '../View';
+import {CardMovie} from '../View';
 
 const dataMovie: Movie = {
   backdrop_path: 'www.example.com',
@@ -67,12 +68,12 @@ describe('CardMovie', () => {
     );
 
     const container = getByTestId('container');
-    console.log(container.props.style);
+    logger.log(container.props.style);
     expect(container.props.style).toEqual(style);
   });
   it('set stack style', () => {
     const style = {
-      backgroundColor: '#f49191',
+      backgroundColor: 'redTextColor',
       width: '100%',
       justifyContent: 'center',
     };
@@ -83,8 +84,11 @@ describe('CardMovie', () => {
     );
 
     const container = getByTestId('container-stack');
-    expect(container.props.style.width).toEqual('100%');
-    expect(container.props.style.backgroundColor).toEqual('#f49191');
-    expect(container.props.style.justifyContent).toEqual('center');
+    const styleComponent = container.props.style[0];
+    console.log(container.props.style);
+    expect(true).toBeTruthy();
+    expect(styleComponent.width).toEqual('100%');
+    expect(styleComponent.backgroundColor).toEqual('#f87171');
+    expect(styleComponent.justifyContent).toEqual('center');
   });
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native';
 
 import {Movie} from '@models';
+import {logger} from '@utils';
 
 import {Box, Text, IBoxProps, CardMovie} from '@components';
 
@@ -38,7 +39,7 @@ export function StackMovies({
               .slice(0, 3)
               .reverse()
               .map((data, index) => {
-                console.log(data.backdrop_path);
+                logger.log(data.backdrop_path);
                 return (
                   <CardMovie
                     testID="movie"

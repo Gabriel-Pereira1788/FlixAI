@@ -1,7 +1,7 @@
 import {QUERY_KEYS} from '@constants';
 import {_useKeywordsGpt} from '@database';
 import {useFetch} from '@infra';
-import {toValidKeyWords} from '@utils';
+import {logger, toValidKeyWords} from '@utils';
 
 import {MoviesService} from '../../movies';
 import {AssistantSuggestionService} from '../assistantSuggestionService';
@@ -16,7 +16,7 @@ export function useGetSuggestions({
   const keywordsImpl = useKeywordsImpl();
 
   async function fetchMoviesSuggestions(searchText: string) {
-    console.log('search-text', searchText);
+    logger.log('search-text', searchText);
     if (searchText.trim().length === 0) {
       return null;
     }

@@ -3,7 +3,7 @@ import React from 'react';
 import {render} from '@testing-library/react-native';
 
 import JestProviders from '../../../../providers/JestProviders';
-import ProgressiveImage from '../View';
+import {ProgressiveImage} from '../View';
 
 const pathUrl = 'www.example.com';
 const thumbnail = 'www.example1.com';

@@ -1,4 +1,5 @@
 import {GPT_KEY} from '@env';
+import {logger} from '@utils';
 import axios from 'axios';
 
 import {ApiMessage, BodyDTO} from './model';
@@ -18,13 +19,13 @@ export class AssistantSuggestionApi {
     try {
       return await this.trySendMessage(BODY);
     } catch (error) {
-      console.log('error-get', error.message);
+      logger.log('error-get', error.message);
       return null;
     }
   }
 
   private async trySendMessage(body: BodyDTO) {
-    console.log('entrou aqui');
+    logger.log('entrou aqui');
     const {data} = await axios({
       url: 'https://api.openai.com/v1/chat/completions',
       method: 'POST',
@@ -34,7 +35,7 @@ export class AssistantSuggestionApi {
       },
       data: JSON.stringify(body),
     });
-    console.log('data-gpt', data);
+    logger.log('data-gpt', data);
     return data.choices[0].message.content as string;
   }
 }

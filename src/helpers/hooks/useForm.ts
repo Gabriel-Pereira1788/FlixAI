@@ -3,6 +3,8 @@ import React from 'react';
 import {ERRORS_FIREBASE_MESSAGE} from '@constants';
 import {AuthDTO} from '@models';
 
+import {logger} from '../utils/logger';
+
 type Props = {
   defaultData?: AuthDTO;
   onSubmit: (formData: AuthDTO) => Promise<void>;
@@ -39,7 +41,7 @@ export function useForm({defaultData, onSubmit, onSuccess, onError}: Props) {
       }
     } catch (error) {
       const Error = error as {message: string};
-      console.log(Error);
+      logger.log(Error);
       let messageError = '';
       Object.entries(ERRORS_FIREBASE_MESSAGE).forEach(([key, value]) => {
         if (Error.message.includes(key)) {

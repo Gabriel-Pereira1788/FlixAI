@@ -1,8 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {logger} from '@utils';
 
 export class Storage {
   static async get<T>(key: string): Promise<T> {
-    console.log('get');
+    logger.log('get');
     const dataUser: T = JSON.parse((await AsyncStorage.getItem(key)) as string);
     return dataUser;
   }

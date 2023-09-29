@@ -40,7 +40,7 @@ export function Loading({typeLoading, imageProps}: LoadingProps) {
 
     return () => {
       clearInterval(intervalLoading);
-      console.log('unmount');
+      logger.log('unmount');
     };
   }, [isFocus]);
   return (

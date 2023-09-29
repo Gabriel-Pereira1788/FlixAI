@@ -3,7 +3,7 @@ import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
 
 import JestProviders from '../../../../providers/JestProviders';
-import Input from '../View';
+import {InputAuth} from '../View';
 
 const handleChangeMock = jest.fn();
 
@@ -11,7 +11,7 @@ describe('InputAuth', () => {
   it('render component correctly', () => {
     const {getByPlaceholderText} = render(
       <JestProviders>
-        <Input placeholder="Email" />
+        <InputAuth placeholder="Email" />
       </JestProviders>,
     );
     expect(getByPlaceholderText('Email')).toBeTruthy();
@@ -20,7 +20,7 @@ describe('InputAuth', () => {
   it('change event called', () => {
     const {getByPlaceholderText} = render(
       <JestProviders>
-        <Input
+        <InputAuth
           placeholder="Email"
           value="teste@gmail.com"
           onChangeText={handleChangeMock}
@@ -38,7 +38,7 @@ describe('InputAuth', () => {
   it('test error status render', () => {
     const {getByText} = render(
       <JestProviders>
-        <Input
+        <InputAuth
           error="Campo vazio"
           placeholder="Email"
           value="teste@gmail.com"

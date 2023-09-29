@@ -5,7 +5,7 @@ jest.mock('@react-native-async-storage/async-storage', () =>
   require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
 );
 
-require('react-native-reanimated/lib/commonjs/reanimated2/jestUtils').setUpTests();
+require('react-native-reanimated/src/reanimated2/jestUtils').setUpTests();
 
 jest.mock('react-native-reanimated', () => {
   const Reanimated = require('react-native-reanimated/mock');

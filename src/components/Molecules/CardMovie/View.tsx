@@ -41,7 +41,10 @@ export function CardMovie({
       style={{width: '97%', ...style}}
       entering={FadeInDown.delay(index || 1 + 1 * 100).duration(200)}>
       <TouchableOpacity style={{width: '100%'}} onPress={onPress}>
-        <WrapperCard variant="cardMovie" {...stackStyle}>
+        <WrapperCard
+          variant="cardMovie"
+          {...stackStyle}
+          testID="container-stack">
           <Box position="relative" overflow="hidden" borderRadius="m">
             <Box position="absolute" top={3} left={0} zIndex={10}>
               <Box

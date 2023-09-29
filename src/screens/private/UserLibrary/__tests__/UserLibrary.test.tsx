@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Realm} from '@realm/react';
-import {fireEvent, render} from '@testing-library/react-native';
+import {fireEvent, render, waitFor} from '@testing-library/react-native';
 
 import {movies} from '../../../../../mocks/movies';
 import JestProviders from '../../../../providers/JestProviders';
@@ -36,14 +36,15 @@ const viewModelMock: UserLibraryViewModel = {
 };
 
 describe('UserLibrary', () => {
-  it('render component correctly', () => {
+  it('render component correctly', async () => {
     const {getByText} = render(
       <JestProviders>
         <UserLibrary viewModel={viewModelMock} />
       </JestProviders>,
     );
 
-    expect(getByText('Biblioteca de filmes')).toBeTruthy();
+    const titleElement = await waitFor(() => getByText('Biblioteca de filmes'));
+    expect(titleElement).toBeTruthy();
   });
 
   it('call function search change', () => {

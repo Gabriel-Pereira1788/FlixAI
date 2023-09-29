@@ -3,6 +3,7 @@ import React from 'react';
 import {TMBD_BACKDROP_PREVIEW, TMBD_BACKDROP_URL} from '@constants';
 import {Cast} from '@models';
 import {render} from '@testing-library/react-native';
+import {logger} from '@utils';
 
 import {dataCast} from '../../../../../../mocks/cast';
 import JestProviders from '../../../../../providers/JestProviders';
@@ -16,7 +17,7 @@ describe('CardCast', () => {
       </JestProviders>,
     );
     const images = getAllByTestId('image-card');
-    console.log(images[0].props);
+    logger.log(images[0].props);
     expect(images.length > 0).toBeTruthy();
     expect(images[0].props.source.uri).toEqual(
       `${TMBD_BACKDROP_PREVIEW}${dataCast[0].profile_path}`,

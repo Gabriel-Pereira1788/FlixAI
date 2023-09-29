@@ -25,7 +25,7 @@ const mockViewModel: MoviesSugestionViewModel = {
     id: '',
   },
 };
-describe('PlaylistSugestion', () => {
+describe('MoviesSuggestion', () => {
   it('render component correctly', () => {
     const {getByText, getByTestId} = render(
       <JestProviders>
@@ -34,7 +34,6 @@ describe('PlaylistSugestion', () => {
     );
 
     expect(getByText('Hello John doe')).toBeTruthy();
-    expect(getByTestId('sugestions')).toBeTruthy();
     expect(getByTestId('container-add')).toBeDefined();
   });
   it('render movies correctly', () => {

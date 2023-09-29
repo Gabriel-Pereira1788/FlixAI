@@ -5,7 +5,7 @@ import {PaperPlaneRight} from 'phosphor-react-native';
 
 import JestProviders from '../../../../providers/JestProviders';
 import {Box} from '../../../Atoms/Box/View';
-import SearchBar from '../View';
+import {SearchBar} from '../View';
 
 describe('SearchBar', () => {
   it('render component correctly', () => {

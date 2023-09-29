@@ -1,10 +1,9 @@
+import {useCollection} from '@database';
 import {act, renderHook} from '@testing-library/react-native';
+import {logger} from '@utils';
 
 import {dataMoviesMock, movies} from '../../../../../mocks/movies';
-import {
-  mockUseCasePlaylist,
-  create,
-} from '../../../../../mocks/useCasePlaylist';
+import {create, allPlaylistMock} from '../../../../../mocks/useCasePlaylist';
 import {useSelectedMoviesActions} from '../../../../store/client/SelectMovies/useSelectedMoviesStore';
 import {useAllMovies} from '../../../../store/server/useAllMovies';
 import {useSelectMoviesViewModel} from '../SelectMovies.viewModel';
@@ -17,17 +16,31 @@ const mockSelectedMoviesActions = useSelectedMoviesActions as jest.Mock<
 >;
 
 const cleanUpMock = jest.fn();
+const mockUseCollection = useCollection as jest.Mock<
+  ReturnType<typeof useCollection>
+>;
+
+jest.mock(
+  '../../../../repositories/database/useCases/Collection/useCollection',
+);
 jest.mock('../../../../store/server/useAllMovies');
 jest.mock('../../../../store/client/SelectMovies/useSelectedMoviesStore');
 jest.mock('@react-navigation/native', () => ({
   useIsFocused: () => true,
 }));
 
-jest.mock('@database', () => ({
-  usePlaylist: mockUseCasePlaylist,
-}));
 const navigation: any = {
   goBack: jest.fn(),
+};
+
+const collectionMock = {
+  playlists: allPlaylistMock,
+  edit: jest.fn(),
+  create: create,
+  get: jest.fn().mockReturnValue(allPlaylistMock),
+  findMovieInPlaylist: jest.fn().mockReturnValue(allPlaylistMock[0]),
+  removeMovieToCollection: jest.fn(),
+  filtered: jest.fn(),
 };
 
 beforeAll(() => {
@@ -36,6 +49,7 @@ beforeAll(() => {
     addToSelected: jest.fn(),
     removeToSelected: jest.fn(),
   }));
+  mockUseCollection.mockImplementation(() => collectionMock);
   mockAllMovies.mockImplementation(() => ({
     data: dataMoviesMock,
     error: null,
@@ -50,7 +64,7 @@ describe('useSelectMovies', () => {
         navigation,
       }),
     );
-    console.log(result.current.dataMovies);
+    logger.log(result.current.dataMovies);
     expect(result.current.searchText).toEqual('');
     expect(result.current.dataMovies?.length).toEqual(2);
   });

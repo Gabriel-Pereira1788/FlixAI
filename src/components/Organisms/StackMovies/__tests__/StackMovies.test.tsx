@@ -4,7 +4,7 @@ import {fireEvent, render} from '@testing-library/react-native';
 
 import {movies} from '../../../../../mocks/movies';
 import JestProviders from '../../../../providers/JestProviders';
-import StackMovies from '../View';
+import {StackMovies} from '../View';
 
 describe('StackMovies', () => {
   it('render component correctly', () => {

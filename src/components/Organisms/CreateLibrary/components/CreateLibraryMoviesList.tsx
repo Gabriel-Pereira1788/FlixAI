@@ -8,7 +8,7 @@ import {CreateLibraryProps} from '../types';
 type Props = Pick<CreateLibraryProps, 'moviesListToAdd'> & {};
 
 export function CreateLibraryMoviesList({moviesListToAdd}: Props) {
-  // console.log(moviesListToAdd)
+  // logger.log(moviesListToAdd)
   return (
     <Box
       width="100%"

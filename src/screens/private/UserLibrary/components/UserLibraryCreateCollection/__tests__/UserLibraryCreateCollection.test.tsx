@@ -2,6 +2,7 @@ import React from 'react';
 
 import {useCollectionCreate} from '@database';
 import {fireEvent, render} from '@testing-library/react-native';
+import {logger} from '@utils';
 
 import {movies} from '../../../../../../../mocks/movies';
 import JestProviders from '../../../../../../providers/JestProviders';
@@ -44,7 +45,7 @@ beforeAll(() => {
   }));
   useToastActionsMock.mockImplementation(() => ({
     success: (message: string) => {
-      console.log(message);
+      logger.log(message);
     },
   }));
 
@@ -67,7 +68,7 @@ describe('UserLibraryCreateCollection', () => {
 
     expect(getByText('Confirmar')).toBeTruthy();
     expect(getByText('Criar nova biblioteca')).toBeTruthy();
-    expect(getByText('Filmes populares.')).toBeTruthy();
+    expect(getByText('Filmes populares')).toBeTruthy();
     expect(getByText('Selecione algums filmes para continuar')).toBeTruthy();
     expect(getByText('ver todos')).toBeTruthy();
   });

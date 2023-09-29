@@ -4,6 +4,7 @@ import {Collection} from '@database';
 import {useDatabase} from '@infra';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useToastActions} from '@store';
+import {logger} from '@utils';
 
 import {modalRef} from '@components';
 
@@ -54,7 +55,7 @@ export const useListMoviesViewModel = (
       toast.success('Biblioteca apagada...');
       navigation.goBack();
     } catch (error) {
-      console.log('error on delete library', error);
+      logger.log('error on delete library', error);
       toast.error('Algo deu errado ao deletar a biblioteca...');
     } finally {
       modalRef.current?.hide();

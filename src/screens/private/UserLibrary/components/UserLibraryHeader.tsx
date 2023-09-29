@@ -31,6 +31,7 @@ export function UserLibraryHeader({onSearch}: Props) {
 
   return (
     <Box
+      testID="teste-box"
       paddingHorizontal={'xl'}
       marginBottom="xl"
       style={{

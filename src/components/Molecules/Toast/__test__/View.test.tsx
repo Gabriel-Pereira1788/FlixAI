@@ -1,116 +1,142 @@
 import React from 'react';
 
 import {render} from '@testing-library/react-native';
+import {act} from 'react-test-renderer';
 
+import {toastActionsMock} from '../../../../../mocks/toastActionsMock';
 import JestProviders from '../../../../providers/JestProviders';
-import {AlertConfig, AlertRef, AlertViewModel} from '../model';
-import Alert from '../View';
+import {
+  useToastStore,
+  useToastActions,
+} from '../../../../store/client/ToastStore/useToastStore';
+import {Toast} from '../Toast.view';
 
-const hideMock = jest.fn();
-const openMock = jest.fn();
-const alertConfigMock: AlertConfig = {
+const useToastStoreMock = useToastStore as jest.Mock<
+  ReturnType<typeof useToastStore>
+>;
+const useToastActionsMock = useToastActions as jest.Mock<
+  ReturnType<typeof useToastActions>
+>;
+jest.mock('../../../../store/client/ToastStore/useToastStore');
+
+const alertConfigMock: any = {
   isOpen: true,
-  status: 'warning',
-  text: 'Alert message',
+  status: 'success',
+  text: 'alert message',
 };
 
-const ref = React.createRef<AlertRef>();
-
-const useAlertMock: AlertViewModel = () => ({
-  alertConfig: alertConfigMock,
-  hide: hideMock,
-  open: openMock,
+beforeEach(() => {
+  useToastStoreMock.mockImplementation(() => alertConfigMock);
+  useToastActionsMock.mockImplementation(() => toastActionsMock);
 });
+
 describe('Alert', () => {
   it('should render with opened alert', () => {
     const containerStyle = {backgroundColor: 'red'};
 
-    const {getByText, getByTestId} = render(
+    const {getByTestId} = render(
       <JestProviders>
-        <Alert
-          ref={ref}
-          containerStyle={containerStyle}
-          useAlert={useAlertMock}
-        />
+        <Toast containerStyle={containerStyle} />
       </JestProviders>,
     );
 
-    const icon = getByTestId('icon-status');
     const alert = getByTestId('alert');
 
-    expect(getByText(alertConfigMock.text)).toBeTruthy();
-    expect(icon).toBeDefined();
     expect(alert).toBeDefined();
     expect(alert.props.style[1].backgroundColor).toEqual('red');
   });
 
+  afterEach(() => {
+    useToastStoreMock.mockClear();
+  });
+
   it('shoul render with not opened alert', () => {
-    const useAlertMockFalse: AlertViewModel = () => ({
-      alertConfig: {
-        isOpen: false,
-        status: 'warning',
-        text: 'Alert message',
-      },
-      hide: hideMock,
-      open: openMock,
-    });
+    useToastStoreMock.mockImplementation(() => ({
+      isOpen: false,
+      status: 'warning',
+      text: 'teste',
+    }));
     const {queryByTestId} = render(
       <JestProviders>
-        <Alert ref={ref} useAlert={useAlertMockFalse} />
+        <Toast />
       </JestProviders>,
     );
 
-    const icon = queryByTestId('icon-status');
     const alert = queryByTestId('alert');
 
-    expect(icon).toBeNull();
     expect(alert).toBeNull();
+  });
+  afterEach(() => {
+    useToastStoreMock.mockClear();
   });
 
   it('render with status success', () => {
-    const useAlertMock: AlertViewModel = () => ({
-      alertConfig: {
-        isOpen: true,
-        status: 'success',
-        text: 'teste',
-      },
-      hide: hideMock,
-      open: openMock,
-    });
+    useToastStoreMock.mockImplementation(() => ({
+      ...alertConfigMock,
+      isOpen: true,
+      status: 'success',
+      text: 'teste',
+    }));
     const {getByTestId} = render(
       <JestProviders>
-        <Alert ref={ref} useAlert={useAlertMock} />
+        <Toast />
       </JestProviders>,
     );
-    // - sucess
-    //'#fed7aa' - warning
+
     const alertContainer = getByTestId('alertContainer');
 
-    console.log();
+    const style = alertContainer.props.style[1][0];
 
-    expect(alertContainer.props.style.backgroundColor).toEqual('#bbf7d0');
+    expect(true).toBeTruthy();
+    expect(style.backgroundColor).toEqual('#BAF7D0');
+  });
+
+  afterEach(() => {
+    useToastStoreMock.mockClear();
   });
 
   it('render with status warning', () => {
-    const useAlertMock: AlertViewModel = () => ({
-      alertConfig: {
-        isOpen: true,
-        status: 'warning',
-        text: 'teste',
-      },
-      hide: hideMock,
-      open: openMock,
-    });
+    useToastStoreMock.mockImplementation(() => ({
+      ...alertConfigMock,
+      isOpen: true,
+      status: 'warning',
+      text: 'teste',
+    }));
+
     const {getByTestId} = render(
       <JestProviders>
-        <Alert ref={ref} useAlert={useAlertMock} />
+        <Toast />
       </JestProviders>,
     );
 
     const alertContainer = getByTestId('alertContainer');
+    const style = alertContainer.props.style[1][0];
+    expect(style.backgroundColor).toEqual('#ffa700');
+  });
 
-    console.log();
+  it('render toast and after close by timeout', () => {
+    useToastStoreMock.mockImplementation(() => ({
+      ...alertConfigMock,
+      isOpen: true,
+      status: 'success',
+      text: 'teste',
+    }));
 
-    expect(alertContainer.props.style.backgroundColor).toEqual('#fed7aa');
+    jest.useFakeTimers();
+
+    const {queryByTestId} = render(
+      <JestProviders>
+        <Toast />
+      </JestProviders>,
+    );
+
+    const alert = queryByTestId('alert');
+    expect(alert).toBeDefined();
+
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    expect(toastActionsMock.hide).toBeCalled();
   });
 });

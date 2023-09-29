@@ -1,5 +1,6 @@
 import {STORAGE_KEYS} from '@constants';
 import {User} from '@models';
+import {logger} from '@utils';
 
 import queryClient from '../../api/config/queryClient';
 import {Storage} from '../storage/Storage';
@@ -8,7 +9,7 @@ class Auth {
   constructor() {}
 
   async persistUser() {
-    console.log('persist user');
+    logger.log('persist user');
     const data = await Storage.get<User>(STORAGE_KEYS.user);
     return data;
   }

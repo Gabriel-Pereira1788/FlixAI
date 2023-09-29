@@ -5,7 +5,7 @@ import {render} from '@testing-library/react-native';
 import {IDataMovie, Movie} from '../../../../models/Movie';
 import JestProviders from '../../../../providers/JestProviders';
 import {FilteredMoviesViewModel} from '../model';
-import FilteredMovies from '../View';
+import {FilteredMovies} from '../View';
 
 const movies: Movie[] = [
   {
